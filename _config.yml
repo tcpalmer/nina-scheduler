@@ -1,5 +1,15 @@
-title: Target Scheduler NINA Plugin
+title: Target Scheduler
 description: Documentation for the Target Scheduler NINA Plugin
 theme: just-the-docs
+color_scheme: dark
+#logo: "/assets/images/target-scheduler-logo.png"
+
+callouts:
+  warning:
+    title: Warning
+    color: red
+  note:
+    title: Note
+    color: grey-lt
 
 url: https://tcpalmer.github.io/nina-scheduler

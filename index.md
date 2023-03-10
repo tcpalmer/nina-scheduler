@@ -1,26 +1,30 @@
 ---
 title: Home
 layout: home
+nav_order: 2
 ---
 
-This is a *bare-minimum* template to create a Jekyll site that uses the [Just the Docs] theme. You can easily set the created site to be published on [GitHub Pages] – the [README] file explains how to do that, along with other details.
+# Target Scheduler
 
-If [Jekyll] is installed on your computer, you can also build and preview the created site *locally*. This lets you test changes before committing them, and avoids waiting for GitHub Pages.[^1] And you will be able to deploy your local build to a different platform than GitHub Pages.
+The Target Scheduler Plugin is designed to provide a higher level of automation than is typically achievable today with [NINA](https://nighttime-imaging.eu/). Specifically, it maintains a database of imaging projects describing DSO targets and associated exposure plans. Based on various criteria and preferences, it can decide at any given time what project/target should be actively imaging.
 
-More specifically, the created site:
+You enter your desired projects, targets, and preferences into a UI exposed by the plugin. At runtime, a single new instruction for the NINA Advanced Sequencer will interact with the planning engine to determine the best target for imaging at each point throughout a night. The instruction will manage the slew/center to the target, switching filters, taking exposures, and (optionally) dithering - all while transparently interacting with the surrounding NINA triggers and conditions.
 
-- uses a gem-based approach, i.e. uses a `Gemfile` and loads the `just-the-docs` gem
-- uses the [GitHub Pages / Actions workflow] to build and publish the site on GitHub Pages
+The goal of the plugin is **_not_** to squeeze every available second out of an imaging window.  You may have periods where it doesn't seem to be particularly optimal (hopefully reduced as the plugin improves).  It should, however, significantly reduce the configuration and setup burden associated with sophisticated, multi-target acquisition.
 
-Other than that, you're free to customize sites that you create with this template, however you like. You can easily change the versions of `just-the-docs` and Jekyll it uses, as well as adding further plugins.
+{: .warning }
+The Target Scheduler Plugin is currently in a pre-release state - please read the [Release Status](release.html) page for more information.
 
-[Browse our documentation][Just the Docs] to learn more about how to use this theme.
+### Acknowledgements
+* [Chris Woodhouse](https://www.digitalastrophotography.co.uk/about.html) has been involved since the beginning and was instrumental in hashing out the initial design and requirements.  He was also a willing guinea pig to test early releases.
+* Pete and Steve of [RoboScopes](https://www.roboscopes.com/) also tested early versions and provided invaluable feedback.
+* The concept for the plugin was originally inspired by the AIC video [Tim Hutchison: Automating a Backyard Observatory](https://youtu.be/a4IkAUZkXH0).
 
-To get started with creating a site, just click "[use this template]"!
+
+{: .fs-2 }
+The Sequence Scheduler plugin and this documentation are provided 'as is' under the terms of the [Mozilla Public License 2.0](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/LICENSE.txt).  View the source code at [https://github.com/tcpalmer/nina.plugin.assistant](https://github.com/tcpalmer/nina.plugin.assistant).
 
 ----
-
-[^1]: [It can take up to 10 minutes for changes to your site to publish after you push the changes to GitHub](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll#creating-your-site).
 
 [Just the Docs]: https://just-the-docs.github.io/just-the-docs/
 [GitHub Pages]: https://docs.github.com/en/pages
