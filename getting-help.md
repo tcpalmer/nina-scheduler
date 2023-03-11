@@ -4,7 +4,7 @@ title: Getting Help
 nav_order: 6
 ---
 
-## Getting Help
+# Getting Help
 
 {: .note }
 Before you ask for help, please be sure you have met the [prerequisites](getting-started.html#prerequisites) and made a decent effort to learn the plugin.

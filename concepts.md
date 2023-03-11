@@ -25,9 +25,9 @@ A _target_ represents a single DSO object with RA/Dec coordinates, frame rotatio
 Each target has one or more associated _Exposure Plans_ that describe the actual exposures to be taken.  An individual exposure plan sets the exposure length and the number of exposures desired, as well as referencing an _Exposure Template_ (see below).  Exposure plans also record the number of images for this plan that are deemed acceptable (which can be edited) plus the total number acquired (which can't be changed).  An exposure plan will stay active until the number of accepted images is greater than or equal to the number desired.
 
 ### Exposure Templates
-_Exposure Templates_ provide the ability to set several exposure-related properties that are likely commonly used for the associated filter and the rig described by the applicable profile.  Configurable properties include gain, offset, binning, and camera readout mode.  It also lets you set the level of twilight and the moon avoidance parameters appropriate for the filter.
+_Exposure Templates_ provide the ability to set several exposure-related properties that are likely commonly used for the associated filter and the rig described by the applicable profile.  Configurable properties include gain, offset, binning, and camera readout mode.  You can also set the level of twilight and the moon avoidance parameters appropriate for the filter.
 
-Exposure Templates let you decouple most of the properties for an exposure from the Exposure Plan where they're easy to reuse.  You can also define multiple templates for the same physical filter.
+Exposure Templates let you decouple most of the properties for an exposure from the Exposure Plan so that they're easy to reuse.  You can also define multiple templates for the same physical filter.
 
 _Note that you must set up an Exposure Template before you can define any Exposure Plans that use it._
 
@@ -51,16 +51,18 @@ When the instruction executes, it does the following in a loop:
 ## Planning Engine
 
 The Planning Engine executes a series of steps to pick the best target to image at the moment and then schedule the applicable exposures for that target.  It operates in phases:
-* Retrieve the list of active projects from the database.
+* Retrieve the list of active projects for the current NINA profile from the database.
 * Reject those that are already complete.
 * Reject those that are not currently visible.
 * Of those that remain, reject any target exposure plans for moon avoidance.
 * If multiple targets remain, run the _Scoring Engine_ to produce a winner.
 * Generate a set of exposure instructions for the selected target.
 
+Since the Planning Engine executes quickly, there is little penalty in calling it as needed throughout an imaging session.  Circumstances change (darkness level, targets rising/setting) and it can be advantageous to simply run it again.  The only real penalty is if a different target is selected (requiring a slew/center) but one of the scoring rules counteracts that tendency.  The timing of the next call to the Planning Engine is determined by the hard stop time of the current plan.  Determining a good value for that time will likely evolve as more experience is gained with plugin operation.
+
 ## Scoring Engine
 
-The Scheduler uses a Scoring Engine to select a target when multiple could potentially be imaged.  The engine executes a set of rules on each target to produce a score, with the highest score winning.  The applicable Project has a set of configurable weights that are used to modulate the application of each rule.
+The Scheduler uses a Scoring Engine to select a target when multiple are under consideration.  The engine executes a set of rules on each target to produce a score, with the highest score winning.  The applicable Project has a set of configurable weights that are used to modulate the application of each rule.
 
 ### Scoring Rules
 
@@ -71,21 +73,24 @@ The following rules are currently implemented:
 
 A user can select different weights for each rule (or disable entirely) to achieve different goals.
 
-The engine is designed to be easily extended by adding additional rules - and several are planned.  Note that there is a limit with approaches like this in that as the number of rules increases, the predictability of engine outcomes goes down - and predictability can be desirable.  As the number grows it might be appropriate for users to select a subset that work well and disable the others.
-
-## Image Handling
-
-
-Will never delete - or even touch - your acquired images, even if marked as unacceptable.
+The engine is designed to be easily extended by adding additional rules.  Note that there is a limit with approaches like this in that as the number of rules increases, the predictability of engine outcomes goes down - and predictability can be desirable.  As the number grows it might be appropriate for users to select a subset that work well and disable the others.
 
 See the [Advanced Sequencer](sequencer/index.html) for details.
 
-
 ## Post-acquisition Activities
 
+### Image Grading
 
-### Image Acceptability
+{: .note}
+Image Grading is a work in progress.  The following is not yet implemented and all images are marked as acceptable.
 
+In order to increase the level of automation, the plugin includes rudimentary image grading.  The grader will compare metrics (e.g. HFR and star count) for the current image to a set of immediately preceding images to detect significant deviations.  If the image fails the test, the accepted count on the associated Exposure Plan is not incremented and the scheduler will continue to schedule exposures.
+
+Automatic image grading is inherently problematic and this plugin is not the place to make the final determination on whether an image is acceptable or not.  Towards that end, the plugin will **_never_** delete any of your images.  You are also free to disable Image Grading and manage the accepted count on your Exposure Plans manually - for example after reviewing the images yourself or using more sophisticated (external) analysis methods.
+
+### Image Metadata
+
+The plugin will save metadata to the database for all images acquired via the plugin.  The records can be viewed in the _View Acquired Image Information_ section of the plugin home page in NINA Plugins.
 
 See [Post-acquisition](post-acquisition/index.html) for details.
 

@@ -4,6 +4,8 @@ title: Release Status
 nav_order: 10
 ---
 
+# Release Status
+
 ## Release 0.1.0.0
 
 This release is only available for NINA 2.1.x.  Support for NINA 3 will be added later.

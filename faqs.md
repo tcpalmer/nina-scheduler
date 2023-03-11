@@ -4,7 +4,7 @@ title: FAQs
 nav_order: 4
 ---
 
-## Frequently Asked Questions
+# Frequently Asked Questions
 
 _Why is my project/target not considered at imaging time?_
 
