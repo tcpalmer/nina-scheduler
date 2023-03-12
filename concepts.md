@@ -16,10 +16,10 @@ Conceptually, the plugin is divided into three separate areas:
 The plugin organizes your acquisition data as follows.  Note that all of these entities are unique to a given NINA profile since they often depend on the characteristics of the associated equipment.
 
 ### Projects
-_Projects_ serve to group a set of _Targets_ and provide common preferences.  Although many projects will contain a single target, it may be useful to group the targets for a mosaic under a single project.
+_Projects_ serve to group a set of _Targets_ and provide common preferences.  Although many projects will have only a single target, it may be useful to group the targets for a mosaic under a single project.
 
 ### Targets
-A _target_ represents a single DSO object with RA/Dec coordinates, frame rotation, and ROI.  Target coordinates can be manually entered or imported from the NINA catalog, the NINA Framing Assistant, or an attached planetarium program (e.g. Stellarium).
+A _target_ represents a single DSO object with RA/Dec coordinates, frame rotation, and ROI.  Target coordinates can be manually entered or imported from the NINA catalog, the NINA Framing Assistant, or an attached planetarium program (e.g. Cartes du Ciel, Stellarium, etc).
 
 ### Exposure Plans
 Each target has one or more associated _Exposure Plans_ that describe the actual exposures to be taken.  An individual exposure plan sets the exposure length and the number of exposures desired, as well as referencing an _Exposure Template_ (see below).  Exposure plans also record the number of images for this plan that are deemed acceptable (which can be edited) plus the total number acquired (which can't be changed).  An exposure plan will stay active until the number of accepted images is greater than or equal to the number desired.
@@ -34,9 +34,9 @@ _Note that you must set up an Exposure Template before you can define any Exposu
 
 See [Project/Target Management](target-management/index.html) for details.
 
-## Runtime Execution
+## Runtime Execution in the Advanced Sequencer
 
-The plugin provides a single new instruction for the NINA Advanced Sequencer: _Target Scheduler_.  The instruction is placed into a Sequential Instruction set - typically as the only instruction and with no loop conditions.  Triggers can be added as needed and should interact with the plugin as expected - for example various auto-focus triggers, meridian flip, etc.
+The plugin provides a single new instruction for the NINA Advanced Sequencer: _Target Scheduler_.  The instruction is placed into a Sequential Instruction set - typically as the only instruction and with no loop conditions.  Triggers can be added as needed and should interact with the plugin as expected - for example various autofocus triggers, meridian flip, etc.
 
 A perfectly valid sequence could consist of nothing more than start up instructions (connect equipment, cool camera), the sequential instruction set containing Target Scheduler and required triggers, and end instructions (park, warm camera, disconnect).
 
@@ -53,8 +53,8 @@ When the instruction executes, it does the following in a loop:
 The Planning Engine executes a series of steps to pick the best target to image at the moment and then schedule the applicable exposures for that target.  It operates in phases:
 * Retrieve the list of active projects for the current NINA profile from the database.
 * Reject those that are already complete.
-* Reject those that are not currently visible.
-* Of those that remain, reject any target exposure plans for moon avoidance.
+* Reject those that are not visible for at least the minimum imaging time.
+* Of those that remain, reject any target exposure plans that fail moon avoidance.
 * If multiple targets remain, run the _Scoring Engine_ to produce a winner.
 * Generate a set of exposure instructions for the selected target.
 
@@ -82,7 +82,7 @@ See the [Advanced Sequencer](sequencer/index.html) for details.
 ### Image Grading
 
 {: .note}
-Image Grading is a work in progress.  The following is not yet implemented and all images are marked as acceptable.
+[Image Grading](post-acquisition/image-grader.html) is a work in progress.  The following is not yet implemented and all images are marked as acceptable.
 
 In order to increase the level of automation, the plugin includes rudimentary image grading.  The grader will compare metrics (e.g. HFR and star count) for the current image to a set of immediately preceding images to detect significant deviations.  If the image fails the test, the accepted count on the associated Exposure Plan is not incremented and the scheduler will continue to schedule exposures.
 
@@ -90,7 +90,7 @@ Automatic image grading is inherently problematic and this plugin is not the pla
 
 ### Image Metadata
 
-The plugin will save metadata to the database for all images acquired via the plugin.  The records can be viewed in the _View Acquired Image Information_ section of the plugin home page in NINA Plugins.
+The plugin will save [metadata to the database](post-acquisition/acquisition-data.html) for all images acquired via the plugin.  The records can be viewed in the _View Acquired Image Information_ section of the plugin home page in NINA Plugins.
 
 See [Post-acquisition](post-acquisition/index.html) for details.
 

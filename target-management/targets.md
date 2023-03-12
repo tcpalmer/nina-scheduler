@@ -37,5 +37,5 @@ When done, click the Save icon to save your changes or the Cancel icon to cancel
 |Name|string|The name of the target.  If you import a target, it will get the name from the import source.|
 |Coordinates|HMS, DMS|The RA and Dec coordinates of the target.|
 |Rotation|degrees 0-360|Frame rotation for the target.  If a rotator is attached, it will be set to this angle.  If a target is imported and the source supports rotation, it will be set on import.|
-|ROI|integer 0-100|Region of Interest, will operate the same as the existing Take Subframe Exposure instruction.|
+|ROI|integer 1-100|Region of Interest, will operate the same as the existing Take Subframe Exposure instruction.|
 

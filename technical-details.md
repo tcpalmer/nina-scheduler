@@ -9,7 +9,7 @@ nav_order: 9
 ## Database
 The plugin uses a [SQLite](https://www.sqlite.org/index.html) database to store information.  This is the same database technology that NINA uses to store its local DSO catalog.
 
-It's recommended that you have some backup mechanism for the database to avoid losing your work.
+It's recommended that you have some backup mechanism for the database file (location below) to avoid losing your work.
 
 ## File Locations
 

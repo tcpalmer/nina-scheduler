@@ -12,13 +12,13 @@ The Target Scheduler is more complex than the average NINA plugin.  Successful u
 Before you ask for help, please be sure you have met the following prerequisites and made an effort to understand how the plugin operates.
 
 ## Prerequisites
-* Do not use the plugin if you are a new NINA user.
+* Do not use the plugin if you are a new NINA user. 
 * The plugin is designed for DSO imagers using monochrome astrophotography cameras with a filter wheel.  Future releases will have more support for color cameras, DSLRs, manual filter switching, etc.
-* You should be reasonably adept at using the Advanced Sequencer.
+* You should be reasonably adept at using the NINA Advanced Sequencer, understanding the concepts behind instructions, sequence containers, and triggers.
 * You should already have NINA configured with at least one profile describing your location, camera, filter wheel, etc.
 * Your filter wheel configuration should be stable.  If you later change the filter names (even 'L' to 'Lum') you might encounter issues with old references to 'L'.
 * You should be able to successfully run sessions via the Advanced Sequencer with this profile.  The inevitable glitches with new equipment should have been worked out.
-* Your sequences should be able to reliably plate solve and execute meridian flips.
+* Sky conditions notwithstanding, your sequences should be able to reliably plate solve and execute meridian flips without intervention.
 * You are familiar with the plugin's [concepts](concepts.html).
 
 ## First Steps

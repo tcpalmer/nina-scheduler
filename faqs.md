@@ -21,3 +21,22 @@ _Why can't I import a target from my planetarium software?_
 
 > Import from planetarium software will only work if the software is properly configured in NINA Options > Equipment.  If import isn't working in the Framing Assistant, it's not going to work for target import.
 
+_Will the plugin work with mount X, camera Y, or filter wheel Z?_
+
+> If the equipments works properly today in the NINA Advanced Sequencer, then it should work properly with the plugin since it uses the same underlying NINA instructions to move the mount, operate the camera, and rotate the filter wheel.
+
+_I have a dome - will the slew instructions used by the plugin rotate my dome properly?_
+
+> Assuming your dome is properly configured with the associated NINA profile, then yes: the plugin will detect if a dome is connected and use the NINA slew instructions to also rotate the dome.
+
+_Will the plugin work correctly with my safety setup?_
+
+> Assuming your safety configuration works properly with the associated NINA profile, then the plugin should interact with that system properly.  Since the plugin instruction is in many ways similar to the Deep Sky Object Sequence container instruction, it will interact with surrounding instructions and triggers in a similar manner.
+
+_Can I use the plugin in conjunction with the NINA Synchronization plugin?_
+
+> This will be possible but will require additional development work.
+
+_I plan to image from a remote site in the near future.  How will the plugin handle that?_
+
+> Simply create a new profile (NINA Options > General > Astrometry) with the site location.  If the remote site is in a different time zone, you should also reset the Windows time zone when you arrive.

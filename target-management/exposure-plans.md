@@ -13,7 +13,10 @@ Each target has one or more associated _Exposure Plans_ that describe the actual
 
 ### Exposure Plan Creation
 
-New Exposure Plans are added by navigating to the desired target, entering Edit mode, and clicking the Add exposure plan icon.  A new exposure plan is initialized with default values and always references the first Exposure Template for the applicable profile.  If you have not yet created any Exposure Templates for this profile, you will be warned and will have to create at least one before proceeding.
+New Exposure Plans are added by navigating to the desired target, entering Edit mode, and clicking the Add exposure plan icon.  A new exposure plan is initialized with default values and always references the first Exposure Template for the applicable profile.
+
+{: .note}
+If you have not yet created any Exposure Templates for this profile, you will be warned and will have to create at least one before proceeding.
 
 ### Exposure Plan Editing
 
@@ -38,6 +41,6 @@ When the target is _not_ in Edit mode, you can delete exposure plans by clicking
 
 As part of an exposure plan, you set the total number of images you **_Desire_** for the plan.  The plugin will continue to schedule exposures for this plan as long as the number desired is less than the number **_Accepted_**.
 
-The number of Accepted images can either be automatically set by action of the Image Grader (incremented for each image that passes) or the value can be managed manually if you prefer.  If you manage it manually however, you are responsible for adjusting the value after you have reviewed the latest images - otherwise the plugin will continue to schedule exposures even if the number Desired is surpassed.
+The number of Accepted images can either be automatically set by action of the [Image Grader](../post-acquisition/image-grader.html) (incremented for each image that passes) or the value can be managed manually if you prefer.  If you manage it manually however, you are responsible for adjusting the value after you have reviewed the latest images - otherwise the plugin will continue to schedule exposures even if the number Desired is surpassed.
 
 The number **_Acquired_** is incremented for each exposure and is read-only.

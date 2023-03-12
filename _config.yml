@@ -3,6 +3,7 @@ description: Documentation for the Target Scheduler NINA Plugin
 theme: just-the-docs
 color_scheme: dark
 #logo: "/assets/images/target-scheduler-logo.png"
+favicon_ico: "/assets/images/target-scheduler-logo.ico"
 
 callouts:
   warning:

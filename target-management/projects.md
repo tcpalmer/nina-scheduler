@@ -28,14 +28,14 @@ When done, click the Save icon to save your changes or the Cancel icon to cancel
 |:--|:--|:--|
 |Name|string|The name of the project.|
 |Description|string|An optional description.|
-|State|dropdown|Current state of the project: Draft, Active, Inactive, Closed|
+|State|dropdown|Current state of the project: Draft, Active, Inactive, Closed.  Only active projects will be consider by the Planning Engine.|
 |Priority|dropdown|Project priority for the Scoring Engine: Low, Normal, High.|
 |Start Date|date|First date to begin considering project targets for imaging.|
 |End Date|date|Last date to begin considering project targets for imaging.|
 |Minimum Time|minutes|The minimum imaging time that a project target must be visible to be considered.|
 |Minimum Altitude|double|The minimum altitude for project targets to be considered.  Disabled if Use Custom Horizon is enabled.|
 |Use Custom Horizon|boolean|Use the custom horizon defined for the associated profile (NINA Options > General > Astrometry).|
-|Horizon Offset|double|A value to add to the custom horizon to set the minimum altitude at the target's current azimuth.  Disabled if Use Custom Horizon disabled.|
+|Horizon Offset|double|A value to add to the custom horizon to set the minimum altitude at the target's current azimuth.  Disabled if Use Custom Horizon is disabled.|
 |Filter Switch Frequency|integer 0-N|Value to determine how exposures for different filters are scheduled.  See below for details.|
 |Dither After Every|integer 0-N|Value to determine how dithering is handled.  See below for details.|
 |Enable Image Grader|boolean|Enable/disable the Image Grader.|
@@ -45,7 +45,7 @@ When done, click the Save icon to save your changes or the Cancel icon to cancel
 
 The Filter Switch Frequency determines how exposures for different filters are scheduled.  For example, if you have exposure plans active for L, R, G, and B filters:
 * A value of 1 will schedule LRGBLRGB... etc
-* A value of 2 will do LLRRGGBB... etc
+* A value of 2 will schedule LLRRGGBBLL... etc
 * A value of 0 will schedule LLLLLL... (until all desired L exposures are accepted), RRRRRR... etc.
 
 The setting depends primarily on whether you have focus offsets for your filters configured.  You would typically use 0 if you do not have offsets configured to minimize the need for autofocus runs.

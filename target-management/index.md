@@ -7,10 +7,10 @@ has_children: true
 
 # Project and Target Management
 
-The plugin provides a UI to manage your projects, targets, and exposure plans.  Through the interface, you can add new projects and targets, add and update exposure plans, and manage exposure templates.  The following sections describe each entity and how to manage it, as well as detailing the associated properties.
+The plugin provides a UI to manage your projects, targets, and exposure plans.  Through the interface, you can add new projects and targets, add and update exposure plans, and manage exposure templates.  The pages here describe each entity and how to manage it, as well as detailing the associated properties.
 
 {: .note}
-Editing projects, targets, etc in the management UI uses a _modal editing_ approach (unlike the rest of the NINA UI).  You must click the Edit icon to enter edit mode, make your changes, and then Save or Cancel.  This is necessary to avoid excessive database commits and ensure database integrity.
+Editing projects, targets, etc in the management UI uses a _modal editing_ approach (unlike the rest of the NINA UI).  You must click the Edit icon to enter edit mode, make your changes, and then Save or Cancel.  This is necessary to minimize database commits and ensure integrity.
 
 ## Navigation
 
@@ -31,7 +31,7 @@ The following icons provide access to all management actions.
 |Icon|Delete|Delete the current item.  A popup requests confirmation since deletes cannot be undone.  Deleting an item removes all subordinate items as well: all targets for a deleted project and all exposure plans for a deleted target.|
 |Icon|Save|Save the current item (only enabled in Edit mode after changes have been made).|
 |Icon|Cancel|Cancel the current edit operation (only enabled in Edit mode).|
-|Icon|Add|Add a new item (the type depends on the context).  New items are automatically saved, appear in the tree, and are selected.|
+|Icon|Add|Add a new item (the type depends on the context).  New items are automatically saved, appear in the tree, and are selected for further action.|
 |Icon|Paste|Paste a copy of an item from the clipboard.  The icon is only enabled when the clipboard contains an item of the appropriate type for the current context.  After pasting, the clipboard is cleared to prevent confusion later.|
 |Icon|Settings|Jump to the view/edit panel for the item.|
 |Icon|Expand All|Expand all nodes in the corresponding navigation tree.|
