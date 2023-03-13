@@ -27,7 +27,7 @@ _Will the plugin work with mount X, camera Y, or filter wheel Z?_
 
 _I have a dome - will the slew instructions used by the plugin rotate my dome properly?_
 
-> Assuming your dome is properly configured with the associated NINA profile, then yes: the plugin will detect if a dome is connected and use the NINA slew instructions to also rotate the dome.
+> Assuming your dome is properly configured with the associated NINA profile, then yes: the plugin will use the underlying NINA slew instruction which detects if a suitable dome is connected and rotates it.
 
 _Will the plugin work correctly with my safety setup?_
 

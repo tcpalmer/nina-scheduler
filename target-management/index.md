@@ -27,14 +27,16 @@ The following icons provide access to all management actions.
 |Icon|Operation|Description|
 |:--|:--|:--|
 |![](../assets/images/edit-icon.png)|Edit|Enter Edit mode.|
-|Icon|Copy|Copy the current item onto the clipboard.|
-|Icon|Delete|Delete the current item.  A popup requests confirmation since deletes cannot be undone.  Deleting an item removes all subordinate items as well: all targets for a deleted project and all exposure plans for a deleted target.|
-|Icon|Save|Save the current item (only enabled in Edit mode after changes have been made).|
-|Icon|Cancel|Cancel the current edit operation (only enabled in Edit mode).|
-|Icon|Add|Add a new item (the type depends on the context).  New items are automatically saved, appear in the tree, and are selected for further action.|
-|Icon|Paste|Paste a copy of an item from the clipboard.  The icon is only enabled when the clipboard contains an item of the appropriate type for the current context.  After pasting, the clipboard is cleared to prevent confusion later.|
-|Icon|Settings|Jump to the view/edit panel for the item.|
-|Icon|Expand All|Expand all nodes in the corresponding navigation tree.|
-|Icon|Collapse All|Collapse all nodes in the corresponding navigation tree.|
+|![](../assets/images/copy-icon.png)|Copy|Copy the current item onto the clipboard.|
+|![](../assets/images/delete-icon.png)|Delete|Delete the current item.  A popup requests confirmation since deletes cannot be undone.  Deleting an item removes all subordinate items as well: all targets for a deleted project and all exposure plans for a deleted target.|
+|![](../assets/images/import-icon.png)|Import|Import a target.|
+|![](../assets/images/save-icon.png)|Save|Save the current item (only enabled in Edit mode after changes have been made).|
+|![](../assets/images/cancel-icon.png)|Cancel|Cancel the current edit operation (only enabled in Edit mode).|
+|![](../assets/images/add-icon.png)|Add|Add a new item (the type depends on the context).  New items are automatically saved, appear in the tree, and are selected for further action.|
+|![](../assets/images/paste-icon.png)|Paste|Paste a copy of an item from the clipboard.  The icon is only enabled when the clipboard contains an item of the appropriate type for the current context.  After pasting, the clipboard is cleared to prevent confusion later.|
+|![](../assets/images/settings-icon.png)|Settings|Jump to the view/edit panel for the item.|
+|![](../assets/images/external-link-icon.png)|Doc Link|Open the relevant documentation in a browser.|
+|![](../assets/images/expand-all-icon.png)|Expand All|Expand all nodes in the corresponding navigation tree.|
+|![](../assets/images/collapse-all-icon.png)|Collapse All|Collapse all nodes in the corresponding navigation tree.|
 
 See the pages linked below for details on managing each entity type.
