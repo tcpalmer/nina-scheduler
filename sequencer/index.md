@@ -9,6 +9,7 @@ has_children: true
 
 The plugin provides a single new instruction for the NINA Advanced Sequencer: _Target Scheduler_.  The instruction is placed into a Sequential Instruction set - typically as the only instruction and with no loop conditions.  Triggers can be added as needed and should interact with the plugin as expected - for example various autofocus triggers, meridian flip, center after drift, etc.
 
+Other built-in instructions or instructions from other plugins that aren't involved in sequence looping/timing or target selection will likely work with Target Scheduler too - but should be tested.
 
 ## Sequence Construction
 

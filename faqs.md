@@ -23,7 +23,7 @@ _Why can't I import a target from my planetarium software?_
 
 _Will the plugin work with mount X, camera Y, or filter wheel Z?_
 
-> If the equipments works properly today in the NINA Advanced Sequencer, then it should work properly with the plugin since it uses the same underlying NINA instructions to move the mount, operate the camera, and rotate the filter wheel.
+> If the equipment works properly today in the NINA Advanced Sequencer, then it should work properly with the plugin since it uses the same underlying NINA instructions to move the mount, operate the camera, and rotate the filter wheel.
 
 _I have a dome - will the slew instructions used by the plugin rotate my dome properly?_
 

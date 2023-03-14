@@ -50,10 +50,9 @@ The Filter Switch Frequency determines how exposures for different filters are s
 
 The setting depends primarily on whether you have focus offsets for your filters configured.  You would typically use 0 if you do not have offsets configured to minimize the need for autofocus runs.
 
-
 #### Dithering
 
-The Scheduler instruction can optionally schedule dithering for you.  If the value is greater than zero, then it will execute a dither after that many exposures, assuming a guider is connected.
+The Scheduler instruction can optionally schedule dithering for you.  If the value is greater than zero, then it will execute a dither after that many exposures, assuming a guider is connected.  Dither behavior is completely independent of the Filter Switch Frequency.
 
 Otherwise, you can set the value to 0.  In this case, you can either use a Dither After Exposures trigger instruction in the Triggers section of the sequencer container, or skip dithering altogether.
 
