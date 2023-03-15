@@ -7,7 +7,7 @@ nav_order: 2
 
 # Acquisition Data
 
-The plugin saves metadata to the database for each exposure taken when the plugin is running the acquisition session.  This data can be viewed on the plugin home page (NINA Options > Plugins > Target Scheduler) by expanding the View Acquired Image Information section.  Note that values may be empty if not applicable for your equipment.
+The plugin saves metadata to the database for each exposure taken when the plugin is running the acquisition session.  This data can be viewed on the plugin home page (NINA Options > Plugins > Target Scheduler) by expanding the Acquired Images section.  Note that values may be empty if not applicable for your equipment.
 
 Select a row in the table to view details.  Records can be filtered by date range, project, and target.
 

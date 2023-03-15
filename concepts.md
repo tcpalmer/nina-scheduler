@@ -77,7 +77,7 @@ The following rules are currently implemented:
 
 A user can select different weights for each rule (or disable entirely) to achieve different goals.
 
-The engine is designed to be easily extended by adding additional rules.  Note that there is a limit with approaches like this in that as the number of rules increases, the predictability of engine outcomes goes down - and predictability can be desirable.  As the number grows it might be appropriate for users to select a subset that work well and disable the others.
+The engine is designed to be easily extended by adding additional rules.  There is, however, a limit with approaches like this.  As the number of rules increases, the predictability of engine outcomes goes down - and predictability can be desirable.  As the number grows it might be appropriate for users to select a subset that work well and disable the others.
 
 See the [Advanced Sequencer](sequencer/index.html) for details.
 

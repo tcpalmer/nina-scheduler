@@ -52,11 +52,10 @@ The setting depends primarily on whether you have focus offsets for your filters
 
 #### Dithering
 
-The Scheduler instruction can optionally schedule dithering for you.  If the value is greater than zero, then it will execute a dither after that many exposures, assuming a guider is connected.  Dither behavior is completely independent of the Filter Switch Frequency.
+The Scheduler instruction can optionally schedule dithering for you.  If the value is greater than zero, then it will execute a dither after that many exposures (assuming a guider is connected).  Dithering behavior is completely independent of the Filter Switch Frequency.
 
 Otherwise, you can set the value to 0.  In this case, you can either use a Dither After Exposures trigger instruction in the Triggers section of the sequencer container, or skip dithering altogether.
 
 #### Scoring Engine Rule Weights
 
-Each rule for the Scoring Engine has an associated weight value that can be adjusted per project.  When the engine runs, the score for each rule is calculated for the target and then multiplied by the rule's weight value.  Weights can vary from 0 (disabling the rule entirely) to 100 (maximum impact).
-
+Each rule for the [Scoring Engine](../concepts.html#scoring-engine) has an associated weight value that can be adjusted per project.  When the engine runs, the score for each rule is calculated for the target and then multiplied by the rule's weight value.  Weights can vary from 0 (disabling the rule entirely) to 100 (maximum impact).

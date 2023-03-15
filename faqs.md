@@ -17,6 +17,10 @@ _My target is active but still isn't being considered for imaging - why?_
 > - The current level of darkness might be inappropriate for the defined exposure plans/templates.
 > - The project/target may have scored lower than others so the imaging time was allotted elsewhere.
 
+_Can the plugin handle asteroids, comets, or other solar system objects?_
+
+> No.  NINA is primarily for DSO imaging.  Although there are plugins that support non-DSOs, the Target Scheduler does not.
+
 _Why can't I import a target from my planetarium software?_
 
 > Import from planetarium software will only work if the software is properly configured in NINA Options > Equipment.  If import isn't working in the Framing Assistant, it's not going to work for target import.
