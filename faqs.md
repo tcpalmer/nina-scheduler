@@ -17,6 +17,17 @@ _My target is active but still isn't being considered for imaging - why?_
 > - The current level of darkness might be inappropriate for the defined exposure plans/templates.
 > - The project/target may have scored lower than others so the imaging time was allotted elsewhere.
 
+_The scheduler doesn't seem to be doing what I expected.  Why not?_
+
+> With all the potential factors that can impact planning decisions, the process can get quite complex.  Assuming you haven't found a bug, you should try to reduce the complexity of your active projects and targets until it makes sense.  For example:
+> * Have only a single project active
+> * If you do have more than one project/target active, be sure the Scoring Engine rules on each project make sense.
+> * Use a minimum altitude on your project instead of a custom horizon.
+> * Disable Moon Avoidance on your Exposure Templates
+> * Set all applicable Exposure Templates to use the same twilight level
+> 
+> The [Scheduler Preview](scheduler-preview.html) is a great tool to see what the Planning Engine will do - just be aware of the differences between preview and real execution in the NINA Sequencer.
+
 _Can the plugin handle asteroids, comets, or other solar system objects?_
 
 > No.  NINA is primarily for DSO imaging.  Although there are plugins that support non-DSOs, the Target Scheduler does not.
@@ -43,4 +54,4 @@ _Can I use the plugin in conjunction with the NINA Synchronization plugin?_
 
 _I plan to image from a remote site in the near future.  How will the plugin handle that?_
 
-> Simply create a new profile (NINA Options > General > Astrometry) with the site location.  If the remote site is in a different time zone, you should also reset the Windows time zone when you arrive.
+> Simply create a new profile (NINA Options > General > Astrometry) with the site location.  If the remote site is in a different time zone, remember to reset the Windows time zone when you arrive.

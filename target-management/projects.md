@@ -14,7 +14,7 @@ Projects are the main organizing entity for the plugin.  Each project belongs to
 
 New projects are added by selecting the applicable profile in the Projects navigation tree and then clicking the Add icon.  The new project is saved, added to the navigation tree, and selected.  Click the Edit icon to make changes.
 
-When you select a profile in the Projects navigation tree, the right panel shows a table of all projects for that profile.  From there, you can jump to the view/edit panel for the project or copy it to the clipboard.  After copying a project, you can paste it under this profile or select a different profile in the tree and paste it there.
+When you select a profile in the Projects navigation tree, the right panel shows a table of all projects for that profile.  A green checkmark indicates that the project will be considered for scheduling (it's active, the current date is between the start/end dates, and the project has at least one active Target).  You can also jump to the view/edit panel for the project (<img src="../assets/images/settings-icon.png" width="18" height="18">) or copy it to the clipboard (<img src="../assets/images/copy-icon.png" width="18" height="18">).  After copying a project, you can paste it under this profile or select a different profile in the tree and paste it there.
 
 ### Project Editing
 

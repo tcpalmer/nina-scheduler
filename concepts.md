@@ -62,7 +62,11 @@ The Planning Engine executes a series of steps to pick the best target to image 
 * If multiple targets remain, run the _Scoring Engine_ to produce a winner.
 * Generate a set of exposure instructions for the selected target.
 
-Since the Planning Engine executes quickly, there is little penalty in calling it as needed throughout an imaging session.  Circumstances change (darkness level, targets rising/setting) and it can be advantageous to simply run it again.  The only real penalty is if a different target is selected (requiring a slew/center) but one of the scoring rules counteracts that tendency.  The timing of the next call to the Planning Engine is determined by the hard stop time of the current plan.  Determining a good value for that time is important for optimization and will likely evolve as more experience is gained with plugin operation.
+Since the Planning Engine executes quickly, there is little penalty in calling it as needed throughout an imaging session.  Circumstances change (darkness level, targets rising/setting) and it can be advantageous to simply run it again.  The only real penalty is if a different target is selected (requiring a slew/center) but one of the scoring rules counteracts that tendency.
+
+The timing of the next call to the Planning Engine is determined by the hard stop time of the current plan.  Determining a good value for that time is important for optimization and will likely evolve as more experience is gained with plugin operation.  Currently, the hard stop time is set to the earliest of:
+* The start time plus the minimum time defined for the project
+* The visibility limit (e.g. set below horizon) time for the target
 
 ## Scoring Engine
 
