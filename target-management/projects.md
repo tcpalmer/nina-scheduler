@@ -14,7 +14,7 @@ Projects are the main organizing entity for the plugin.  Each project belongs to
 
 New projects are added by selecting the applicable profile in the Projects navigation tree and then clicking the Add icon.  The new project is saved, added to the navigation tree, and selected.  Click the Edit icon to make changes.
 
-When you select a profile in the Projects navigation tree, the right panel shows a table of all projects for that profile.  A green checkmark indicates that the project will be considered for scheduling (it's active, the current date is between the start/end dates, and the project has at least one active Target).  You can also jump to the view/edit panel for the project (<img src="../assets/images/settings-icon.png" width="18" height="18">) or copy it to the clipboard (<img src="../assets/images/copy-icon.png" width="18" height="18">).  After copying a project, you can paste it under this profile or select a different profile in the tree and paste it there.
+When you select a profile in the Projects navigation tree, the right panel shows a table of all projects for that profile.  A green checkmark indicates that the project will be considered for scheduling (it's active, the current date is between the start/end dates, and the project has at least one active Target with at least one exposure plan that needs exposures).  You can also jump to the view/edit panel for the project (<img src="../assets/images/settings-icon.png" width="18" height="18">) or copy it to the clipboard (<img src="../assets/images/copy-icon.png" width="18" height="18">).  After copying a project, you can paste it under this profile or select a different profile in the tree and paste it there.
 
 ### Project Editing
 
@@ -28,7 +28,7 @@ When done, click the Save icon to save your changes or the Cancel icon to cancel
 |:--|:--|:--|
 |Name|string|The name of the project.|
 |Description|string|An optional description.|
-|State|dropdown|Current state of the project: Draft, Active, Inactive, Closed.  Only active projects will be consider by the Planning Engine.|
+|State|dropdown|Current state of the project: Draft, Active, Inactive, Closed (see below).|
 |Priority|dropdown|Project priority for the Scoring Engine: Low, Normal, High.|
 |Start Date|date|First date to begin considering project targets for imaging.|
 |End Date|date|Last date to begin considering project targets for imaging.|
@@ -36,10 +36,15 @@ When done, click the Save icon to save your changes or the Cancel icon to cancel
 |Minimum Altitude|double|The minimum altitude for project targets to be considered.  Disabled if Use Custom Horizon is enabled.|
 |Use Custom Horizon|boolean|Use the custom horizon defined for the associated profile (NINA Options > General > Astrometry).|
 |Horizon Offset|double|A value to add to the custom horizon to set the minimum altitude at the target's current azimuth.  Disabled if Use Custom Horizon is disabled.|
+|Meridian Window|minutes|Not currently implemented.|
 |Filter Switch Frequency|integer 0-N|Value to determine how exposures for different filters are scheduled.  See below for details.|
 |Dither After Every|integer 0-N|Value to determine how dithering is handled.  See below for details.|
 |Enable Image Grader|boolean|Enable/disable the Image Grader.|
 |Rule Weights|integer 0-100|Weight values for each Scoring Engine rule - see below.|
+
+#### Project State
+
+The project state provides control over whether a project is considered for scheduling or not - and only Active projects are considered.  When a project is first created, the state is Draft; complete project/target setup and then set the state to Active.  Use the Inactive and Closed states as needed.
 
 #### Filter Switch Frequency
 

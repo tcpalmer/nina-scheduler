@@ -8,7 +8,7 @@ nav_order: 4
 
 _Why is my project/target not considered at imaging time?_
 
-> Be sure your project is in the Active state and the current date is between the project start/end dates.  In the management UI, click the profile name containing the project to show all projects.  The project should have a green checkmark if it's truly active.
+> Be sure your project is in the Active state and the current date is between the project start/end dates.  In the management UI, click the profile name containing the project to show all projects.  The project should have a green checkmark if it's truly active (project active, at least one target active with exposure plans needing images).
 
 _My target is active but still isn't being considered for imaging - why?_
 
@@ -25,6 +25,8 @@ _The scheduler doesn't seem to be doing what I expected.  Why not?_
 > * Use a minimum altitude on your project instead of a custom horizon.
 > * Disable Moon Avoidance on your Exposure Templates
 > * Set all applicable Exposure Templates to use the same twilight level
+> 
+> It might also help to use a planetarium program like Stellarium to check your target, timing, and circumstances and compare against the scheduler.
 > 
 > The [Scheduler Preview](scheduler-preview.html) is a great tool to see what the Planning Engine will do - just be aware of the differences between preview and real execution in the NINA Sequencer.
 

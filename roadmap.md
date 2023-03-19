@@ -9,7 +9,6 @@ nav_order: 9
 ## General
 * Implement the Image Grader.
 * Support for the meridian window restriction.
-* Ability to import a target from a NINA sequence target.
 * Save a thumbnail image with the image metadata.
 * Support undo/redo operations in the database (maybe).
 

@@ -19,7 +19,7 @@ The plugin organizes your acquisition data as follows.  Note that all of these e
 _Projects_ serve to group a set of _Targets_ and provide common preferences.  Although many projects will have only a single target, it may be useful to group the targets for a mosaic under a single project.
 
 ### Targets
-A _target_ represents a single DSO object with RA/Dec coordinates, frame rotation, and ROI.  Target coordinates can be manually entered or imported from the NINA catalog, the NINA Framing Assistant, or an attached planetarium program (e.g. Cartes du Ciel, Stellarium, etc).
+A _target_ represents a single DSO object with RA/Dec coordinates, frame rotation, and ROI.  Target coordinates can be manually entered or imported from the NINA catalog, the NINA Framing Assistant, a saved sequence target, or an attached planetarium program (e.g. Cartes du Ciel, Stellarium, etc).
 
 ### Exposure Plans
 Each target has one or more associated _Exposure Plans_ that describe the actual exposures to be taken.  An individual exposure plan sets the exposure length and the number of exposures desired, as well as referencing an _Exposure Template_ (see below).  Exposure plans also record the number of images for this plan that are deemed acceptable (which can be edited) plus the total number acquired (which can't be changed).  An exposure plan will stay active until the number of accepted images is greater than or equal to the number desired.
@@ -81,7 +81,7 @@ The following rules are currently implemented:
 
 A user can select different weights for each rule (or disable entirely) to achieve different goals.
 
-The engine is designed to be easily extended by adding additional rules.  There is, however, a limit with approaches like this.  As the number of rules increases, the predictability of engine outcomes goes down - and predictability can be desirable.  As the number grows it might be appropriate for users to select a subset that work well and disable the others.
+The engine is designed to be easily extended by adding additional rules.  There is, however, a limit with approaches like this.  As the number of rules increases, the predictability of engine outcomes goes down - and predictability can be desirable.  As the number grows it might be appropriate for users to select a subset that work well and disable the others.  Several additional rules are under consideration - see the [roadmap](roadmap.html#scoring-engine-rules).
 
 See the [Advanced Sequencer](sequencer/index.html) for details.
 
