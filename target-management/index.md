@@ -34,9 +34,23 @@ The following icons provide access to all management actions.
 |![](../assets/images/cancel-icon.png)|Cancel|Cancel the current edit operation (only enabled in Edit mode).|
 |![](../assets/images/add-icon.png)|Add|Add a new item (the type depends on the context).  New items are automatically saved, appear in the tree, and are selected for further action.|
 |![](../assets/images/paste-icon.png)|Paste|Paste a copy of an item from the clipboard.  The icon is only enabled when the clipboard contains an item of the appropriate type for the current context.  After pasting, the clipboard is cleared to prevent confusion later.|
+|![](../assets/images/checkmark-icon.png)|Active/Enabled|Indicates that the item is active/enabled.  See below.|
+|![](../assets/images/disabled-icon.png)|Disabled|Indicates that the item is disabled.  See below.|
 |![](../assets/images/settings-icon.png)|Settings|Jump to the view/edit panel for the item.|
 |![](../assets/images/external-link-icon.png)|Doc Link|Open the relevant documentation in a browser.|
+|![](../assets/images/refresh-icon.png)|Refresh|Refresh/reload.|
 |![](../assets/images/expand-all-icon.png)|Expand All|Expand all nodes in the corresponding navigation tree.|
 |![](../assets/images/collapse-all-icon.png)|Collapse All|Collapse all nodes in the corresponding navigation tree.|
 
-See the pages linked below for details on managing each entity type.
+### Active/Enabled
+
+Active/enabled implies that the item will be considered by the [Planning Engine](../concepts.html#planning-engine), otherwise it will be excluded.
+
+A Target is active/enabled if:
+* The Enabled flag is true
+* At least one of its exposure plans needs images (Desired > Accepted)
+
+A Project is active/enabled if:
+* The State is Active
+* The current date is between the project Start and End dates.
+* At least one of its Targets is active/enabled.
