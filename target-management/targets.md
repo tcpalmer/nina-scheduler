@@ -35,7 +35,7 @@ When done, click the Save icon to save your changes or the Cancel icon to cancel
 
 |Property|Type|Description|
 |:--|:--|:--|
-|Name|string|The name of the target.  If you import a target, it will get the name from the import source.|
+|Name|string|The name of the target.  This value will populate the \$\$TARGETNAME\$\$ pattern if used for image file naming (NINA Options > Imaging).  If you import a target, it will get the name from the import source.|
 |Enabled|boolean|Enable/disable the target.  Disabled targets are not considered for scheduling.|
 |Coordinates|HMS, DMS|The RA and Dec coordinates of the target.|
 |Rotation|degrees 0-360|Frame rotation for the target.  If a rotator is attached, it will be set to this angle.  If a target is imported and the source supports rotation, it will be set on import.|

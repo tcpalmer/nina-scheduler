@@ -63,4 +63,4 @@ Otherwise, you can set the value to 0.  In this case, you can either use a Dithe
 
 #### Scoring Engine Rule Weights
 
-Each rule for the [Scoring Engine](../concepts.html#scoring-engine) has an associated weight value that can be adjusted per project.  When the engine runs, the score for each rule is calculated for the target and then multiplied by the rule's weight value.  Weights can vary from 0 (disabling the rule entirely) to 100 (maximum impact).
+Each rule for the [Scoring Engine](../concepts.html#scoring-engine) has an associated weight value that can be adjusted per project.  When the engine runs, the score for each rule is calculated for the target and then multiplied by the rule's weight value.  Weights can vary from 0 (disabling the rule entirely) to 100 (maximum effect).
