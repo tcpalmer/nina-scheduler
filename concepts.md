@@ -75,9 +75,10 @@ The Scheduler uses a Scoring Engine to select a target when multiple are under c
 ### Scoring Rules
 
 The following rules are currently implemented:
-* **Percent complete**.  A target scores higher based on its ratio of accepted to desired images over all exposure plans.  The rational is to prefer completion of a project over starting acquisition of something new.
+* **Percent complete**.  A target scores higher based on its ratio of accepted to desired images over all exposure plans.  The rationale is to prefer completion of a project over starting acquisition of something new.
 * **Project Priority**.  A project can set priority to Low, Normal, or High.  Targets for that project will score higher or lower depending on the setting.
-* **Target Switch Penalty**.  A target scores higher if it is the same target as the one immediately preceding this run.  The rational is that switching targets is expensive given the required slew/center time.
+* **Setting Soonest**.  A target scores higher based on how close it is to setting below either the minimum altitude or (if enabled) the custom horizon.  The rationale is to prefer targets that will set before others, implying less time remaining in the target's imaging season.
+* **Target Switch Penalty**.  A target scores higher if it is the same target as the one immediately preceding this run.  The rationale is that switching targets is expensive given the required slew/center time.
 
 A user can select different weights for each rule (or disable entirely) to achieve different goals.
 
