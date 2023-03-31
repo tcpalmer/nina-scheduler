@@ -11,7 +11,11 @@ nav_order: 9
 * Support for the meridian window restriction.
 * Save a thumbnail image with the image metadata.
 * Provide ability to bulk load targets from a CSV file.
-* Support undo/redo operations in the database (maybe).
+* Support undo/redo operations in the database (maybe but no time soon).
+
+## Sequence Operation
+
+Currently, you cannot add additional instructions to the Target Scheduler Container since it only executes the instructions necessary to image the current target returned by the Planning Engine.  However, it might be useful to permit additional instructions here.  These could be run for example after each target completes.
 
 ## Scoring Engine Rules
 The following new rules for the Scoring Engine are under consideration:
