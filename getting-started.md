@@ -6,14 +6,14 @@ nav_order: 5
 
 # Getting Started
 
-The Target Scheduler is more complex than the average NINA plugin.  Successful use requires that you understand the plugin [concepts](concepts.html) and ensure that you have met the prerequisites.
+The Target Scheduler is more complex than the average NINA plugin.  Successful use requires that you understand the plugin [concepts](concepts.html) and ensure that you have met the prerequisites listed below.
 
 {: .note }
 Before you ask for help, please be sure you have met the following prerequisites and made an effort to understand how the plugin operates.
 
 ## Prerequisites
 * Do not use the plugin if you are a new NINA user. 
-* The plugin is designed for DSO imagers using monochrome astrophotography cameras with a filter wheel.  Future releases will have more support for color cameras, DSLRs, manual filter switching, etc.
+* The plugin is designed for DSO imagers using monochrome astrophotography cameras with a filter wheel.  Future releases will have more support for color cameras, DSLRs, manual filter switching, manual rotators, etc.
 * You should be reasonably adept at using the NINA Advanced Sequencer, understanding the concepts behind instructions, sequence containers, and triggers.
 * You should already have NINA configured with at least one profile describing your location, camera, filter wheel, etc.
 * Your filter wheel configuration should be stable.  If you later change the filter names (even 'L' to 'Lum') you might encounter issues with old references to 'L'.
@@ -103,4 +103,4 @@ If you examine the instructions and something doesn't look right, please read th
 
 ### Create a Sequence
 
-Once you have created one or more projects and targets and are ready to image, you'll need to create a sequence for the NINA Advanced Sequencer that uses the Target Scheduler instruction.  See [Advanced Sequencer](sequencer/index.html) for more information.
+Once you have created one or more projects and targets and are ready to image, you'll need to create a sequence for the NINA Advanced Sequencer that uses the Target Scheduler Container instruction.  See [Advanced Sequencer](sequencer/index.html) for more information.

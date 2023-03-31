@@ -20,6 +20,8 @@ The Target Scheduler Plugin is currently in a pre-release state - please read th
 ## Getting Started
 You should first familiarize yourself with the [concepts](concepts.html) underlying the plugin.  After that, visit the [Getting Started](getting-started.html) page for prerequisites and next steps.
 
+Please also review the [release notes](release.html).
+
 ### Acknowledgements
 * [Chris Woodhouse](https://www.digitalastrophotography.co.uk/about.html) has been involved since the beginning and was instrumental in hashing out the initial design and requirements.  He was also a willing guinea pig to test early releases.
 * The concept for the plugin was originally inspired by the AIC video [Tim Hutchison: Automating a Backyard Observatory](https://youtu.be/a4IkAUZkXH0).

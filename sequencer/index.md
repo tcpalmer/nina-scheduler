@@ -59,18 +59,16 @@ A basic sequence construction approach is the following:
   * Park mount
   * Disconnect Equipment
 
-## Instruction Interface
+## Instruction User Interface
 
 {: .note}
-The display is somewhat primitive at this point but will improve over time.
+The instruction UI is somewhat primitive at this point but will improve over time.
 
-The instruction interface includes the following elements:
-* Name of the project/target currently active.
-* The coordinates of that target.
-* The time at which imaging on this target will end (and therefore the time the planner will be called again).
-* The standard NINA altitude chart for the target at the present time.
+The Target Scheduler Container interface in the advanced sequencer is similar to the core Deep Sky Object Instruction Set container - the main difference being that the target coordinates and altitude chart will update dynamically as the [Planning Engine](../concepts.html#planning-engine) returns new targets.
 
-Before imaging begins, these elements will be empty.  When the instruction starts, the [Planning Engine](../concepts.html#planning-engine) will be called and (if a target was selected), the elements will update.  In addition, the area below the chart will have an expandable panel detailing the individual NINA instructions executed to implement the plan.  Each time the Planning Engine returns a new target to image, a new expandable item will be added.  These will be retained for viewing until the sequence is reset.  They are not saved when you save a sequence file.
+Before imaging begins, these elements will be empty.  When the instruction starts, the Planning Engine will be called and (if a target was selected), the elements will update to reflect that target.
+
+In addition, the area below the chart will have a panel detailing the individual NINA instructions executed to implement the plan.  Each time the Planning Engine returns a new target to image, a new expandable line will be added.  This history will be retained for viewing until the sequence is reset.  It is not saved when you save a sequence file.
 
 ## Advanced Usage
 
