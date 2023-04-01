@@ -20,6 +20,7 @@ Each tree includes a top level folder named Profiles, and children of this node 
 
 Be aware that some paste operations require that you select the appropriate level in the tree.  For example, to paste a project, you need to select a named profile under the Profiles folder (since projects must be immediate children of a profile).  The paste icon will only be enabled if the operation is appropriate.
 
+Some changes within NINA will necessitate a refresh of the navigation trees.  For example, when you add a new NINA profile, you need to click the refresh button on the navigation trees to have the new profile name added.  If you remove a NINA profile, the same is true - plus you may [orphan](#orphaned-items) Projects or Exposure Templates.
 
 ### Icons
 The following icons provide access to all management actions.
@@ -38,7 +39,7 @@ The following icons provide access to all management actions.
 |![](../assets/images/disabled-icon.png)|Disabled|Indicates that the item is disabled.  See below.|
 |![](../assets/images/settings-icon.png)|Settings|Jump to the view/edit panel for the item.|
 |![](../assets/images/external-link-icon.png)|Doc Link|Open the relevant documentation in a browser.|
-|![](../assets/images/refresh-icon.png)|Refresh|Refresh/reload.|
+|![](../assets/images/refresh-icon.png)|Refresh|Refresh/reload.  Most often needed for the navigation trees after adding or removing NINA profiles.|
 |![](../assets/images/expand-all-icon.png)|Expand All|Expand all nodes in the corresponding navigation tree.|
 |![](../assets/images/collapse-all-icon.png)|Collapse All|Collapse all nodes in the corresponding navigation tree.|
 
@@ -56,3 +57,7 @@ A Project is active/enabled if:
 * At least one of its Targets is active/enabled.
 
 Note that projects will show as active/enabled but not be scheduled if the project belongs to a NINA profile that isn't currently active.
+
+### Orphaned Items
+
+If you delete a NINA profile that had Projects or Exposure Templates attached to it, then they become _orphaned_.  If so, you will see an item in the Profiles list named 'ORPHANED'.  If you select it, you'll be presented with a list of impacted items and can choose to either move or delete each one.
