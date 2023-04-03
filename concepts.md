@@ -8,7 +8,7 @@ nav_order: 3
 
 Conceptually, the plugin is divided into three separate areas:
 * Project, Target, and Exposure Plan Management
-* Runtime execution via the Advanced Sequencer
+* Runtime execution via the Advanced Sequencer using the _Target Scheduler Container_ instruction
 * Post-acquisition activities
 
 ## Project and Target Management
@@ -40,9 +40,9 @@ Once you have entered a set of projects, targets, and exposure plans, you can pr
 
 ## Runtime Execution in the Advanced Sequencer
 
-The plugin provides a single new instruction for the NINA Advanced Sequencer: _Target Scheduler_.  The instruction is placed into a Sequential Instruction set - typically as the only instruction and with no loop conditions.  Triggers can be added as needed and should interact with the plugin as expected - for example various autofocus triggers, meridian flip, etc.
+The plugin provides a single new instruction for the NINA Advanced Sequencer: _Target Scheduler Container_.  The instruction is placed into a Sequential Instruction set.  Triggers can be added to it as needed and should interact with the plugin as expected - for example various autofocus triggers, meridian flip, etc.
 
-A perfectly valid sequence could consist of nothing more than start up instructions (connect equipment, cool camera), the sequential instruction set containing Target Scheduler and required triggers, and end instructions (park, warm camera, disconnect).
+A perfectly valid sequence could consist of nothing more than start up instructions (connect equipment, cool camera), the sequential instruction set containing Target Scheduler Container and required triggers, and end instructions (park, warm camera, disconnect).
 
 When the instruction executes, it does the following in a loop:
 * Query the _Planning Engine_ for the best target to image at the present time.  If no target is available now but will be later, it will automatically wait for that time before calling the Planning Engine again.
@@ -91,7 +91,7 @@ See the [Advanced Sequencer](sequencer/index.html) for details.
 ### Image Grading
 
 {: .note}
-[Image Grading](post-acquisition/image-grader.html) is a work in progress.  The following is not yet implemented and all images are marked as acceptable.
+[Image Grading](post-acquisition/image-grader.html) is a work in progress.  The following is not yet implemented and all images are marked as acceptable if the Image Grader is enabled on the Project.
 
 In order to increase the level of automation, the plugin includes rudimentary image grading.  The grader will compare metrics (e.g. HFR and star count) for the current image to a set of immediately preceding images to detect significant deviations.  If the image fails the test, the accepted count on the associated Exposure Plan is not incremented and the scheduler will continue to schedule exposures.
 

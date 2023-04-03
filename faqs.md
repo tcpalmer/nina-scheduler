@@ -36,7 +36,7 @@ _Can the plugin handle asteroids, comets, or other solar system objects?_
 
 _Why can't I import a target from my planetarium software?_
 
-> Import from planetarium software will only work if the software is properly configured in NINA Options > Equipment.  If import isn't working in the Framing Assistant, it's not going to work for target import.
+> Import from planetarium software will only work if the software is properly configured in NINA Options > Equipment.  If planetarium import isn't working in the NINA Framing Assistant, it's not going to work for target import.
 
 _Will the plugin work with mount X, camera Y, or filter wheel Z?_
 
@@ -49,6 +49,10 @@ _I have a dome - will the slew instructions used by the plugin rotate my dome pr
 _Will the plugin work correctly with my safety setup?_
 
 > Assuming your safety configuration works properly with the associated NINA profile, then the plugin should interact with that system properly.  Since the plugin instruction is in many ways similar to the Deep Sky Object Sequence container instruction, it will interact with surrounding instructions and triggers in a similar manner.
+
+_With the plugin work with NINA sequence instruction X?  How about instructions added by plugins?_
+
+> See the [notes](sequencer/notes.html#core-sequence-items) on core and plugin sequence items.
 
 _Can I use the plugin in conjunction with the NINA Synchronization plugin?_
 

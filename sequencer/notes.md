@@ -7,6 +7,12 @@ nav_order: 2
 
 # Sequence Item Notes
 
+## Attempts and Error Behavior
+
+When you add instructions to the NINA advanced sequencer, you have the option to set the number of times an instruction will attempt execution and the behavior when the count is exceeded.
+- All instructions added internally to image a target (slew/center, switch filter, take exposure, etc) will use the NINA default: attempts = 1 and error behavior = continue.
+- Any center (plate solve) operation will use the number of attempts defined in the NINA profile (Options > Plate Solving > Number of attempts).
+
 ## Core Sequence Items
 
 ### Instructions
@@ -65,4 +71,4 @@ NINA Plugins can of course add instructions, loop conditions, and triggers that 
 If a trigger added by a plugin needs to know the current target, it should be added directly to the Target Scheduler Container so it can work with the dynamic targets managed by that container.
 
 {: .warning }
-Usage of any non-core plugin in a sequence using a Target Scheduler Container should be thoroughly tested before unattended use.
+Usage of any sequence elements added by a plugin in a sequence using a Target Scheduler Container should be thoroughly tested before unattended use.

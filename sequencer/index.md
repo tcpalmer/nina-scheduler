@@ -47,10 +47,10 @@ A basic sequence construction approach is the following:
   * Unpark mount
 * A Sequential Instruction Set:
   * Triggers: as needed (those that do not need to know the current target)
-  * Loop Conditions: as needed
+  * Loop Conditions: as needed but typically only for multi-day execution since the Target Scheduler Container will handle 'looping' until visibility ends for the night for all targets.
   * Instructions:
     * **Target Scheduler Container**:
-      * Triggers: as needed (including those that need to know the current target)
+      * Triggers: as needed (especially those that need to know the current target)
       * Loop Conditions: empty
       * Instructions: empty
 

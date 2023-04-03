@@ -26,7 +26,7 @@ These steps assume you have already installed the plugin via the NINA Plugins pa
 
 There are two main points of interaction with the plugin's capabilities.
 * The plugin home page (in the NINA Plugins tab) provides the UI to manage the [Project / Target Database](target-management/index.html), [preview schedules](scheduler-preview.html), and view metadata on [acquired images](post-acquisition/index.html).
-* The plugin adds a single new instruction named **_Target Scheduler_** that you will add to your sequence.  See the [Advanced Sequencer](sequencer/index.html) for details.
+* The plugin adds a single new instruction named **_Target Scheduler Container_** that you will add to your sequence.  See the [Advanced Sequencer](sequencer/index.html) for details.
 
 The sections below will walk you through creation of your first project, target, and exposure plan.
 
@@ -59,7 +59,7 @@ See [Targets](target-management/targets.html) for details on all properties.  Af
 
 ### Create an Exposure Template
 
-A Target has one or more Exposure Plans to specify the actual exposures you want to take.  However, each Exposure Plan references an Exposure Template which names the actual filter to use as well as several other properties.  Exposure Templates serve to decouple commonly used properties from Exposure Plans.
+A Target has one or more Exposure Plans to specify the actual exposures you want to take.  However, each Exposure Plan references an _Exposure Template_ which names the actual filter to use as well as several other properties.  Exposure Templates serve to decouple commonly used properties from Exposure Plans.
 
 1. In the Exposure Templates nav tree on the lower left, expand 'Profiles' and select the same NINA profile you used for the project you created above.
 2. Click the Add Exposure Template icon on the right.
