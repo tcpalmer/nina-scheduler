@@ -13,8 +13,10 @@ Ask for help (tag @tcpalmer) in the #plugin-discussions channel on the NINA proj
 
 You might be asked for the following:
 * A detailed description of the problem and the context in which it occurred.
+* The sequence file for the Advanced Sequencer run.
 * The NINA log file from the session (in %localappdata%\NINA\Logs\).  You might be asked to duplicate your problem with NINA log level set to 'Debug' or even 'Trace' (in NINA Options > General > Advanced Settings).
 * Your Scheduler plugin database file (%localappdata%\NINA\SchedulerPlugin\schedulerdb.sqlite).
 * Your location (lat/long) for the profile.  For privacy, you can alter the least significant digits.
 * Your Custom Horizon (if applicable).
+* Depending on the problem, details about the NINA profile and equipment used.
 

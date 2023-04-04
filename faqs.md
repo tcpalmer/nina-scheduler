@@ -34,6 +34,10 @@ _Can the plugin handle asteroids, comets, or other solar system objects?_
 
 > No.  NINA is primarily for DSO imaging.  Although there are plugins that support non-DSOs, the Target Scheduler does not.
 
+_Can I make changes to projects, targets, or exposure plans while it's running?_
+
+> Yes.  The target currently running in the Target Scheduler Container won't see the changes but they will be picked up the next time the Planning Engine runs.
+
 _Why can't I import a target from my planetarium software?_
 
 > Import from planetarium software will only work if the software is properly configured in NINA Options > Equipment.  If planetarium import isn't working in the NINA Framing Assistant, it's not going to work for target import.
