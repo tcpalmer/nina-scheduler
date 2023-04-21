@@ -53,8 +53,7 @@ A Target is active/enabled if:
 
 A Project is active/enabled if:
 * The State is Active
-* The current date is between the project Start and End dates.
-* At least one of its Targets is active/enabled.
+* At least one of its Targets is active/enabled with at least one incomplete exposure plan.
 
 Note that projects will show as active/enabled but not be scheduled if the project belongs to a NINA profile that isn't currently active.
 

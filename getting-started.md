@@ -12,7 +12,7 @@ The Target Scheduler is more complex than the average NINA plugin.  Successful u
 Before you ask for help, please be sure you have met the following prerequisites and made an effort to understand how the plugin operates.
 
 ## Prerequisites
-* Do not use the plugin if you are a new NINA user. 
+* Do not use the plugin if you are a new NINA user.
 * The plugin is designed for DSO imagers using monochrome astrophotography cameras with a filter wheel.  Future releases will have more support for color cameras, DSLRs, manual filter switching, manual rotators, etc.
 * You should be reasonably adept at using the NINA Advanced Sequencer, understanding the concepts behind instructions, sequence containers, and triggers.
 * You should already have NINA configured with at least one profile describing your location, camera, filter wheel, etc.
@@ -40,7 +40,6 @@ The sections below will walk you through creation of your first project, target,
 6. Click the Edit icon to make changes:
   * Enter an appropriate name and an (optional) description.
   * Set the State to Active.  In many cases, you'll leave a new project in Draft state until you get it finalized but we'll preview this below and it has to be active for that to work.
-  * Set the Start and End dates as appropriate.  Even if the State is Active, the project won't be enabled for scheduling unless the current date is between Start and End.
   * Review the other Project properties but the defaults are fine for now.
 7. Click the Save icon to save your changes.
 
