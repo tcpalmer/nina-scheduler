@@ -19,6 +19,7 @@ By definition, pre-releases have had limited testing.  Hopefully, if something g
 * Removed start and end date fields from projects
 * Created a custom log for the plugin
 * Added support for database migration scripts
+* Fixed bug with plan end time
 
 See the [project change log](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/CHANGELOG.md) for the complete history.
 
