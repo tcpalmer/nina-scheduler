@@ -22,6 +22,11 @@ In NINA, containers can override the default execution strategy and that capabil
 * It monitors the progress of executing instructions and updates the status display in the parent Target Scheduler Container.
 * It runs ancestor triggers and conditions as needed on the _parent_ of Target Scheduler Container, skipping that container itself.  We must skip execution of the triggers directly added to Target Scheduler Container since those only serve as the source for cloning into the internal target container.
 
+## Logging
+Since the plugin is rather complex, it logs to a separate file rather than the main NINA log.  These logs are saved in %localappdata%\NINA\SchedulerPlugin\Logs\ and follow the NINA log naming convention with 'TS-' prepended.  Like the main NINA logs, these will also be purged after 90 days.
+
+This log defaults to Debug level and (currently) does not follow the logging level set for the main log in NINA Options.
+
 ## Database
 The plugin uses a [SQLite](https://www.sqlite.org/index.html) database to store information.  This is the same database technology that NINA uses to store its local DSO catalog.
 
@@ -31,4 +36,4 @@ Each time the plugin starts up, it will save a backup copy of the database and k
 
 * Like other NINA plugins, the plugin executable files are under %localappdata%\NINA\Plugins in the plugin's folder.
 * The plugin stores user-specific data under %localappdata%\NINA\SchedulerPlugin - for example the database in schedulerdb.sqlite.
-
+* Plugin logs are in %localappdata%\NINA\SchedulerPlugin\Logs\.

@@ -8,13 +8,14 @@ nav_order: 4
 
 _Why is my project/target not considered at imaging time?_
 
-> Be sure your project is in the Active state and the current date is between the project start/end dates.  In the management UI, click the profile name containing the project to show all projects.  The project should have a green checkmark if it's truly active (project active, at least one target active with exposure plans needing images).
+> Be sure your project is in the Active state.  In the management UI, click the profile name containing the project to show all projects.  The project should have a green checkmark if it's truly active (project active and at least one target active with incomplete exposure plans).
 
 _My target is active but still isn't being considered for imaging - why?_
 
 > There could be many reasons:
 > - It might not have risen about the horizon.
 > - The current level of darkness might be inappropriate for the defined exposure plans/templates.
+> - It might be visible but not for the project's minimum imaging time.
 > - The project/target may have scored lower than others so the imaging time was allotted elsewhere.
 
 _The scheduler doesn't seem to be doing what I expected.  Why not?_
@@ -29,6 +30,10 @@ _The scheduler doesn't seem to be doing what I expected.  Why not?_
 > It might also help to use a planetarium program like Stellarium to check your target, timing, and circumstances and compare against the scheduler.
 > 
 > The [Scheduler Preview](scheduler-preview.html) is a great tool to see what the Planning Engine will do - just be aware of the differences between preview and real execution in the NINA Sequencer.
+
+_I don't see much from the plugin in the NINA log - isn't it logging?_
+
+> The plugin logs to a [separate log file](technical-details.html#logging) so that messages aren't lost amid all the other logging.
 
 _Can the plugin handle asteroids, comets, or other solar system objects?_
 
@@ -60,8 +65,8 @@ _With the plugin work with NINA sequence instruction X?  How about instructions 
 
 _Can I use the plugin in conjunction with the NINA Synchronization plugin?_
 
-> This will be possible but will require additional development work.
+> This will be possible in the future but will require additional development work.
 
 _I plan to image from a remote site in the near future.  How will the plugin handle that?_
 
-> Simply create a new profile (NINA Options > General > Astrometry) with the site location.  If the remote site is in a different time zone, remember to reset the Windows time zone when you arrive.
+> Simply create a new profile (NINA Options > General > Profiles) and set the location (NINA Options > General > Astrometry).  If the remote site is in a different time zone, remember to reset the Windows time zone when you arrive.

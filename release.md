@@ -6,22 +6,19 @@ nav_order: 10
 
 # Release Status
 
-## Release 0.2.0.0
+## Release 0.3.0.0
 
 This release is only available for NINA 2.1.x.  Support for NINA 3 will be added later.
 
 The plugin is currently in a **_pre-release_** state equivalent to early beta.  If you are using a pre-release version, then please keep in mind the following.
 
 {: .warning }
-Later releases may require you to delete your existing database before installing.  A mechanism to migrate older schemas will be added in the future after the database stabilizes.  It's possible that any release prior to 1.0.0.0 will obsolete your database.
-
-{: .warning }
 By definition, pre-releases have had limited testing.  Hopefully, if something goes wrong the worst that could happen is that you lose imaging time.  However, the plugin is controlling your mount so could potentially drive it to an unwanted position.  It does use the built-in mount slew/rotate/center instructions so this is unlikely, but you would be wise to implement hard limits for your mount (configured outside NINA) just to be safe.
 
-### Change Log for 0.2.0.0
-
-* Major refactoring of the plugin sequence containers.
-* Added Setting Soonest scoring rule.  Although the database schema hasn't changed, any projects created prior to this release will not be able to use this rule.
+### Change Log for 0.3.0.0
+* Removed start and end date fields from projects
+* Created a custom log for the plugin
+* Added support for database migration scripts
 
 See the [project change log](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/CHANGELOG.md) for the complete history.
 
