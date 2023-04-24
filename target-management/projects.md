@@ -37,7 +37,7 @@ When done, click the Save icon to save your changes or the Cancel icon to cancel
 |Meridian Window|minutes|Not currently implemented.|
 |Filter Switch Frequency|integer 0-N|Value to determine how exposures for different filters are scheduled.  See below for details.|
 |Dither After Every|integer 0-N|Value to determine how dithering is handled.  See below for details.|
-|Enable Image Grader|boolean|Enable/disable the Image Grader.|
+|Enable Image Grader|boolean|Enable/disable the [Image Grader](../post-acquisition/image-grader.html).|
 |Rule Weights|integer 0-100|Weight values for each Scoring Engine rule - see below.|
 
 #### Project State
