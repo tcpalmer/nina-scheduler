@@ -8,6 +8,7 @@ nav_order: 9
 
 ## General
 * Implement the Image Grader.
+* Support for importing mosaic panels from the Framing Assistant into new targets.
 * Support for the meridian window restriction.
 * Support for multiple cameras on a single mount, similar to the Synchronization plugin.
 * Save a thumbnail image with the image metadata.
