@@ -17,7 +17,7 @@ If you do elect to manually accept/reject, be aware that the [Planning Engine](.
 
 The following only applies if the applicable project has Image Grading enabled.
 
-Grading is driven by a set of preferences that are specified for each NINA profile:
+Grading is driven by a set of [preferences](../target-management/profiles.html#image-grader) that are specified for each NINA profile:
 * **_Max Samples_**: the maximum number of recent images to use for sample determination
 * **_Grade RMS_**: enable grading based on the total RMS guiding error during the exposure
 * **_RMS Pixel Threshold_**: the threshold to accept/reject based on guiding RMS error (see below)

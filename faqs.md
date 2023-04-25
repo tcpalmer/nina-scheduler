@@ -13,6 +13,7 @@ _Why is my project/target not considered at imaging time?_
 _My target is active but still isn't being considered for imaging - why?_
 
 > There could be many reasons:
+> - It might be associated with a NINA profile that isn't currently active.
 > - It might not have risen about the horizon.
 > - The current level of darkness might be inappropriate for the defined exposure plans/templates.
 > - It might be visible but not for the project's minimum imaging time.
