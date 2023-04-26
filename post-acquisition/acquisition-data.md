@@ -19,7 +19,8 @@ The following values are saved.  The description is missing for items that are s
 |Target ID|The database ID of the associated target|
 |Date|Date/time the exposure finished|
 |Filter|Filter used for the exposure|
-|Accepted|Whether the exposure was accepted or not|
+|Accepted|Whether the exposure was accepted by the Image Grader or not|
+|Rejected Reason|Reason for rejection, if not accepted by the Image Grader|
 |File Name|Full path to the image file on disk|
 |Duration|Exposure duration|
 |Gain||

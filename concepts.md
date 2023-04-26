@@ -19,7 +19,7 @@ The plugin organizes your acquisition data as follows.  Note that all of these e
 _Projects_ serve to group a set of _Targets_ and provide common preferences.  Although many projects will have only a single target, it may be useful to group the targets for a mosaic under a single project.
 
 ### Targets
-A _target_ represents a single DSO object with RA/Dec coordinates, frame rotation, and ROI.  Target coordinates can be manually entered or imported from the NINA catalog, the NINA Framing Assistant, a saved sequence target, or an attached planetarium program (e.g. Cartes du Ciel, Stellarium, etc).
+A _target_ represents a single DSO object with RA/Dec coordinates, frame rotation, and ROI.  Target coordinates can be manually entered or imported from the NINA catalog, the NINA Framing Assistant, a saved sequence target, or an attached planetarium program (e.g. Cartes du Ciel, Stellarium, etc).  You can also import mosaic panels defined in the Framing Assistant.
 
 ### Exposure Plans
 Each target has one or more associated _Exposure Plans_ that describe the actual exposures to be taken.  An individual exposure plan sets the exposure length and the number of exposures desired, as well as referencing an _Exposure Template_ (see below).  Exposure plans also record the number of images for this plan that are deemed acceptable (which can be edited) plus the total number acquired (which can't be changed).  An exposure plan will stay active until the number of accepted images is greater than or equal to the number desired.
@@ -76,7 +76,7 @@ The Scheduler uses a Scoring Engine to select a target when multiple are under c
 
 The following rules are currently implemented:
 * **Percent complete**.  A target scores higher based on its ratio of accepted to desired images over all exposure plans.  The rationale is to prefer completion of a project over starting acquisition of something new.
-* **Project Priority**.  A project can set priority to Low, Normal, or High.  Targets for that project will score higher or lower depending on the setting.
+* **Project Priority**.  A project can set priority to High, Normal, or Low.  Targets for that project will score higher or lower depending on the setting.
 * **Setting Soonest**.  A target scores higher based on how close it is to setting below either the minimum altitude or (if enabled) the custom horizon.  The rationale is to prefer targets that will set before others, implying less time remaining in the target's imaging season.
 * **Target Switch Penalty**.  A target scores higher if it is the same target as the one immediately preceding this run.  The rationale is that switching targets is expensive given the required slew/center time.
 

@@ -6,7 +6,7 @@ nav_order: 10
 
 # Release Status
 
-## Release 0.4.1.0
+## Release 0.5.0.0
 
 This release is only available for NINA 2.1.x.  Support for NINA 3 will be added later.
 
@@ -15,10 +15,8 @@ The plugin is currently in a **_pre-release_** state equivalent to early beta.  
 {: .warning }
 By definition, pre-releases have had limited testing.  Hopefully, if something goes wrong the worst that could happen is that you lose imaging time.  However, the plugin is controlling your mount so could potentially drive it to an unwanted position.  It does use the built-in mount slew/rotate/center instructions so this is unlikely, but you would be wise to implement hard limits for your mount (configured outside NINA) just to be safe.
 
-### Change Log for 0.4.1.0
-* Added support for managing profile preferences
-* Added image grader reject reason to acquired image data
-
+### Change Log for 0.5.0.0
+* Added support for importing mosaic panels from Framing Assistant
 
 See the [project change log](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/CHANGELOG.md) for the complete history.
 

@@ -26,9 +26,6 @@ Grading is driven by a set of [preferences](../target-management/profiles.html#i
 * **_Grade HFR_**: enable grading for calculated image HFR
 * **_HFR Sigma Factor_**: the number of standard deviations surrounding the mean for acceptable values of HFR
 
-{: .note }
-These preferences will be added to a new "Profile Preferences" section of the UI, location TBD.
-
 The grader is invoked with the statistics for the latest image and will return true (acceptable) or false based on the following:
 * If no grading metrics are enabled, the image is acceptable.
 * If RMS error is enabled for grading:
@@ -51,9 +48,11 @@ The grader is invoked with the statistics for the latest image and will return t
   * If the HFR of the current image is _**not**_ within (HFR sigma factor * standard deviation) of the mean, then the image is not acceptable.
 
 ## Grading on RMS Error
-Attached guiders can provide RMS error values sampled over the course of an exposure.  These values are provided in units of RMS error per guide camera pixel but can easily be scaled to RMS error in arcseconds.  Since NINA knows the focal length of the primary system and the pixel size of the main camera, we can determine the arcseconds/pixel of the primary system and convert the guiding error in arcseconds into error per main camera pixel.
+Attached guiders can provide RMS error values sampled over the course of an exposure.  These values are provided in units of RMS error per guide camera pixel but can be scaled to RMS error in arcseconds.  Since NINA knows the focal length of the primary system and the pixel size of the main camera, we can determine the arcseconds/pixel of the primary system and convert the guiding error in arcseconds into error per main camera pixel.
 
 The RMS Pixel Threshold is the maximum acceptable error in main camera pixels.  Values less than one are ideal but larger values can be acceptable depending on other factors.  In practice, it may be best to set this threshold fairly high so the grader only rejects images where guiding was clearly having problems.
+
+Since this calculation depends on accurate values for the focal length of the primary system and the pixel size of the main camera, those must be set correctly (in NINA Options > Equipment > Telescope and NINA Options > Equipment > Camera) for RMS error grading to work properly.
 
 ## Notes
 * Since sky conditions can vary from night to night and over the course of a night, the Max Samples value can be used to restrict the comparison sample size to those images most likely to have been captured under similar circumstances.  On the other hand, setting a larger value should capture more of the natural variance of the variable in question.

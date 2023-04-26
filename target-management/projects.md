@@ -22,6 +22,9 @@ Click the Edit icon to begin editing the project.  The property value fields bec
 
 When done, click the Save icon to save your changes or the Cancel icon to cancel.
 
+### Mosaic Panel Import
+If you used the NINA Framing Assistant to create mosaic panels for a target, you can import them all as new Targets under the project.  First, configure your panels in the Framing Assistant.  Then return to the plugin management UI and view the desired project and click the Mosaic Import icon to begin.  If the icon isn't enabled, you may have to select something else in the navigation tree and then return to the project.
+
 ### Project Properties
 
 |Property|Type|Description|
