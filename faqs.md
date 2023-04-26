@@ -32,6 +32,12 @@ _The scheduler doesn't seem to be doing what I expected.  Why not?_
 > 
 > The [Scheduler Preview](scheduler-preview.html) is a great tool to see what the Planning Engine will do - just be aware of the differences between preview and real execution in the NINA Sequencer.
 
+_When I start my sequence, I see a warning about "Loop conditions/Instructions added to the Target Scheduler Container will be ignored".  What does that mean?_
+
+> The Target Scheduler Container automatically generates sequence instructions and handles looping as needed so any loop conditions or instructions added will be ignored.  Just delete them to get rid of the warning popup.  (Ideally, these drop targets in the sequence UI would be removed but that's non-trivial.)
+
+> You can (and probably should) add various triggers to the container - especially those that need to know the current target.
+
 _I don't see much from the plugin in the NINA log - isn't it logging?_
 
 > The plugin logs to a [separate log file](technical-details.html#logging) so that messages aren't lost amid all the other logging.

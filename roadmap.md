@@ -7,6 +7,7 @@ nav_order: 9
 # Future Development
 
 ## General
+* Ability to delete a range of acquired image records.
 * Support for the meridian window restriction.
 * Support for multiple OTAs/cameras on a single mount, similar to the Synchronization plugin.
 * Save a thumbnail image with the image metadata.
