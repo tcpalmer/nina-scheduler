@@ -22,6 +22,8 @@ You should first familiarize yourself with the [concepts](concepts.html) underly
 
 Please also review the [release notes](release.html).
 
+If you like this plugin and it saves you time, please consider [Buying Me a Beer](https://www.buymeacoffee.com/tcpalmer).
+
 ### Acknowledgements
 * [Chris Woodhouse](https://www.digitalastrophotography.co.uk/about.html) has been involved since the beginning and was instrumental in hashing out the initial design and requirements.
 * Matt Nudi also provided design feedback and critical early beta testing.
