@@ -58,6 +58,10 @@ _Will the plugin work with mount X, camera Y, or filter wheel Z?_
 
 > If the equipment works properly today in the NINA Advanced Sequencer, then it should work properly with the plugin since it uses the same underlying NINA instructions to move the mount, operate the camera, and rotate the filter wheel.
 
+_Why doesn't the plugin support manual filter trays or manual rotators?_
+
+> Having to pause the sequence to alert the user to make a manual change in the middle of a session is inconsistent with the primary purpose of the plugin: supporting higher levels of automation.
+
 _I have a dome - will the slew instructions used by the plugin rotate my dome properly?_
 
 > Assuming your dome is properly configured with the associated NINA profile, then yes: the plugin will use the underlying NINA slew instruction which detects if a suitable dome is connected and rotates it.

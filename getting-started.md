@@ -13,7 +13,7 @@ Before you ask for help, please be sure you have met the following prerequisites
 
 ## Prerequisites
 * Do not use the plugin if you are a new NINA user.
-* The plugin is designed for DSO imagers using monochrome astrophotography cameras with a filter wheel.  Future releases will have more support for color cameras, DSLRs, manual filter switching, manual rotators, etc.
+* The plugin is designed for DSO imagers using monochrome astrophotography cameras with a filter wheel.  Future releases will have more support for color cameras with no filter wheel.
 * You should be reasonably adept at using the NINA Advanced Sequencer, understanding the concepts behind instructions, sequence containers, and triggers.
 * You should already have NINA configured with at least one profile describing your location, camera, filter wheel, etc.
 * Your filter wheel configuration should be stable.  If you later change the filter names (even 'L' to 'Lum') you might encounter issues with old references to 'L'.
