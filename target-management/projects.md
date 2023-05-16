@@ -33,11 +33,11 @@ If you used the NINA Framing Assistant to create mosaic panels for a target, you
 |Description|string|An optional description.|
 |State|dropdown|Current state of the project: Draft, Active, Inactive, Closed (see below).|
 |Priority|dropdown|Project priority for the Scoring Engine: Low, Normal, High.|
-|Minimum Time|minutes|The minimum imaging time that a project target must be visible to be considered.|
+|Minimum Time|minutes|The minimum imaging time that a project target must be visible to be considered.  See below for interaction with Meridian Window.|
 |Minimum Altitude|double|The minimum altitude for project targets to be considered.  Disabled if Use Custom Horizon is enabled.|
 |Use Custom Horizon|boolean|Use the custom horizon defined for the associated profile (NINA Options > General > Astrometry).|
 |Horizon Offset|double|A value to add to the custom horizon to set the minimum altitude at the target's current azimuth.  Disabled if Use Custom Horizon is disabled.|
-|Meridian Window|minutes|Not currently implemented.|
+|Meridian Window|minutes|Limit imaging to a timespan in minutes around the meridian crossing.  A setting of 60 implies 1 hour on either side of the meridian or 2 hours total.  See below for interaction with Minimum Time.  Set to zero to disable.|
 |Filter Switch Frequency|integer 0-N|Value to determine how exposures for different filters are scheduled.  See below for details.|
 |Dither After Every|integer 0-N|Value to determine how dithering is handled.  See below for details.|
 |Enable Image Grader|boolean|Enable/disable the [Image Grader](../post-acquisition/image-grader.html).|
@@ -46,6 +46,9 @@ If you used the NINA Framing Assistant to create mosaic panels for a target, you
 #### Project State
 
 The project state provides control over whether a project is considered for scheduling or not - and only Active projects are considered.  When a project is first created, the state is Draft; complete project/target setup and then set the state to Active.  Use the Inactive and Closed states as needed.
+
+#### Meridian Window and Minimum Time
+If a project specifies a meridian window, then the minimum time cannot be greater than twice the meridian window value.  If it was, then targets for that project would never be selected since the total meridian window would always be less than the minimum time.
 
 #### Filter Switch Frequency
 
@@ -64,4 +67,4 @@ Otherwise, you can set the value to 0.  In this case, you can either use a Dithe
 
 #### Scoring Engine Rule Weights
 
-Each rule for the [Scoring Engine](../concepts.html#scoring-engine) has an associated weight value that can be adjusted per project.  When the engine runs, the score for each rule is calculated for the target and then multiplied by the rule's weight value.  Weights can vary from 0 (disabling the rule entirely) to 100 (maximum effect).
+Each rule for the [Scoring Engine](../concepts/planning-engine.html#scoring-engine) has an associated weight value that can be adjusted per project.  When the engine runs, the score for each rule is calculated for the target and then multiplied by the rule's weight value.  Weights can vary from 0 (disabling the rule entirely) to 100 (maximum effect).

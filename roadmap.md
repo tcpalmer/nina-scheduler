@@ -8,11 +8,10 @@ nav_order: 9
 
 ## General
 * Ability to delete a range of acquired image records.
-* Support for the meridian window restriction.
+* Support for planning based on weather station data like humidity and sky quality.
 * Support for multiple OTAs/cameras on a single mount, similar to the Synchronization plugin.
 * Save a thumbnail image with the image metadata.
 * Provide ability to bulk load targets from a CSV file.
-* Support undo/redo operations in the database (maybe but no time soon).
 
 ## Sequence Operation
 

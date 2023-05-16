@@ -4,22 +4,36 @@ title: Release Status
 nav_order: 10
 ---
 
-# Release Status
+# Release Status: 0.7.0.0
 
-## Release 0.6.0.0
-
-This release is only available for NINA 2.1.x.  Support for NINA 3 will be added later.
+This release is only available for NINA 2.  Support for NINA 3 will be added later.
 
 The plugin is currently in a **_pre-release_** state equivalent to early beta.  If you are using a pre-release version, then please keep in mind the following.
 
 {: .warning }
 By definition, pre-releases have had limited testing.  Hopefully, if something goes wrong the worst that could happen is that you lose imaging time.  However, the plugin is controlling your mount so could potentially drive it to an unwanted position.  It does use the built-in mount slew/rotate/center instructions so this is unlikely, but you would be wise to implement hard limits for your mount (configured outside NINA) just to be safe.
 
-### Change Log for 0.6.0.0
-* Added validation to detect when Loop Conditions or Instructions are added to the TS container
-* First general availability release
+## Changes
 
-See the [project change log](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/CHANGELOG.md) for the complete history.
+### Meridian Window Support
+This release adds support for restricting target imaging to a timespan around the target's meridian crossing in order to minimize airmass and light pollution impacts.
+
+A new rule for the Scoring Engine lets you set the priority of targets using meridian windows so they can be prioritized if desired.
+
+### New Profile Preferences
+
+* Option to park the mount when the planner is waiting for the next target.
+* Option to throttle exposure counts when not using image grading.
+* Option to accept all improvements in star count and/or HFR during image grading.
+
+### Miscellaneous
+
+* Added airmass to acquired image data detail display.
+* Fixed problem with ROI exposure capture.
+* Fixed problem with including rejected exposure plans.
+* Fixed bug causing crashes during plan previews.
+
+Refer to the applicable documentation for details.  See the project [release notes](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/RELEASENOTES.md) and [change log](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/CHANGELOG.md) for the complete history.
 
 ## Known Issues
 

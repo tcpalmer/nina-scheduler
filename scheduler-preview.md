@@ -13,7 +13,7 @@ Select a date/time and the desired profile to get started.  When you click the R
 {: .warning }
 Previews are not meant to reflect the exact behavior of the sequence instruction.  Please read the following to understand how a preview differs from an actual run in the NINA Sequencer.
 
-A preview works by first calling the [Planning Engine](concepts.html#planning-engine) with the date/time specified.  It than repeatedly calls the engine using the stop time of the previous target as the next start time, until no more targets are returned.  By doing this, it is assuming that the work for each target will run for exactly that time interval (which is typically the project's minimum imaging time).  A preview also assumes that all images are acceptable.
+A preview works by first calling the [Planning Engine](../concepts/planning-engine.html) with the date/time specified.  It than repeatedly calls the engine using the stop time of the previous target as the next start time, until no more targets are returned.  By doing this, it is assuming that the work for each target will run for exactly that time interval (which is typically the project's minimum imaging time).  A preview also assumes that all images are acceptable.
 
 However, the real Target Scheduler Container works quite differently:
 * If it finishes executing all instructions for a target, it will stop and immediately call the engine again to get the next target.

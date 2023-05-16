@@ -46,6 +46,10 @@ _Can the plugin handle asteroids, comets, or other solar system objects?_
 
 > No.  NINA is primarily for DSO imaging.  Although there are plugins that support non-DSOs, the Target Scheduler does not.
 
+_Will the plugin stop tracking and guiding while it's waiting for the next target?_
+
+> Yes - it will stop where it is but won't park.
+
 _Can I make changes to projects, targets, or exposure plans while it's running?_
 
 > Yes.  The target currently running in the Target Scheduler Container won't see the changes but they will be picked up the next time the Planning Engine runs.
