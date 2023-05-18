@@ -34,6 +34,7 @@ When done, click the Save icon to save your changes or the Cancel icon to cancel
 |:--|:--|:--|
 |Name|string|The name of the template|
 |Filter|dropdown|The name of the associated filter on the filter wheel for the profile.|
+|Default Exposure|double|The default exposure duration to use unless overridden in Exposure Plans.  Exposure plans using the template default will pick up a change on the next planning run.|
 |Gain|integer|The desired gain setting for the exposure.  Leave blank to use the default defined for the camera.|
 |Offset|integer|The desired offset setting for the exposure.  Leave blank to use the default defined for the camera.|
 |Binning|dropdown|The binning mode for the exposure.|
@@ -51,7 +52,7 @@ The Moon Avoidance formula ("_Moon-Avoidance Lorentzian_") was formulated by the
 The formula takes two fixed parameters: _separation_ (aka distance, in degrees) and _width_ (days).  From ACP:
 *At full Moon the avoidance will be distance, and width days before (or after) the avoidance will be one half distance.*
 
-If the distance from your target to the moon is less than the calculated avoidance separation, the exposure plan will be rejected.  The separation is calculated at the midpoint time between the start and end time imaging times determined in the planner.  As the separation increases or decreases throughout a night, the avoidance determination may change as the planner is called again.
+If the angular distance from your target to the moon is less than the calculated avoidance separation, the exposure plan will be rejected.  The separation is calculated at the midpoint time between the start and end time imaging times determined in the planner.  As the separation increases or decreases throughout a night, the avoidance determination may change as the planner is called again.
 
 #### Setting Parameters
 When enabled, set distance to the minimum acceptable separation at full moon.  Then use width to control how quickly the curve drops from the distance value.  Some charts make this clear: X = moon age in days, Y = calculated distance.

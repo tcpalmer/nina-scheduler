@@ -32,7 +32,7 @@ When the target is _not_ in Edit mode, you can delete exposure plans by clicking
 |Property|Type|Description|
 |:--|:--|:--|
 |Template|dropdown|[Exposure Template](exposure-templates.html) to use for this plan.|
-|Exposure|double|Exposure time in seconds.|
+|Exposure|double|Exposure time in seconds.  Leave blank to use the default defined for the template.|
 |Desired|integer|Number of desired images for this plan - see below.|
 |Accepted|integer|Number of accepted images for this plan - see below.|
 |Acquired|integer|Total number of images acquired for this plan.  Read only.|
@@ -41,6 +41,6 @@ When the target is _not_ in Edit mode, you can delete exposure plans by clicking
 
 As part of an exposure plan, you set the total number of images you **_Desire_** for the plan.  The plugin will continue to schedule exposures for this plan as long as the number desired is greater than the number **_Accepted_**.
 
-The number of Accepted images can either be automatically set by action of the [Image Grader](../post-acquisition/image-grader.html) (incremented for each image that passes) or the value can be managed manually if you prefer.  If you manage it manually however, you are responsible for adjusting the value after you have reviewed the latest images - otherwise the plugin will continue to schedule exposures even if the number Desired is surpassed.
+The number of Accepted images can either be automatically set by action of the [Image Grader](../post-acquisition/image-grader.html) (incremented for each image that passes) or the value can be managed manually if you prefer.  If you manage it manually however, you are responsible for adjusting the value after you have reviewed the latest images - otherwise the plugin will continue to schedule exposures even if the number Desired is surpassed.  The [Exposure Throttle](profiles.html#general-preferences) preference can be used to manage this behavior.
 
 The number **_Acquired_** is incremented for each exposure and is read-only.

@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Release Status
+title: Release Notes
 nav_order: 10
 ---
 
-# Release Status: 0.7.0.0
+# Release Notes 0.7.0.0
 
 This release is only available for NINA 2.  Support for NINA 3 will be added later.
 
@@ -13,12 +13,20 @@ The plugin is currently in a **_pre-release_** state equivalent to early beta.  
 {: .warning }
 By definition, pre-releases have had limited testing.  Hopefully, if something goes wrong the worst that could happen is that you lose imaging time.  However, the plugin is controlling your mount so could potentially drive it to an unwanted position.  It does use the built-in mount slew/rotate/center instructions so this is unlikely, but you would be wise to implement hard limits for your mount (configured outside NINA) just to be safe.
 
-## Changes
+## Changes in this Release
 
 ### Meridian Window Support
-This release adds support for restricting target imaging to a timespan around the target's meridian crossing in order to minimize airmass and light pollution impacts.
+This release adds support for restricting target imaging to a timespan around the target's meridian crossing in order to minimize airmass and light pollution impacts during acquisition.
 
 A new rule for the Scoring Engine lets you set the priority of targets using meridian windows so they can be prioritized if desired.
+
+### Default Exposure Times
+
+You can now add a default exposure time to your Exposure Templates.  This duration will be used unless overridden in Exposure Plans that use the template.
+
+If you have existing Exposure Plans and want to use this feature:
+* Add the desired default to your Exposure Templates.
+* In your Exposure Plans, simply clear the existing exposure value - it should change to '(Template)' to indicate usage of the default.
 
 ### New Profile Preferences
 

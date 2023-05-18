@@ -15,8 +15,8 @@ The following values are saved.  The description is missing for items that are s
 
 |Property|Description|
 |:--|:--|
-|Project ID|The database ID of the associated project|
-|Target ID|The database ID of the associated target|
+|Project|The associated project|
+|Target|The associated target|
 |Date|Date/time the exposure finished|
 |Filter|Filter used for the exposure|
 |Accepted|Whether the exposure was accepted by the Image Grader or not|

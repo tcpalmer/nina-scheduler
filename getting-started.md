@@ -65,6 +65,7 @@ A Target has one or more Exposure Plans to specify the actual exposures you want
 3. Click the Edit icon to make changes:
   * Enter a name for the template.  It usually makes sense to include the filter name in the template name, for example, 'Lum Default'.
   * Select the desired filter from the dropdown.  The filter name options are loaded from the filter wheel configuration for this NINA profile (NINA Options > Equipment > Filter Wheel).
+  * Set a default exposure duration.  This will be used unless overridden in Exposure Plans that use this template.
   * Review the other properties but the defaults are fine for now.
 
 See [Exposure Templates](target-management/exposure-templates.html) for details on all properties.  After saving, your new template will appear in the Exposure Templates nav tree under the profile.
@@ -78,7 +79,7 @@ Now that you've created an Exposure Template, you can create an Exposure Plan th
 2. Click the Edit icon.
 3. Click the Add Exposure Plan icon.
   * An exposure plan will be added and will default to using the first Exposure Template for this profile (which is the one you just created).  When you have more templates, you can select the one you want in the Template dropdown.
-  * Set the exposure length (in seconds) in the Exposure field. 
+  * Leave the Exposure field blank - it will use the default from the template. 
   * Change the Desired field to the number of exposures needed for this plan. 
   * Do not change the Accepted value (discussed elsewhere).
 4. Click the Save icon to save your changes.

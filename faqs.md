@@ -48,7 +48,7 @@ _Can the plugin handle asteroids, comets, or other solar system objects?_
 
 _Will the plugin stop tracking and guiding while it's waiting for the next target?_
 
-> Yes - it will stop where it is but won't park.
+> Yes - it will stop where it is.  If you want the mount to park, you can set a [profile preference](target-management/profiles.html#profile-preferences) to park during waits.
 
 _Can I make changes to projects, targets, or exposure plans while it's running?_
 
