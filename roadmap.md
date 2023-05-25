@@ -17,6 +17,8 @@ nav_order: 9
 
 Currently, you cannot add additional instructions to the Target Scheduler Container since it only executes the instructions necessary to image the current target returned by the Planning Engine.  However, it might be useful to permit additional instructions here.  These could be run for example after each target completes.
 
+Ideally though, you'd like the ability to run some instructions before a wait operation, some after, some before a target starts, some after, etc.
+
 ## Scoring Engine Rules
 The following new rules for the Scoring Engine are under consideration:
 * Meridian Flip: assign a lower score to targets that will require an immediate MF. Related: if a target is east of the meridian but ‘close’ (check NINA profile MF settings), don’t switch to it until it’s well past the meridian. 

@@ -54,7 +54,7 @@ If all targets were rejected, then find all of those that would be available lat
 
 ## Nothing Available At All?
 
-If all targets were rejected and none will be available later, then return null to the Target Scheduler instruction.  This will end execution of the instruction and the sequence will just fall through to the next instruction.
+If all targets were rejected and none will be available later, then return null to the Target Scheduler instruction.  This will end execution of the instruction and the sequence will just fall through to the next instruction.  The [Target Scheduler Condition](../sequencer/condition.html) using the 'While Targets Remain Tonight' mode can be used to check for this state in outer containers.
 
 ## Scoring Engine
 

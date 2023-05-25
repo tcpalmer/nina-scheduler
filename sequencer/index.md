@@ -14,7 +14,7 @@ The plugin provides a single new instruction for the NINA Advanced Sequencer: _T
 
 There is no need to add any loop conditions or instructions to the Target Scheduler Container (and that ability will be blocked in a later release).  Instead, the Target Scheduler Container handles looping internally, calling the Planning Engine as needed to get the next target. 
 
-You can have a parent container (e.g. Sequential Instruction Set container) and add Target Scheduler Container to it.  This parent container may have loop conditions and/or triggers to handle safety and other global concerns.
+You can have a parent container (e.g. Sequential Instruction Set container) and add Target Scheduler Container to it.  This parent container may have loop conditions and/or triggers to handle safety and other global concerns.  Containers above Target Scheduler Container in the sequence hierarchy may need to use the [Target Scheduler Condition](condition.html) loop condition to break out in certain scenarios.
 
 See the [technical details](../technical-details.html#target-scheduler-container-operation) for more information.
 

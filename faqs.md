@@ -72,7 +72,7 @@ _I have a dome - will the slew instructions used by the plugin rotate my dome pr
 
 _Will the plugin work correctly with my safety setup?_
 
-> Assuming your safety configuration works properly with the associated NINA profile, then the plugin should interact with that system properly.  Since the plugin instruction is in many ways similar to the Deep Sky Object Sequence container instruction, it will interact with surrounding instructions and triggers in a similar manner.
+> Assuming your safety configuration works properly with the associated NINA profile, then the plugin should interact with that system properly.  Since the plugin instruction is in many ways similar to the Deep Sky Object Sequence container instruction, it will interact with surrounding instructions and triggers in a similar manner.  You may need to use the [Target Scheduler Condition](sequencer/condition.html) for additional loop control.
 
 _With the plugin work with NINA sequence instruction X?  How about instructions added by plugins?_
 
