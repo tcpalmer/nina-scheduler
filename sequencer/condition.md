@@ -9,6 +9,9 @@ nav_order: 2
 
 When the Target Scheduler is used in more advanced sequences such as those supporting safety concerns or multi-night imaging, it becomes necessary to check the state of the projects and planner to determine when to break out of loops.  The Target Scheduler Condition is a loop condition that can be added to outer loops to achieve this.  It supports to two modes of operation: _While Targets Remain Tonight_ and _While Active Projects Remain_.
 
+{: .note }
+Unlike some core NINA conditions, Target Scheduler Condition will _not_ continuously check its condition and then immediately interrupt the sequence.  It will only check just before the instructions in the container are run.  With this behavior, it is more like the Loop For Iterations condition and not like Loop Until Time or Loop While Safe.
+
 ## While Targets Remain Tonight
 This mode will continue the loop as long as the Planning Engine indicates that additional targets are available tonight (either now or by waiting).
 

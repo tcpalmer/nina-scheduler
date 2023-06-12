@@ -76,6 +76,8 @@ The ordering of exposures is driven by the [Filter Switch Frequency](../target-m
 
 The set of exposures is selected (based on exposure times) to fit within the plan window.  However, when Target Plans execute, they will almost always run longer than the plan window end time due to the execution of time-intensive triggers such as Meridian Flip, Center After Drift, or Autofocus.  In general, this is acceptable and of course the execution would be interrupted by the plan hard stop time if it runs past that.
 
+If [dithering](../target-management/projects.html#dithering) is enabled for the project, then the sequence of planned exposures is analyzed and dither instructions are inserted at appropriate points.
+
 At this point, the target, instructions, and start/hard stop time are added to the Target Plan and returned to the Target Scheduler instruction for execution.
 
 ## Scoring Engine

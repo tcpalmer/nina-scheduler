@@ -61,7 +61,14 @@ The setting depends primarily on whether you have focus offsets for your filters
 
 #### Dithering
 
-The Scheduler instruction can optionally schedule dithering for you.  If the value is greater than zero, then it will execute a dither after that many exposures (assuming a guider is connected).  Dithering behavior is completely independent of the Filter Switch Frequency.
+The Scheduler instruction can optionally schedule dithering for you.  If the dither setting is _N_, a dither will be added before the _N+1<sup>th</sup>_ occurrence of a filter.  Examples:
+* Dither=1, LRGBLRGBLRGBLLL: LRGBdLRGBdLRGBdLdLdL
+* Dither=2, LRGBLRGBLRGBLLL: LRGBLRGBdLRGBLdLL
+* Dither=3, LRGBLRGBLRGBLLL: LRGBLRGBLRGBdLLL
+* Dither=1, LLRRGGBBLLL: LdLRdRGdGBdBLdLdL
+* Dither=2, LLRRGGBBLLL: LLRRGGBBdLLdL
+
+Dithering behavior is completely independent of the Filter Switch Frequency.
 
 Otherwise, you can set the value to 0.  In this case, you can either use a Dither After Exposures trigger instruction in the Triggers section of the sequencer container, or skip dithering altogether.
 
