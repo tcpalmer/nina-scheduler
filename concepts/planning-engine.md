@@ -7,13 +7,71 @@ nav_order: 2
 
 # Planning Engine
 
+The following sections describe the scheduling/planning approach used by the plugin.
+
+## Dispatch Scheduling
+
+Target Scheduler is a _dispatch scheduler_ [^1], meaning it generates a plan on demand covering the 'next' step only.  This is in contrast to a _static_ or _global_ scheduler that would generate a plan for the entire night.  Although it might seem like a static plan is a better approach, dispatch scheduling has several advantages in the context of automated imaging:
+* If you generate a plan for the whole night, it's almost immediately out of sync with reality due to other operations that may take place: slew/center, autofocus, meridian flip, center after drift, dither settle, etc.  Some of these can be predicted and estimated - but not all and not consistently.
+* A dispatch scheduler can take new information into account.  For example, images may or may not be deemed acceptable by the [image grader](../post-acquisition/image-grader.html), which changes the number of images remaining for a target, which impacts the next plan.
+* You can make changes to the project/target database that will be used during the very next planning cycle.
+* Dispatch scheduling is a better match for the NINA Advanced Sequencer and its approach to automation and triggers/interrupts.
+* In the future, the plugin will support constraints based on weather metrics such as sky quality or humidity which can obviously change over the course of a night.
+
+## Operation
+
 The Planning Engine executes a series of steps to pick the best target to image at the moment and then schedule the applicable exposures for that target.  It operates in phases and in the end, produces a _Target Plan_.
 
 A Target Plan is either:
 * A delay to tell the Target Scheduler instruction it needs to simply wait for target availability.  At the end of the delay, it will call the planner again.
-* The selected target, instructions to run, and the start time and hard stop time.
+* The selected target, instructions to run, the start time, and stop time.
 
-The hard stop time is basically the end of visibility for the target (e.g. sets below horizon) and is used to abort the plan in case that time is exceeded.
+The stop time is the end of the [planning window](#plan-window) and is used to interrupt the plan in case that time is exceeded.
+
+![](../assets/images/planning-timeline-1.png)
+
+The above timeline shows a sequence of six plans generated for the Target Scheduler.  Adding optional instruction for the Before/After Wait and Before/After New Target are discussed in [Custom Event Instructions](../sequencer/index.html#custom-event-instructions).  Detailed sequence of events:
+
+#### Plan 1
+The planner is called and Target 1 is returned.  Execute:
+* Slew and center on Target 1
+* Optional instructions for 'Before New Target'
+* Take planned exposures
+
+#### Plan 2
+The planner is called and Target 1 is again returned.  Since the target didn't change, both slew/center and 'Before New Target' are skipped.  Execute:
+* Take planned exposures
+* Optional instructions for 'After New Target' (since we will subsequently determine that a Wait is next)
+
+#### Plan 3
+The planner is called and a Wait is returned.  Execute:
+* Optional instructions for 'Before Wait'
+* Wait ...
+* Optional instructions for 'After Wait'
+
+#### Plan 4
+The planner is called and Target 2 is returned.  Execute:
+* Slew and center on Target 2
+* Optional instructions for 'Before New Target'
+* Take planned exposures
+* Optional instructions for 'After New Target' (since we will subsequently determine that the next target has changed)
+
+#### Plan 5
+The planner is called and Target 3 is returned.  Execute:
+* Slew and center on Target 3
+* Optional instructions for 'Before New Target'
+* Take planned exposures
+
+A safety interrupt (handled outside of Target Scheduler) occurs some time during the execution of Plan 5.  Any optional 'After New Target' instructions are skipped due to the interrupt.  When the safety issue has cleared, the Target Scheduler instruction will be reset to simply call the planner again.
+
+#### Plan 6
+The planner is called and Target 3 is returned.  Execute:
+* Slew and center on Target 3
+* Optional instructions for 'Before New Target'
+* Take planned exposures
+* Optional instructions for 'After New Target'
+
+At this point, no more targets remain for the night so the Target Scheduler instruction ends and passes control to the next item in the sequence.
 
 The following sections detail the different phases of planner operation.
 
@@ -54,7 +112,7 @@ If all targets were rejected, then find all of those that would be available lat
 
 ## Nothing Available At All?
 
-If all targets were rejected and none will be available later, then return null to the Target Scheduler instruction.  This will end execution of the instruction and the sequence will just fall through to the next instruction.  The [Target Scheduler Condition](../sequencer/condition.html) using the 'While Targets Remain Tonight' mode can be used to check for this state in outer containers.
+If all targets were rejected and none will be available later, then return null to the Target Scheduler instruction.  This will end execution of the instruction and the sequence will just fall through to the next instruction.  The [Target Scheduler Condition](../sequencer/condition.html) using the 'While Targets Remain Tonight' mode can be used to check for this state in outer containers in your sequence.
 
 ## Scoring Engine
 
@@ -67,6 +125,14 @@ A time span is determined for planning the sequence instructions for the selecte
 Currently, the stop time is determined as follows:
 * If the target is part of a project that is using a meridian window, then the stop time is the end of the window.
 * Otherwise, it is simply the start time plus the minimum imaging time set for the project.
+
+The use of the project minimum imaging time to determine the stop time is problematic and will be addressed in a future release.  Basically, it couples the stop time to minimum imaging time for little reason other than convenience.  The following are under consideration for a better stop time:
+* Twilight/darkness change times
+* End of the meridian window for the current target (this happens today)
+* Start time of meridian window for next target
+* Time that visibility begins for the next target if later than current target minimum time
+
+Basically, if no other targets or events of interest are upcoming, we can just let the current target run until it's hard stop time (when it sets or the start of dawn twilight).
 
 ## Generate Sequence Instructions
 
@@ -100,4 +166,8 @@ A user can select different weights for each rule to achieve different goals.  S
 
 Note that the default weights for Meridian Window Priority and Target Switch Penalty are set higher than the others.  Missing a meridian window is a high opportunity cost since those windows are relatively 'scarce' during any session.  Switching targets is expensive given the slew/center time.
 
-The engine is designed to be easily extended by adding additional rules.  There is a limit with approaches like this, however.  As the number of rules increases, the predictability of engine outcomes goes down - and predictability can be desirable.  As the number grows it might be appropriate for users to select a subset that work well and disable the others.  Several additional rules are under consideration - see the [roadmap](../roadmap.html#scoring-engine-rules).
+If you use Scheduler Preview, you can click the [View Details](../scheduler-preview.html#view-details) button to see a log of the planning details which includes the calculations for each scoring rule for each target.  The same information will be written to the [Target Scheduler log](../technical-details.html#logging) for actual planning runs from sequence execution.
+
+The engine is designed to be easily extended by adding additional rules.  However, there is a limit with approaches like this.  As the number of rules increases, the predictability of engine outcomes goes down - and predictability can be desirable.  As the number grows it might be appropriate for users to select a subset that work well and disable the others.  Several additional rules are under consideration - see the [roadmap](../roadmap.html#scoring-engine-rules).
+
+[^1]: "Dispatch" is a general term in scheduling contexts but was also originally used by Bob Denny for the [ACP Observatory Control Program](https://acpx.dc3.com/) (which is also a dispatch scheduler).

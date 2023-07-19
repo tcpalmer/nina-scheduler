@@ -12,9 +12,8 @@ The Target Scheduler is more complex than the average NINA plugin.  Successful u
 Before you ask for help, please be sure you have met the following prerequisites and made an effort to understand how the plugin operates.
 
 ## Prerequisites
-* Do not use the plugin if you are a new NINA user.
+* You should be reasonably adept at using the NINA Advanced Sequencer, understanding the concepts behind instructions, sequence containers, and triggers.  If you are new to NINA, it would be best to spend time getting to know the software and how it interacts with your equipment.
 * The plugin is designed for DSO imagers using monochrome astrophotography cameras with a filter wheel.  Future releases will have more support for color cameras with no filter wheel.
-* You should be reasonably adept at using the NINA Advanced Sequencer, understanding the concepts behind instructions, sequence containers, and triggers.
 * You should already have NINA configured with at least one profile describing your location, camera, filter wheel, etc.
 * Your filter wheel configuration should be stable.  If you later change the filter names (even 'L' to 'Lum') you might encounter issues with old references to 'L'.
 * **_You should be able to successfully run sessions via the Advanced Sequencer with this profile.  The inevitable glitches with new equipment should have been worked out._**
@@ -99,7 +98,7 @@ M31 was chosen above because it's visible for much of the year from most latitud
 The panel below the Run button will show the steps that the scheduler generated for the selected date/time and profile.  Click each project/target line (probably just one at this point) to expand it and show all instructions for that target.  See [Scheduler Preview](scheduler-preview.html) for more information.
 
 {: .note }
-If you examine the instructions and something doesn't look right, please read the differences between a preview and a real run in the sequencer.
+If you examine the instructions and something doesn't look right, please read the differences between a preview and a real run in the sequencer.  You can also click the 'View Details' button to see details on why the planner made the decisions it did.
 
 ### Create a Sequence
 

@@ -30,13 +30,7 @@ _The scheduler doesn't seem to be doing what I expected.  Why not?_
 > 
 > It might also help to use a planetarium program like Stellarium to check your target, timing, and circumstances and compare against the scheduler.
 > 
-> The [Scheduler Preview](scheduler-preview.html) is a great tool to see what the Planning Engine will do - just be aware of the differences between preview and real execution in the NINA Sequencer.
-
-_When I start my sequence, I see a warning about "Loop conditions/Instructions added to the Target Scheduler Container will be ignored".  What does that mean?_
-
-> The Target Scheduler Container automatically generates sequence instructions and handles looping as needed so any loop conditions or instructions added will be ignored.  Just delete them to get rid of the warning popup.  (Ideally, these drop targets in the sequence UI would be removed but that's non-trivial.)
-
-> You can (and probably should) add various triggers to the container - especially those that need to know the current target.
+> The [Scheduler Preview](scheduler-preview.html) is a great tool to see what the Planning Engine will do - just be aware of the differences between preview and real execution in the NINA Sequencer.  You can also use the View Details button on the previewer to see details on the planning process, include targets considered and scoring runs.
 
 _I don't see much from the plugin in the NINA log - isn't it logging?_
 
@@ -48,7 +42,7 @@ _Can the plugin handle asteroids, comets, or other solar system objects?_
 
 _Will the plugin stop tracking and guiding while it's waiting for the next target?_
 
-> Yes - it will stop where it is.  If you want the mount to park, you can set a [profile preference](target-management/profiles.html#profile-preferences) to park during waits.
+> Yes - it will stop where it is.  If you want the mount to park, you can set a [profile preference](target-management/profiles.html#profile-preferences) to park during waits.  Or use the [Before/After Wait containers](sequencer/index.html#custom-event-instructions) on the Target Scheduler instruction to perform custom operations at those times.
 
 _Can I make changes to projects, targets, or exposure plans while it's running?_
 

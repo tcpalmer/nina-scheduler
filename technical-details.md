@@ -14,7 +14,6 @@ The Target Scheduler Container instruction takes a similar approach.  When a new
 * Instantiates an internal container to run the slew and imaging instructions specific to the target.
 * Adds special triggers to the internal container:
   * A custom trigger to stop execution of the internal container at the end time of the applicable target plan (specifically, if the expected duration of the next instruction would exceed the end time).
-  * If the project has specified dithering, then the core dither trigger is added.
 * Clones any triggers on the parent Target Scheduler Container and adds them to this list (where they can get access to the current target if needed).
 * Executes the internal target container.  When it completes, it calls the Planning Engine again to get the next target.
 

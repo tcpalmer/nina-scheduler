@@ -21,3 +21,17 @@ However, the real Target Scheduler Container works quite differently:
 * In addition, acquired images are not assumed to be acceptable.  Instead, they will be graded by the [Image Grader](post-acquisition/image-grader.html) (if enabled) or left for the user to manually accept/reject.
 
 Since nearly every sequence will have triggers to autofocus or handle meridian flips (both lengthy operations), target plans will rarely finish at the planned time.  This typically isn't an issue and if the target sets or loses visibility during that time, the plan will be aborted and the engine will be called again.
+
+The following image shows the results of a preview run.  Each line in the output shows one run of the planning engine - either a 'wait' or a specific target.  For runs that return targets, you can expand the line to see the instructions that will be executed to image the target.
+
+![](../assets/images/preview-run.png)
+
+## View Details
+
+If you need additional insight into what the planner is doing, click the View Details button.  This will display a detailed log of the candidate targets that were considered and why they were or weren't chosen.  For targets that were scored by the Scoring Engine, additional details are shown for all the scoring rules.
+
+The following image shows the 'View Details' log from the same image as shown above.
+
+![](../assets/images/preview-view-details.png)
+
+The same information is also written to the [Target Scheduler log](technical-details.html#logging) for actual (non-preview) runs via the sequencer.
