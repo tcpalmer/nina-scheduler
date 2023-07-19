@@ -4,27 +4,45 @@ title: Release Notes
 nav_order: 10
 ---
 
-# Release Notes 0.8.0.0
+# Release Notes 3.1.2.0
 
 ## Changes in this Release
 
-This release is only available for NINA 2.  Support for NINA 3 will be added later.
+This release is available for NINA 3.  Previous releases (0.8.0.0 and earlier) were for NINA 2.  From this point forward, only fixes for serious problems will be back-ported to the NINA 2 version.  This documentation is for the NINA 3 version only.
 
 The plugin is currently in a **_pre-release_** state equivalent to early beta.  If you are using a pre-release version, then please keep in mind the following.
 
 {: .warning }
 By definition, pre-releases have had limited testing.  Hopefully, if something goes wrong the worst that could happen is that you lose imaging time.  However, the plugin is controlling your mount so could potentially drive it to an unwanted position.  It does use the built-in mount slew/rotate/center instructions so this is unlikely, but you would be wise to implement hard limits for your mount (configured outside NINA) just to be safe.
 
-### Revised Dithering Approach
+### NINA 3
 
-Previously, the 'Dither After Every' setting in Projects was the number of exposures before dithering would be triggered - regardless of filter. This can lead to under-dithering in situations where the planner returns exposures for fewer filters than expected (e.g. due to exposure plan completion or moon avoidance).
+The primary change in this release is the port to NINA 3.  From this point forward, all new feature development with only be for the NINA 3 version.  Only serious bugs will be fixed in the NINA 2.x version.
 
-Now, the setting means to 'dither after N instances of each filter'. For example, if dither = 1 and the planner generates LRGBLRGBLRGBLLL, then dithers would be added to execute LRGBdLRGBdLRGBdLdLdL. Previously, you might use dither = 4 in this situation but then once RGB is done, you'd be under-dithering the L exposures.
+### Custom Event Instructions
 
-### Miscellaneous
+You can now drop arbitrary instructions into four separate containers that will be executed at specific times in the scheduler lifecycle:
+- Before each Wait
+- After each Wait
+- Before each new/changed Target
+- After each new/changed Target
 
-* Now does a center with rotation even if target rotation is zero
-* Fixed problem with missing parent for internal container
+For example, you could park your mount and/or close a flip-flat before a wait and then reverse after.  Or run an autofocus before each target begins imaging (and after it slews/centers on the chosen target).  See [Custom Event Instructions](sequencer/index.html#custom-event-instructions).
+
+### Display of Running Instructions
+
+The display of running instructions in the Target Scheduler Container instruction has been greatly improved.
+
+### Scheduler Preview Details
+
+Scheduler Preview now provides a [View Details](scheduler-preview.html#view-details) button to display details about the planning and decision-making process.  The same information is also written to the [Target Scheduler log](technical-details.html#logging) for actual runs via the sequencer.
+
+### Target Rotation
+
+NINA 3 changes the meaning of target rotation values.  From the NINA 3 release notes:
+> Rotation values in N.I.N.A. are now displayed in counter clockwise notation to follow the standard of "East of North of North Celestial Pole" that is used in most astro applications. Templates, Targets and other saved items in previous versions will be auto migrated to this adjusted approach.
+
+The new value is simply 360 minus the old value (and modulo 360).  Just as NINA will automatically convert old rotation values in your sequence files and templates, the plugin will convert target rotations in your database to the new approach when you first use the plugin.
 
 Refer to the applicable documentation for details.  See the project [release notes](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/RELEASENOTES.md) and [change log](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/CHANGELOG.md) for the complete history.
 

@@ -23,6 +23,8 @@ New targets are added by navigating to the desired project and then clicking the
 
 Click the Edit icon to begin editing the target.  The property value fields become active and you can make changes.  Note that you typically have to tab out after editing to enable the Save icon.
 
+### Target Import
+
 To import a target, click the Edit icon to begin editing.  Then click the Import icon on the far right.  This will open a section with four import options:
 * **NINA Catalog**. Enter the name of your DSO in the field - incremental search is supported.  Be sure to click on your selection to set the coordinates.
 * **Framing Assistant**. If you have previously framed a target using the NINA Framing Assistant, click the icon to import those coordinates.

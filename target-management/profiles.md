@@ -17,10 +17,8 @@ A set of preferences can be managed for each profile and will impact execution o
 
 |Property|Type|Default|Description|
 |:--|:--|:--|:--|
-|Park On Wait|bool|false|Normally, when the planner returns a directive to wait a period of time for the next target, the plugin will simply stop tracking and guiding.  If this setting is true (and the wait is more than one minute), the mount will also be parked and then unparked when the wait is over.|
+|Park On Wait|bool|false|Normally, when the planner returns a directive to wait a period of time for the next target, the plugin will simply stop tracking and guiding.  If this setting is true (and the wait is more than one minute), the mount will also be parked and then unparked when the wait is over.  If you instead use the [Before Wait/After Wait](../sequencer/index.html#custom-event-instructions) custom containers to park and unpark, you should leave this set to false.|
 |Exposure Throttle|int|125%|When Image Grading is disabled (at the Project level) and the Accepted count on Exposure Plans isn't incremented manually, the planner will keep scheduling exposures - perhaps way beyond what is reasonable.  The Exposure Throttle will instead use the total number Acquired (displayed with Desired and Accepted) to stop exposures when the number Acquired is greater than Exposure Throttle times the number Desired.  For example, if Exposure Throttle is 150%, Desired=10, and Acquired=5 then an additional 10 exposures will be scheduled.  This has no effect if Image Grading is enabled.|
-
-
 
 ### Image Grader
 The following preferences drive the behavior of the [Image Grader](../post-acquisition/image-grader.html).  Since projects have grading enabled by default and all types of grading (below) are also enabled by default, your images will be graded unless you take steps to disable it.  The defaults were selected to be relatively permissive.
