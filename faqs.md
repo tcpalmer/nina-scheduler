@@ -30,7 +30,7 @@ _The scheduler doesn't seem to be doing what I expected.  Why not?_
 > 
 > It might also help to use a planetarium program like Stellarium to check your target, timing, and circumstances and compare against the scheduler.
 > 
-> The [Scheduler Preview](scheduler-preview.html) is a great tool to see what the Planning Engine will do - just be aware of the differences between preview and real execution in the NINA Sequencer.  You can also use the View Details button on the previewer to see details on the planning process, include targets considered and scoring runs.
+> The [Scheduler Preview](scheduler-preview.html) is a great tool to see what the Planning Engine will do - just be aware of the differences between preview and real execution in the NINA Sequencer.  You can also use the View Details button on the previewer to see details on the planning process, including targets considered and scoring runs.
 
 _I don't see much from the plugin in the NINA log - isn't it logging?_
 

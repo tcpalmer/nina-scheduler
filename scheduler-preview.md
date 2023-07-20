@@ -24,7 +24,7 @@ Since nearly every sequence will have triggers to autofocus or handle meridian f
 
 The following image shows the results of a preview run.  Each line in the output shows one run of the planning engine - either a 'wait' or a specific target.  For runs that return targets, you can expand the line to see the instructions that will be executed to image the target.
 
-![](../assets/images/preview-run.png)
+![](assets/images/preview-run.png)
 
 ## View Details
 
@@ -32,6 +32,6 @@ If you need additional insight into what the planner is doing, click the View De
 
 The following image shows the 'View Details' log from the same image as shown above.
 
-![](../assets/images/preview-view-details.png)
+![](assets/images/preview-view-details.png)
 
 The same information is also written to the [Target Scheduler log](technical-details.html#logging) for actual (non-preview) runs via the sequencer.

@@ -52,7 +52,9 @@ Four areas are provided to drag/drop sequence instructions for execution at spec
 
 Expand the individual containers to add items and then drag/drop instructions to the drop area as usual.  In general, any NINA instruction can be added but you should always test before unattended operation.
 
-Note that the Before/After New Target instructions will _only_ be executed when the target is new or changed from the previous plan.  A timeline shows precisely when the event containers will be executed:
+Note that the Before/After New Target instructions will _only_ be executed when the target is new or changed from the previous plan.  Returning the same target is a common occurrence since the planner will often select the same target if nothing else is available.
+
+A timeline shows precisely when the event containers will be executed:
 
 ![](../assets/images/planning-timeline-2.png)
 
@@ -88,8 +90,8 @@ A basic sequence construction approach is the following:
   * Instructions:
     * **Target Scheduler Container**:
       * Triggers: as needed (especially those that need to know the current target)
-      * Loop Conditions: empty
-      * Instructions: empty
+      * Custom Before/After Wait instructions
+      * Custom Before/After New Target instructions
 
 * Typical wrap-up instructions in the Sequence End Area:
   * Warm Camera
