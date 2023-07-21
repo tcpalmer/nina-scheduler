@@ -9,6 +9,8 @@ has_children: true
 
 The plugin provides a UI to manage your projects, targets, and exposure plans.  Through the interface, you can add new projects and targets, add and update exposure plans, and manage exposure templates.  The pages here describe each entity and how to manage it, as well as detailing the associated properties.
 
+For thoughts on how to organize your projects and targets, see [Project/Target Organization](organization.html).
+
 {: .note}
 Editing projects, targets, etc in the management UI uses a _modal editing_ approach (unlike the rest of the NINA UI).  You must click the Edit icon to enter edit mode, make your changes, and then Save or Cancel.  The management navigation trees will be locked against changes until you either Save or Cancel.  This is necessary to minimize database commits and ensure integrity.
 

@@ -6,7 +6,7 @@ nav_order: 2
 ---
 
 # Projects
-Projects are the main organizing entity for the plugin.  Each project belongs to a single NINA profile.  Each target is associated with a single project.  Multiple targets can be added to a project and will share the project's properties.  Targets for a project are expected (but not required) to be the same area of the sky since the chief motivation for this approach is mosaics.
+Projects are the main organizing entity for the plugin.  Each project belongs to a single NINA profile.  Each target is associated with a single project.  Multiple targets can be added to a project and will share the project's properties.  Targets for a project are expected (but not required) to be the same area of the sky since the chief motivation for this approach is mosaics.  For additional thoughts on how to organize your projects and targets, see [Project/Target Organization](organization.html).
 
 ## Basic Operations
 
