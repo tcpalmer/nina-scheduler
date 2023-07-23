@@ -21,7 +21,7 @@ This documentation describes the latest version of the plugin which is for NINA 
 The Target Scheduler Plugin is currently in a pre-release state - please read the [Release Status](release.html) page for more information.
 
 ## Getting Started
-You should first familiarize yourself with the [concepts](../concepts/index.html) underlying the plugin.  After that, visit the [Getting Started](getting-started.html) page for prerequisites and next steps.
+You should first familiarize yourself with the [concepts](concepts/index.html) underlying the plugin.  After that, visit the [Getting Started](getting-started.html) page for prerequisites and next steps.
 
 Please also review the [release notes](release.html).
 
