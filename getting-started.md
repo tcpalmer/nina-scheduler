@@ -6,7 +6,7 @@ nav_order: 5
 
 # Getting Started
 
-The Target Scheduler is more complex than the average NINA plugin.  Successful use requires that you understand the plugin [concepts](../concepts/index.html) and ensure that you have met the prerequisites listed below.
+The Target Scheduler is more complex than the average NINA plugin.  Successful use requires that you understand the plugin [concepts](concepts/index.html) and ensure that you have met the prerequisites listed below.
 
 {: .note }
 Before you ask for help, please be sure you have met the following prerequisites and made an effort to understand how the plugin operates.
@@ -18,7 +18,7 @@ Before you ask for help, please be sure you have met the following prerequisites
 * Your filter wheel configuration should be stable.  If you later change the filter names (even 'L' to 'Lum') you might encounter issues with old references to 'L'.
 * **_You should be able to successfully run sessions via the Advanced Sequencer with this profile.  The inevitable glitches with new equipment should have been worked out._**
 * Sky conditions notwithstanding, your sequences should be able to reliably plate solve and execute meridian flips without intervention.
-* You are familiar with the plugin's [concepts](../concepts/index.html).
+* You are familiar with the plugin's [concepts](concepts/index.html).
 
 ## First Steps
 These steps assume you have already installed the plugin via the NINA Plugins page.

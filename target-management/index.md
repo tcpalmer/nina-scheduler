@@ -47,7 +47,7 @@ The following icons provide access to all management actions.
 
 ### Active/Enabled
 
-Active/enabled implies that the item will be considered by the [Planning Engine](../concepts.html#planning-engine), otherwise it will be excluded.
+Active/enabled implies that the item will be considered by the [Planning Engine](../concepts/planning-engine.html), otherwise it will be excluded.
 
 A Target is active/enabled if:
 * The Enabled flag is true
