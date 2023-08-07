@@ -18,6 +18,12 @@ New Exposure Plans are added by navigating to the desired target, entering Edit 
 {: .note}
 If you have not yet created any Exposure Templates for this profile, you will be warned and will have to create at least one before proceeding.
 
+### Copy/Paste
+
+When the target is _not_ in Edit mode, you can copy all Exposure Plans for a target and then paste them to the same or different target.  This is especially useful when you have imported the targets for a mosaic: create the Exposure Plans for one target then copy and paste to all of the others.
+
+If you copy Exposure Plans from a target under one profile and then paste to a target under a different one, you will be notified that the referenced Exposure Templates have been reset to the default for the profile and you will have to edit them.
+
 ### Exposure Plan Editing
 
 Exposure plan fields are edited in line in the same table used for viewing them.  Simply double-click a field and make your change.  You will have to tab-out of the field to enable the Save icon.

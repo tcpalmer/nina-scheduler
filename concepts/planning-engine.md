@@ -30,7 +30,7 @@ The stop time is the end of the [planning window](#plan-window) and is used to i
 
 ![](../assets/images/planning-timeline-1.png)
 
-The above timeline shows a sequence of six plans generated for the Target Scheduler.  Adding optional instructions for the Before/After Wait and Before/After New Target events are discussed in [Custom Event Instructions](../sequencer/index.html#custom-event-instructions).  Detailed sequence of events:
+The above timeline shows a sequence of six plans generated for the Target Scheduler.  Adding optional instructions for the Before/After Wait and Before/After New Target events is discussed in [Custom Event Instructions](../sequencer/index.html#custom-event-instructions).  Detailed sequence of events:
 
 #### Plan 1
 The planner is called and Target 1 is returned.  Execute:

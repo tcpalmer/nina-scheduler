@@ -34,9 +34,9 @@ If you used the NINA Framing Assistant to create mosaic panels for a target, you
 |State|dropdown|Current state of the project: Draft, Active, Inactive, Closed (see below).|
 |Priority|dropdown|Project priority for the Scoring Engine: Low, Normal, High.|
 |Minimum Time|minutes|The minimum imaging time that a project target must be visible to be considered.  See below for interaction with Meridian Window.|
-|Minimum Altitude|double|The minimum altitude for project targets to be considered.  Disabled if Use Custom Horizon is enabled.|
-|Use Custom Horizon|boolean|Use the custom horizon defined for the associated profile (NINA Options > General > Astrometry).|
-|Horizon Offset|double|A value to add to the custom horizon to set the minimum altitude at the target's current azimuth.  Disabled if Use Custom Horizon is disabled.|
+|Minimum Altitude|double|The minimum altitude for project targets to be considered.  See below for details on horizon determination.|
+|Use Custom Horizon|boolean|Use the custom horizon defined for the associated profile (NINA Options > General > Astrometry).  See below for details on horizon determination.|
+|Horizon Offset|double|A value to add to the custom horizon to set the minimum altitude at the target's current azimuth.  Disabled if Use Custom Horizon is disabled.  See below for details on horizon determination.|
 |Meridian Window|minutes|Limit imaging to a timespan in minutes around the meridian crossing.  A setting of 60 implies 1 hour on either side of the meridian or 2 hours total.  See below for interaction with Minimum Time.  Set to zero to disable.|
 |Filter Switch Frequency|integer 0-N|Value to determine how exposures for different filters are scheduled.  See below for details.|
 |Dither After Every|integer 0-N|Value to determine how dithering is handled.  See below for details.|
@@ -49,6 +49,15 @@ The project state provides control over whether a project is considered for sche
 
 #### Meridian Window and Minimum Time
 If a project specifies a meridian window, then the minimum time cannot be greater than twice the meridian window value.  If it was, then targets for that project would never be selected since the total meridian window would always be less than the minimum time.
+
+#### Horizon Determination
+
+Your horizon (the altitude at any azimuth) used to determine target visibility is controlled as follows:
+* If you set Use Custom Horizon to false, then your horizon is the value you set for Minimum Altitude.
+* If you enable Use Custom Horizon, it will use the custom horizon for your NINA profile (from NINA Options > General > Astrometry) and calculate your visibility horizon as the greater of the custom horizon at each azimuth _or_ the Minimum Altitude setting.
+* When using your Custom Horizon, you can also extend it towards the zenith by entering a Horizon Offset.  This can be used to add a few  degrees to ensure you're clearing all obstructions.
+
+The Minimum Altitude setting is therefore a 'floor' - you'll never try to image targets for the project while they are below this altitude, even if your Custom Horizon is lower.
 
 #### Filter Switch Frequency
 

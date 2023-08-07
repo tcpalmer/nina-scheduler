@@ -36,7 +36,7 @@ The following icons provide access to all management actions.
 |![](../assets/images/save-icon.png)|Save|Save the current item (only enabled in Edit mode after changes have been made).|
 |![](../assets/images/cancel-icon.png)|Cancel|Cancel the current edit operation (only enabled in Edit mode).|
 |![](../assets/images/add-icon.png)|Add|Add a new item (the type depends on the context).  New items are automatically saved, appear in the tree, and are selected for further action.|
-|![](../assets/images/paste-icon.png)|Paste|Paste a copy of an item from the clipboard.  The icon is only enabled when the clipboard contains an item of the appropriate type for the current context.  After pasting, the clipboard is cleared to prevent confusion later.|
+|![](../assets/images/paste-icon.png)|Paste|Paste a copy of an item from the clipboard.  The icon is only enabled when the clipboard contains an item of the appropriate type for the current context.  After pasting, the clipboard is cleared to prevent confusion later (except for copied Exposure Plans which are retained).|
 |![](../assets/images/checkmark-icon.png)|Active/Enabled|Indicates that the item is active/enabled.  See below.|
 |![](../assets/images/disabled-icon.png)|Disabled|Indicates that the item is disabled.  See below.|
 |![](../assets/images/settings-icon.png)|Settings|Jump to the view/edit panel for the item.|

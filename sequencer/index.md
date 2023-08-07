@@ -100,9 +100,6 @@ A basic sequence construction approach is the following:
 
 ## Instruction User Interface
 
-{: .note}
-The instruction UI is somewhat primitive at this point but will improve over time.
-
 The Target Scheduler Container interface in the advanced sequencer is similar to the core Deep Sky Object Instruction Set container - the main difference being that the target coordinates and altitude chart will update dynamically as the [Planning Engine](../concepts/planning-engine.html) returns new targets.
 
 Before imaging begins, these elements will be empty.  When the instruction starts, the Planning Engine will be called and (if a target was selected), the elements will update to reflect that target.
@@ -112,8 +109,5 @@ In addition, the area below the chart will have a panel detailing the individual
 ## Advanced Usage
 
 Topics to be added in the future ...
-* Usage with safety monitors
-* Usage with the Synchronization plugin
+* Usage with safety (weather) concerns
 * Multi-day sequences
-
-
