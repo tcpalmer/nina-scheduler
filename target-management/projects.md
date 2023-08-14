@@ -68,6 +68,8 @@ The Filter Switch Frequency determines how exposures for different filters are s
 
 The setting depends primarily on whether you have focus offsets for your filters configured.  You would typically use 0 if you do not have offsets configured to minimize the need for autofocus runs.
 
+Note that Filter Switch Frequency is ignored if you're using an [override exposure order](exposure-plans.html#override-ordering) for any Target under this Project.
+
 #### Dithering
 
 The Scheduler instruction can optionally schedule dithering for you.  If the dither setting is _N_, a dither will be added before the _N+1<sup>th</sup>_ occurrence of a filter.  Examples:
@@ -80,6 +82,8 @@ The Scheduler instruction can optionally schedule dithering for you.  If the dit
 Dithering behavior is completely independent of the Filter Switch Frequency.
 
 Otherwise, you can set the value to 0.  In this case, you can either use a Dither After Exposures trigger instruction in the Triggers section of the sequencer container, or skip dithering altogether.
+
+Note that the Dither setting is ignored if you're using an [override exposure order](exposure-plans.html#override-ordering) for any Target under this Project.
 
 #### Scoring Engine Rule Weights
 
