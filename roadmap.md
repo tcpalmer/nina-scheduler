@@ -14,8 +14,6 @@ Since the Scheduler will know what images were acquired throughout a session, it
 The following new rules for the Scoring Engine are under consideration:
 * Minimum Imaging Time: assign a higher priority to those targets that have less imaging time available.  For example, if you have a target that only rises high enough for a short time each year, it would score higher since it would have less availability.  (Overlaps with existing Setting Soonest rule).
 * Meridian Flip: assign a lower score to targets that will require an immediate MF. Related: if a target is east of the meridian but ‘close’ (check NINA profile MF settings), don’t switch to it until it’s well past the meridian.
-* Mosaic completion priority: assign a higher score to mosaic targets that are closer to 100% complete to wrap them up.
-* Mosaic balance priority: assign a higher score to mosaic targets that are closer to 0% complete to balance exposures across frames. (Obviously in conflict with Mosaic completion priority so only one should be used.)
 
 ## General/Other
 * The issues with setting the [plan stop time](concepts/planning-engine.html#plan-window) will be addressed.

@@ -25,6 +25,8 @@ When done, click the Save icon to save your changes or the Cancel icon to cancel
 ### Mosaic Panel Import
 If you used the NINA Framing Assistant to create mosaic panels for a target, you can import them all as new Targets under the project.  First, configure your panels in the Framing Assistant.  Then return to the plugin management UI and view the desired project and click the Mosaic Import icon to begin.  If the icon isn't enabled, you may have to select something else in the navigation tree and then return to the project.
 
+When you import mosaic panels into a project, the Mosaic Project flag is automatically set to true.
+
 ### Project Properties
 
 |Property|Type|Description|
@@ -41,6 +43,7 @@ If you used the NINA Framing Assistant to create mosaic panels for a target, you
 |Filter Switch Frequency|integer 0-N|Value to determine how exposures for different filters are scheduled.  See below for details.|
 |Dither After Every|integer 0-N|Value to determine how dithering is handled.  See below for details.|
 |Enable Image Grader|boolean|Enable/disable the [Image Grader](../post-acquisition/image-grader.html).|
+|Mosaic Project|boolean|Mark the project as containing mosaic panels.  This defaults to false.  It can be changed manually but will automatically be set to true if you import panels from the Framing Assistant.  At present, the only logic this impacts is the Mosaic Completion scoring rule.|
 |Rule Weights|integer 0-100|Weight values for each Scoring Engine rule - see below.|
 
 #### Project State
