@@ -4,37 +4,33 @@ title: Release Notes
 nav_order: 10
 ---
 
-# Release Notes 3.2.0.0
+# Release Notes 3.3.1.0
 
 ## Changes in this Release
 
 This release is available for NINA 3.  Only fixes for serious problems will be back-ported to the NINA 2 version.  This documentation is for the current NINA 3 version only.
 
+### Exposure Ordering Override
+
+You can now override the default exposure ordering (which is based on the Filter Switch Frequency and Dither settings on the project) and specify a manual [override ordering](target-management/exposure-plans.html#exposure-order), including dithers.  Override orders are managed at the bottom of the Target view/edit panel.
+
+### Mosaic Completion Scoring Rule
+
+Added a new rule to score mosaic projects based on completion ratio, intended to support balancing of exposures across panels.
+
+This is supported by a new flag on Projects to indicate if they are for mosaics or not.  This defaults to false and can be manually changed to true.  It will also be automatically set to true if you import mosaic panels from the Framing Assistant.
+
+### Other
+* Fixed bug with rotation not being set when importing from a saved Sequence Target.
+* Fixed bug related to non-existent custom horizon
+
+
+Refer to the applicable documentation for details.  See the project [release notes](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/RELEASENOTES.md) and [change log](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/CHANGELOG.md) for the complete history.
+
 The plugin is currently in a **_pre-release_** state equivalent to beta.  If you are using a pre-release version, then please keep in mind the following.
 
 {: .warning }
 By definition, pre-releases have had limited testing.  Hopefully, if something goes wrong the worst that could happen is that you lose imaging time.  However, the plugin is controlling your mount so could potentially drive it to an unwanted position.  It does use the built-in mount slew/rotate/center instructions so this is unlikely, but you would be wise to implement hard limits for your mount (configured outside NINA) just to be safe.
-
-### Minimum Altitude
-Changed the behavior of project minimum altitude: now can be used with or without a custom horizon. If used with, then the horizon at each azimuth is the greater of (custom horizon + horizon offset) or project minimum altitude.  See [Horizon Determination](target-management/projects.html#horizon-determination).
-
-### Copy/Paste Exposure Plans
-You can now copy the exposure plans from one target and paste to another - even a target associated with a different profile.
-
-### Acquired Images
-* Added fixed date range options.
-* Added ability to select images by filter used.
-* Images in the table will now show 'not graded' as the Reject Reason if grading was disabled when the image completed.
-* Improved search and display performance.
-
-### Other
-* Fixed issue with scheduler preview: wasn't picking up dynamic changes to target database.
-* Added 5/10/20 minute options to project minimum time.
-* Will automatically unpark the scope if parked before a target slew.
-* Fixed the annoying bug related to editing Exposure Templates on Target Exposure Plans.
-* Now skips useless Target Scheduler Condition checks.
-
-Refer to the applicable documentation for details.  See the project [release notes](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/RELEASENOTES.md) and [change log](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/CHANGELOG.md) for the complete history.
 
 ## Known Issues
 

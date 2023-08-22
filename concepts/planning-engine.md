@@ -157,6 +157,7 @@ The following rules are currently implemented:
 |Rule Name|Default Weight|Description|
 |:--|:--|:--|:--|
 |Meridian Window Priority|75%|A target scores higher if the project it is associated with is using a Meridian Window to limit imaging time.  The rationale is to prefer targets using meridian windows since those windows are limited over the course of any imaging session.|
+|Mosaic Completion|0%|If the project for the target is marked as a Mosaic project, then the target will score higher the lower its completion rate is to the average completion rate of the other targets in that project.  The rationale is to balance exposures across the panels.|
 |Percent Complete|50%|A target scores higher based on its ratio of accepted to desired images over all exposure plans.  The rationale is to prefer completion of a project over starting acquisition of something new.|
 |Project Priority|50%|A project can set priority to High, Normal, or Low.  Targets for that project will score higher or lower depending on the setting.|
 |Setting Soonest|50%|A target scores higher based on how close it is to setting below either the minimum altitude or (if enabled) the custom horizon.  The rationale is to prefer targets that will set before others, implying less time remaining in the target's imaging season.|
@@ -168,6 +169,10 @@ Note that the default weights for Meridian Window Priority and Target Switch Pen
 
 If you use Scheduler Preview, you can click the [View Details](../scheduler-preview.html#view-details) button to see a log of the planning details which includes the calculations for each scoring rule for each target.  The same information will be written to the [Target Scheduler log](../technical-details.html#logging) for actual planning runs from sequence execution.
 
-The engine is designed to be easily extended by adding additional rules.  However, there is a limit with approaches like this.  As the number of rules increases, the predictability of engine outcomes goes down - and predictability can be desirable.  As the number grows it might be appropriate for users to select a subset that work well and disable the others.  Several additional rules are under consideration - see the [roadmap](../roadmap.html#scoring-engine-rules).
+### Rule Interactions and Conflicts
+
+The scoring engine is designed to be easily extended by adding additional rules.  However, there is a limit with approaches like this.  As the number of rules increases, the predictability of engine outcomes goes down - and predictability can be desirable.  As the number grows it might be appropriate for users to select a subset that work well and disable the others.  Several additional rules are under consideration - see the [roadmap](../roadmap.html#scoring-engine-rules).
+
+In particular, the Percent Complete and Mosaic Completion rules may not interact well.  If your goal is to use Mosaic Completion to balance exposures across mosaic panels, then you probably want to set the weight for Mosaic Completion high and the Percent Complete and Target Switch Penalty weights to zero.
 
 [^1]: "Dispatch" is a general term in scheduling contexts but was also originally used by Bob Denny for the [ACP Observatory Control Program](https://acpx.dc3.com/) (which is also a dispatch scheduler).
