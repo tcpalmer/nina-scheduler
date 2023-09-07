@@ -116,6 +116,7 @@ This process will need deadlock timeouts too - in case a secondary that received
 * Implement primary/secondary connections and communications
 * Startup/Teardown: start sync service if enabled in profile, unregister, disconnect in Teardown
 * Need to add something to Acquired Images record to indicate whether the image was taken by primary or a secondary?
+* Changing Enable for Synchronization might require a restart.
 * We might need a custom strategy for Target Scheduler Synced Container so that triggers only execute after an exposure instruction.  This would prevent secondaries from dealing with triggers after (for example) a Switch Filter or Camera Readout mode instruction.
 * TS logging around primary/secondary states, messaging, etc needs to be comprehensive.
 
@@ -152,74 +153,4 @@ Initial thoughts on primary/secondary communications protocol.
 Each instance maintains the following:
 * If the primary, a dictionary (keyed by guid) of the secondary details, including the latest state and keepalive time.
 * If a secondary, the identifiers for the master plus current state.
-
------
-
-Below here is rough and TBD.
-
-## Execution
-
-### Startup
-
-* The NINA instances can be started in any order.
-* The instance designated as primary is responsible for operating the mount and the guider (for guiding and dithering) and will use the existing TS Container instruction in its sequence.
-* The secondary instances will use the new Target Scheduler Synced Container instruction.
-* The sequences on each instance should be started.
-* When the TS Container on the primary begins execution, it will stop and wait for secondaries to register themselves.  Since the secondaries will likely have already reached execution of the Target Scheduler Synced Container instruction first (having much less to do), they will have to wait and periodically retry to connect to the primary to register.
-* Once the primary is (reasonably) sure that all secondaries have registered, it can begin planning, target selection, and imaging.
-
-### Runtime
-
-#### Normal Flow
-
-* Each secondary instance will get to the Target Scheduler Synced Container execution which will initially wait for direction from the primary.
-* The primary will execute the Target Scheduler Container instruction.  It will call the TS planner in a loop as usual:
-  * If a wait is returned, the primary will wait as usual.  The secondaries are assumed to be waiting already.
-  * If a target plan is returned, it will process the instructions in the plan.
-  * For each slew/center instruction:
-    * Ensure that all secondaries are in WAIT state.
-    * The primary will perform the slew/center as usual.
-  * For each exposure instruction:
-    * Ensure that all secondaries are ready for an exposure (WAIT).
-    * Start the exposure on the primary.
-    * Send the exposure details to each secondary and receive acknowledgement that it was accepted.
-    * Each secondary starts the same exposure (filter, exposure length, etc, etc)
-    * When the exposure completes on the primary, it waits for each secondary to report that it is done.  There needs to be a timeout on this and handling to ensure we don't hang.  Might have to tell a secondary to cancel an exposure.
-    * Each secondary that successfully completed the exposure returns details back to the primary.  This includes whatever is needed to create the acquired data record and (potentially) grade the image on the primary.  The primary may have to fill in some data from what it knows (e.g. guiding RMS during that image).
-    * Each secondary returns to wait mode.
-    * The primary then continues with the next instruction in the plan.
-  * For each dither instruction:
-    * Ensure that all secondaries are in WAIT state.
-    * The primary will perform the dither as usual.
-
-#### Interrupts
-
-TBF
-
-How can we handle interrupts from external events on the primary like triggers?  Can TS detect the interrupt and then interrupt the secondaries?  Note that most triggers would be after each instruction completes so we'd stay in sync.  But that's not true for those using watchdog threads which could interrupt any operation at any time.
-
-* Autofocus
-* MF
-* CaD
-
-#### Autofocus
-
-In particular, how can the secondaries do proper autofocusing?  If we could detect that TS was interrupted by an AF, then we could tell the secondaries to interrupt and also do an AF - but would have to sync up.  Otherwise, we could mandate (by profile pref) that an AF is added before each new target (after slew/center).  We could then sync up on that operation.  And maybe mandate an AF on filter change?  Unless filter offsets are in use?
-
-## Questions
-
-* What happens when the primary instance sequence is stopped?
-* What happens when the primary instance sequence is reset?
-
-## To Be Figured Out
-
-* Windows named pipes ...
-* If more than one instance is started as primary, can we detect that?
-* The primary isn't going to know how many secondaries will be active so has no way to determine when 'all' have registered other than waiting some 'reasonable' period of time.  Is there a better way to do startup and registration?
-* Can we make secondaries have a read only connection to the database?
-* How can Autofocus triggers on the primary work?  Can the primary TS Container detect when it was interrupted and inform secondaries?
-* How can safety state/instructions operate for the secondaries?
-* What happens when the primary TS stop triggers stops a plan?
-* I don't think it's possible for grading to be done by the primary on behalf of the secondaries: since they could differ in terms of FL, filter specs, and camera capabilities, we can't compare a secondary instance against whatever recent images are saved on the primary side.  Perhaps users could disable grading unless they know that the capture capabilities of all instances will be very similar.  Possible to match a secondary image with the one taken by the primary at the same time?  If so, could use guiding metadata from that for grading.  Or at least record it even if not used for grading.
-
 
