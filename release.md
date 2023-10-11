@@ -4,14 +4,14 @@ title: Release Notes
 nav_order: 10
 ---
 
-# Release Notes 3.3.3.0
+# Release Notes 3.3.3.1
 
 ## Changes in this Release
 
 This release is available for NINA 3.  Only fixes for serious problems will be back-ported to the NINA 2 version.  This documentation is for the current NINA 3 version only.
 
 ### Other
-* Fixed edge case bug with custom horizons.
+* Fixed bug with exposure planner.
 
 Refer to the applicable documentation for details.  See the project [release notes](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/RELEASENOTES.md) and [change log](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/CHANGELOG.md) for the complete history.
 
