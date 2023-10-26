@@ -35,8 +35,10 @@ The grader is invoked with the statistics for the latest image and will return t
   * Convert the RMS error into main camera pixels.
   * If the error value is greater than the RMS Pixel Threshold, then the image is not acceptable.
 * Retrieve the metadata for the most recent accepted images that match the current image:
+  * Same profile
   * Same target
   * Same filter
+  * Same ROI
   * Same rotation
   * Same exposure length, gain, offset, and binning
 * If the number of matching images is less than three, the image is acceptable.

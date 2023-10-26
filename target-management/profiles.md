@@ -33,3 +33,12 @@ The following preferences drive the behavior of the [Image Grader](../post-acqui
 |Grade HFR|bool|true|Enable grading based on calculated image HFR|
 |HFR Sigma Factor|double|4|The number of standard deviations surrounding the mean for acceptable values of HFR|
 |Accept All Improvements|bool|true|Grading on star count and HFR will be biased based on the samples used for comparison.  If they are sub-optimal in some way (bad seeing, passing cloud) then subsequent images with significant improvements may be rejected for falling outside the standard deviation range - and the set of comparison samples will not improve.  If this setting is true, then a new image with a sample value greater than (for star count) or less than (for HFR) the mean of the comparison samples will be automatically accepted.|
+
+### Synchronization Preferences
+The following preferences control [synchronization](../synchronization.html).
+
+|Property|Type|Default|Description|
+|:--|:--|:--|:--|
+|Enable Synchronization|bool|false|Enable synchronization for this profile.|
+|Wait Timeout|int|300|The timeout (in seconds) used by the [Target Scheduler Sync Wait](../synchronization.html#target-scheduler-sync-wait) instruction on both sync server and client instances.|
+|Exposure Timeout|int|300|The timeout (in seconds) used by the server when waiting for all clients to accept an exposure.  See [Target Scheduler Sync Container](../synchronization.html#target-scheduler-sync-container).|

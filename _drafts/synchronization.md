@@ -7,6 +7,9 @@ has_children: false
 
 # Synchronization
 
+# TODO Change primary/secondary to server/client
+
+
 The existing NINA Synchronization plugin provides support for multiple OTAs/cameras on a single mount with a single guider.  It does this by setting up communications between two or more running instances of NINA and then synchronizing some activities via custom instructions in each sequence.  The main use case is to have a primary NINA instance handle mount operations and guiding and then synchronize with secondary instances so they can take exposures when the primary is but then wait while the primary is doing mount or dithering operations.
 
 By controlling target selection and exposure planning, Target Scheduler (TS) precludes using the existing instructions implemented by the Synchronization plugin.  There are several challenges:

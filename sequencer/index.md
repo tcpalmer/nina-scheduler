@@ -108,6 +108,8 @@ In addition, the area below the chart will have a panel detailing the individual
 
 ## Advanced Usage
 
+* Additional instructions have been added to support [synchronization](../synchronization.html#synchronization-instructions).
+
 Topics to be added in the future ...
 * Usage with safety (weather) concerns
 * Multi-day sequences
