@@ -41,7 +41,7 @@ Once you have entered a set of projects, targets, and exposure plans, you can pr
 
 ## Runtime Execution in the Advanced Sequencer
 
-The plugin provides a single new instruction for the NINA Advanced Sequencer: _Target Scheduler Container_.  The instruction is placed into a Sequential Instruction set.  Triggers can be added to it as needed and should interact with the plugin as expected - for example various autofocus triggers, meridian flip, etc.
+The plugin provides a single primary instruction for the NINA Advanced Sequencer: _Target Scheduler Container_.  The instruction is placed into a Sequential Instruction set.  Triggers can be added to it as needed and should interact with the plugin as expected - for example various autofocus triggers, meridian flip, etc.
 
 A perfectly valid sequence could consist of nothing more than start up instructions (connect equipment, cool camera), the sequential instruction set containing Target Scheduler Container and required triggers, and end instructions (park, warm camera, disconnect).
 

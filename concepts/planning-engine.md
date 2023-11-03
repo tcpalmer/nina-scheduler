@@ -122,17 +122,25 @@ If only a single candidate target remains, then it is the selected target.  Othe
 
 A time span is determined for planning the sequence instructions for the selected target.  The span begins immediately and ends at a selected stop time.  The stop time is important because it helps to control when the current plan ends and therefore when the planning engine is called again.  Since circumstances may have changed at that point (e.g. a higher priority target is now visible), it is desirable to run the engine again and let it decide what is now best to image.  The cost of running the engine again is low since it runs quickly and if the same target as the previous is selected, the instruction will skip the slew/center operation.
 
-Currently, the stop time is determined as follows:
-* If the target is part of a project that is using a meridian window, then the stop time is the end of the window.
+There are two methods of determining the stop time, controlled by the [Smart Plan Window](../target-management/profiles.html#general-preferences) profile preference.
+
+### Smart Stop Time
+
+If the Smart Plan Window preference is enabled, then the stop time will be determined as follows:
+* If the target has a meridian window, then the stop time is the end of that window.
+* If there are no other potential future targets, then the stop time is the hard stop time (end of visibility or twilight) for the target.
+* Otherwise, the set of other potential targets is examined:
+  * If any of those could have been selected now but weren't (e.g. lower score) and they could potentially be selected next, then the stop time is just the start time plus the minimum.  This gives those other targets a shot at being selected next as circumstances change.
+  * Otherwise, if any other targets could start after the minimum window, then the stop time will be the start time of the earliest of those targets.
+
+In many cases, this approach will result in longer windows and a greater chance that the desired cadence of exposures and dithers will run as opposed to being unnaturally chopped up by the minimum time.
+
+However, if you have many targets that can be imaged at any given time, then the behavior will be closer to the legacy method and you may not notice much difference.
+
+### Legacy Stop Time
+If the Smart Plan Window preference is disabled, then the legacy method is used:
+* If the target has a meridian window, then the stop time is the end of that window.
 * Otherwise, it is simply the start time plus the minimum imaging time set for the project.
-
-The use of the project minimum imaging time to determine the stop time is problematic and will be addressed in a future release.  Basically, it couples the stop time to minimum imaging time for little reason other than convenience.  The following are under consideration for a better stop time:
-* Twilight/darkness change times
-* End of the meridian window for the current target (this happens today)
-* Start time of meridian window for next target
-* Time that visibility begins for the next target if later than current target minimum time
-
-Basically, if no other targets or events of interest are upcoming, we can just let the current target run until it's hard stop time (when it sets or the start of dawn twilight).
 
 ## Generate Sequence Instructions
 

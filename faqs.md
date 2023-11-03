@@ -18,6 +18,7 @@ _My target is active but still isn't being considered for imaging - why?_
 > - The current level of darkness might be inappropriate for the defined exposure plans/templates.
 > - It might be visible but not for the project's minimum imaging time.
 > - The project/target may have scored lower than others so the imaging time was allotted elsewhere.
+> - All exposure plans could have been rejected for moon avoidance or because they are complete.
 
 _The scheduler doesn't seem to be doing what I expected.  Why not?_
 
@@ -74,7 +75,7 @@ _With the plugin work with NINA sequence instruction X?  How about instructions 
 
 _Can I use the plugin in conjunction with the NINA Synchronization plugin?_
 
-> This will be possible in the future but will require additional development work.
+> No but Target Scheduler has its own instructions to support [synchronization](synchronization.html).
 
 _I plan to image from a remote site in the near future.  How will the plugin handle that?_
 
