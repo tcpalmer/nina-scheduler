@@ -26,16 +26,11 @@ It consists of three main areas:
 
 ## Triggers
 
-Sequence triggers are generally used to either invoke some operation or interrupt execution based on the state of the software and the attached equipment.  Unlike the DSO Instruction Set container which has a fixed target for the duration of an imaging session, the Target Scheduler Container may get a new target each time it calls the Planning Engine.  This poses challenges when using triggers that depend on knowing the coordinates of the current target.  In general, you should add such triggers directly inside the Target Scheduler Container so that they can query the container for the target.
+Sequence triggers are generally used to either invoke some operation or interrupt execution based on the state of the software and the attached equipment.  Unlike the DSO Instruction Set container which has a fixed target for the duration of an imaging session, the Target Scheduler Container may get a new target each time it calls the Planning Engine.  This poses challenges when using triggers that depend on knowing the coordinates of the current target.  
 
-However, this isn't always true.  Depending on the trigger implementation, it may fall back to other mechanisms.  For example, the Meridian Flip Trigger will query the mount for coordinates if it can't find a target in the sequence hierarchy.  Such triggers may work fine when added outside of the Target Scheduler Container.
+In releases prior to 4.0.5.0, it was necessary to place the Center After Drift trigger into the Triggers list inside Target Scheduler Container so that it could follow the current target.  However, the code will now recognize a Center After Drift trigger placed into the same container that holds Target Scheduler Container and automatically update it when the target changes.  This provides a much better user experience since the trigger display updates properly.
 
-### Trigger Best Practices
-
-Typical best practice is to place only the Center After Drift trigger (if using) directly inside the Target Scheduler Container.  Not only will other core NINA triggers work fine when added in an outer container, but they will behave better in the UI.  For example, NINA will be able to validate them as usual (is a focuser connected?) and they will update over time properly.
-
-{: .warning }
-The plugin has been tested with many of the core Trigger instructions (including those like Meridian Flip Trigger and Center After Drift Trigger that depend on knowing the current target) and it works as expected.  However, other triggers - especially those added by other plugins - should be thoroughly tested before attempting unattended use.
+At this point, it probably doesn't make sense to add any trigger to this list since all known triggers will work correctly and provide a better experience when placed outside Target Scheduler Container.  In fact, if you place a Center After Drift trigger there, it will ignore it and warn you.  The entire Triggers section may be removed in the future to avoid confusion.
 
 ## Custom Event Instructions
 
@@ -47,7 +42,7 @@ Four areas are provided to drag/drop sequence instructions for execution at spec
 
 Expand the individual containers to add items and then drag/drop instructions to the drop area as usual.  In general, any NINA instruction can be added but you should always test before unattended operation.
 
-Note that the Before/After New Target instructions will _only_ be executed when the target is new or changed from the previous plan.  Returning the same target is a common occurrence since the planner will often select the same target if nothing else is available.
+Note that the Before/After New Target instructions will _only_ be executed when the target is new or changed from the previous plan.  Returning to the same target is a common occurrence since the planner will often select the same target if nothing else is available.
 
 A timeline shows precisely when the event containers will be executed:
 

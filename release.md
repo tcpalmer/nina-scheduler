@@ -4,14 +4,14 @@ title: Release Notes
 nav_order: 12
 ---
 
-# Release Notes 4.0.0.0
+# Release Notes 4.0.2.0
 
 ## Changes in this Release
 
 This release is available for NINA 3.  Only fixes for serious problems will be back-ported to the NINA 2 version.  This documentation is for the current NINA 3 version only.
 
 ### Image Grading Changes
-* Added image grading on FWHM and Eccentricity (requires Hocus Focus plugin)
+* Added image grading on FWHM and Eccentricity (requires Hocus Focus plugin).  Note that grading on these metrics is disabled by default so enable via Profile Preferences if desired.
 * Added option to move rejected images to a 'rejected' directory
 * Added target rotation and ROI to the set of data saved for acquired images.  A future release will use these values when selecting 'like' images for grading.
 
@@ -24,11 +24,14 @@ Previously, each target plan returned by the scheduler had a stop time determine
 This behavior is controlled by a new profile preference: [Smart Plan Window](target-management/profiles.html#general-preferences) which is true by default.  If you want the old behavior, set it to false.
 
 ### Synchronization
-* Added experimental support for [synchronization](synchronization.html) across multiple instances of NINA.
+Added experimental support for [synchronization](synchronization.html) across multiple instances of NINA.  This change is the most impactful of this release to the overall code base but if you're not using synchronization, you should see no change in behavior.
 
 ### Other
 * Added ability to [purge acquired image records](post-acquisition/acquisition-data.html#purging-records) by date or date/target.
+* Added CSV output for acquired image records LINK TO DOC
 * The rule weight list is now sorted when displayed.
+* Fixed issue where target rotation wasn't being sent to the Framing Wizard.
+* You can now delete all exposure plans on a target at once.
 * All sequencer instructions moved to new category "Target Scheduler".
 
 Refer to the applicable documentation for details.  See the project [release notes](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/RELEASENOTES.md) and [change log](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/CHANGELOG.md) for the complete history.

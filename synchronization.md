@@ -47,9 +47,12 @@ Proper operation of synchronization for Target Scheduler will assume the followi
 * Start NINA using the profile for the server instance.
 * Start NINA using the profile for the client instance.
 
+{: .note }
+In this case, 'start NINA' means to run NINA itself (and select the appropriate profile).  The first instance started becomes the server; all others become clients.  _Running the sequence_ on any instance doesn't have any bearing on which is the server or client.
+
 Once the server and client instances of NINA are running you can load the sequence appropriate to each and start the sequences.
 
-Consider using [scripted startup](#scripted-startup) to automate this process.
+See [Best Practices](#best-practices).  Also, consider using [scripted startup](#scripted-startup) to automate the start up process.
 
 ## Synchronization Instructions
 
@@ -78,6 +81,12 @@ This instruction will poll the server until the server is ready to send an expos
 On the server side, the Target Scheduler Container will manage the process of sending exposures to clients and waiting on completion.  The server will stop waiting for clients to accept the exposure after some time period.  This defaults to 5 minutes and can be changed with the [Exposure Timeout](target-management/profiles.html#synchronization-preferences) profile property.
 
 If the scheduler returns an empty plan then imaging is done for the night and the server informs the clients which will then end the Target Scheduler Sync Container instruction.  Note that there is no timeout for the client-side polling: it will continue until the server informs it of scheduler completion for the night or the sequence is interrupted.
+
+## Slew/Center/Rotate
+
+The server instance will execute the slew/center/rotate at the start of a new target as usual.  Assuming server and client are in sync, the client will be doing nothing during this operation - simply waiting on the next action from the server.
+
+However, if the server has a rotator connected, it will perform the slew/center/rotate and then inform the client that it needs to perform a solve/rotate.  If the client also has a rotator connected, it will execute the operation.  The server will wait for this to complete (or time out) before continuing with exposures.
 
 ## Selection of Exposure Templates
 
@@ -170,6 +179,13 @@ Sequence End Area
   Disconnect Equipment
 ```
 
+## Best Practices
+
+* Be sure you understand how NINA instances become a server or a client.  The first NINA instance executed (e.g. double-clicking the NINA icon) will become a server if the profile you select is enabled for synchronization.  Any NINA instances executed after the server automatically become clients (assuming their profiles are also enabled for synchronization).  Determination of server/client has nothing to do with when sequences are started in any instance.
+* If you used the older Synchronization plugin in the past, be sure you remove any of those instructions (Synchronized Wait or Synchronized Dither) from your TS sequences.  You don't want to be mixing those with the TS sync instructions.
+* In general, you should have matching **_Target Scheduler Sync Wait_** instructions in server and client sequences so that server/client operations stay in sync.
+* Although you can place the **_Target Scheduler Sync Container_** inside another container in your client sequence, there is no need to use looping or use **_Target Scheduler Condition_** on that container.  Once **_Target Scheduler Sync Container_** starts, it will continue running until the server indicates it's done for the night or the sequence is canceled.  (Advanced sequences involving safety concerns may have different needs - TBD.)
+
 ## Scripted Startup
 
 You can automate startup for synchronized operation using NINA command line options.  The &minus;&minus;profileid (or &minus;p) will start NINA using the specified profile (skipping the profile chooser).  Use &minus;&minus;sequencefile (or &minus;s) to load your sequence files.  When starting both server and client instances from the same script, you should use a delay (e.g. 10 seconds) after the server before starting a client.  Use 'NINA.exe &minus;&minus;help' to show all command line options.
@@ -208,5 +224,9 @@ The following constants are used in the code to determine the timing of various 
 |SERVER_AWAIT_EXPOSURE_COMPLETE_TIMEOUT|seconds|30|Timeout when waiting for all clients to complete an exposure.  Since the server will have completed the same exposure, clients should finish the same exposure soon after.|
 |CLIENT_KEEPALIVE_PERIOD|millisecs|3000|Poll period used by clients to report current state.|
 |CLIENT_WAIT_POLL_PERIOD|millisecs|1000|Poll period used by clients when waiting for completion of a sync wait.|
-|CLIENT_EXPOSURE_READY_POLL_PERIOD|millisecs|3000|Poll period used by clients when waiting for an exposure.|
+|CLIENT_ACTION_READY_POLL_PERIOD|millisecs|3000|Poll period used by clients when waiting for an action (exposure or solve/rotate).|
 
+TODO:
+public static readonly int SERVER_AWAIT_SOLVEROTATE_POLL_PERIOD = 1000;
+public static readonly int SERVER_AWAIT_SOLVEROTATE_COMPLETE_POLL_PERIOD = 1000;
+public static readonly int SERVER_AWAIT_SOLVEROTATE_COMPLETE_TIMEOUT = 30;

@@ -77,3 +77,4 @@ Since this calculation depends on accurate values for the focal length of the pr
 ## Notes
 * Since sky conditions can vary from night to night and over the course of a night, the Max Samples value can be used to restrict the comparison sample size to those images most likely to have been captured under similar circumstances.  On the other hand, setting a larger value should capture more of the natural variance of the variable in question.
 * It would be straightforward to add additional grading metrics using a similar variance approach.
+* If you capture a set of images under truly excellent seeing conditions and those images are accepted, subsequent images under average conditions may be rejected even though they are perfectly acceptable.  There is currently no solution to this problem short of starting a new target with fresh exposure plans.  Hopefully, this situation is rare.

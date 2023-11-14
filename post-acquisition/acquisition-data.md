@@ -11,7 +11,7 @@ The plugin saves metadata to the database for each exposure taken when the plugi
 
 In addition to providing the means to review acquisition data, the records are also used to provide samples for the [Image Grader](image-grader.html).
 
-![](../assets/images/acquired-images.png)
+![](../assets/images/acquired-images-2.png)
 
 ## Filtering
 
@@ -29,7 +29,13 @@ You can further restrict the records by Project, Target, and Filter used:
 ## Viewing
 
 * You can click a table header to sort the table, click the same header again to sort in the opposite direction.
-* Select a row in the table to view details.  
+* Select a row in the table to view details.
+
+## CSV Output
+
+Click the CSV icon to write the results of the current query to a CSV file.  The output file does not reflect any sorting changes you make to the table itself.
+
+The column order was chosen to mimic the CSV output of the Session Metadata plugin.
 
 ## Purging Records
 

@@ -26,6 +26,10 @@ If you copy Exposure Plans from a target under one profile and then paste to a t
 
 If the copied Exposure Plans had an [override exposure ordering](#override-ordering), that order will also be copied - but only if the destination target is in the same NINA Profile as the source target and has no Exposure Plans of its own when the paste is started.
 
+### Delete All Exposure Plans
+
+When the target is _not_ in Edit mode, and you have at least one Exposure Plan, you can delete all exposure plans with a single click.
+
 ### Exposure Plan Editing
 
 Exposure plan fields are edited in line in the same table used for viewing them.  Simply double-click a field and make your change.  You will have to tab-out of the field to enable the Save icon.
