@@ -23,6 +23,10 @@ Previously, each target plan returned by the scheduler had a stop time determine
 
 This behavior is controlled by a new profile preference: [Smart Plan Window](target-management/profiles.html#general-preferences) which is true by default.  If you want the old behavior, set it to false.
 
+### Center After Drift
+
+Prior to this release, you had to put a Center After Drift trigger inside the Triggers section of the Target Schedule container so that it could determine the current target.  This worked, but the UI fields on the trigger didn't update properly and it was a poor user experience.  Now, you should remove it from that old location and put Center After Drift into triggers for the container immediately surrounding the Target Schedule Container instruction.  TS will find it and update it as targets change throughout a session.  If you leave Center After Drift in the old location, you'll get a warning and it will be ignored.
+
 ### Synchronization
 Added experimental support for [synchronization](synchronization.html) across multiple instances of NINA.  This change is the most impactful of this release to the overall code base but if you're not using synchronization, you should see no change in behavior.
 
