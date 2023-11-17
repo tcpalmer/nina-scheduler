@@ -55,3 +55,4 @@ The following preferences control [synchronization](../synchronization.html).
 |Enable Synchronization|bool|false|Enable synchronization for this profile.|
 |Wait Timeout|int|300|The timeout (in seconds) used by the [Target Scheduler Sync Wait](../synchronization.html#target-scheduler-sync-wait) instruction on both sync server and client instances.|
 |Action Timeout|int|300|The timeout (in seconds) used by the server when waiting for all clients to accept an _action_: either an exposure or (if applicable) a solve/rotate command.  See [Target Scheduler Sync Container](../synchronization.html#target-scheduler-sync-container).|
+|Solve/Rotate Timeout|int|300|The timeout (in seconds) used by the server when waiting for all clients to complete a solve/rotate command.  See [Slew/Center/Rotate](../synchronization.html#slewcenterrotate).|

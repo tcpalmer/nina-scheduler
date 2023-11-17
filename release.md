@@ -4,7 +4,7 @@ title: Release Notes
 nav_order: 12
 ---
 
-# Release Notes 4.0.2.0
+# Release Notes 4.0.5.0
 
 ## Changes in this Release
 
@@ -28,7 +28,7 @@ Added experimental support for [synchronization](synchronization.html) across mu
 
 ### Other
 * Added ability to [purge acquired image records](post-acquisition/acquisition-data.html#purging-records) by date or date/target.
-* Added CSV output for acquired image records LINK TO DOC
+* Added [CSV output](post-acquisition/acquisition-data.html#csv-output) for acquired image records
 * The rule weight list is now sorted when displayed.
 * Fixed issue where target rotation wasn't being sent to the Framing Wizard.
 * You can now delete all exposure plans on a target at once.

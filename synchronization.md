@@ -10,9 +10,6 @@ has_children: false
 {: .warning }
 The synchronization capability should be considered experimental at this point.  The implementation is complex and comprehensive testing is challenging.  You should expect the capability to evolve quickly as problems are fixed.
 
-{: .note }
-The following items are not implemented in this release: support for a rotator on the client.
-
 The existing NINA Synchronization plugin provides support for multiple OTAs/cameras on a single mount with a single guider.  It does this by setting up communications between two or more running instances of NINA and then synchronizing some activities via custom instructions in each sequence.  The main use case is to have a primary NINA instance (server) handle mount operations and guiding and then synchronize with secondary instances (clients), so they can take exposures when the primary is but then wait while the primary is doing any mount operations (slew, dither).
 
 By controlling target selection and exposure planning, Target Scheduler (TS) precludes using the existing instructions implemented by the Synchronization plugin.  There are several challenges but the primary block is that in TS, projects and targets explicitly belong to one NINA profile.  Since you can only run multiple instances of NINA if each is running a different profile, each instance would see a different set of active projects and targets.
@@ -78,13 +75,13 @@ This instruction will poll the server until the server is ready to send an expos
 * Server is informed of the completed exposure
 * Client returns to polling
 
-On the server side, the Target Scheduler Container will manage the process of sending exposures to clients and waiting on completion.  The server will stop waiting for clients to accept the exposure after some time period.  This defaults to 5 minutes and can be changed with the [Exposure Timeout](target-management/profiles.html#synchronization-preferences) profile property.
+On the server side, the Target Scheduler Container will manage the process of sending exposure details to clients and waiting on completion.  The server will stop waiting for clients to accept the exposure after some time period.  This defaults to 5 minutes and can be changed with the [Action Timeout](target-management/profiles.html#synchronization-preferences) profile property.
 
 If the scheduler returns an empty plan then imaging is done for the night and the server informs the clients which will then end the Target Scheduler Sync Container instruction.  Note that there is no timeout for the client-side polling: it will continue until the server informs it of scheduler completion for the night or the sequence is interrupted.
 
 ## Slew/Center/Rotate
 
-The server instance will execute the slew/center/rotate at the start of a new target as usual.  Assuming server and client are in sync, the client will be doing nothing during this operation - simply waiting on the next action from the server.
+The server instance will execute the slew/center at the start of a new target as usual.  Assuming server and client are in sync, the client will be doing nothing during this operation - simply waiting on the next action from the server.
 
 However, if the server has a rotator connected, it will perform the slew/center/rotate and then inform the client that it needs to perform a solve/rotate.  If the client also has a rotator connected, it will execute the operation.  The server will wait for this to complete (or time out) before continuing with exposures.
 
@@ -98,6 +95,12 @@ The selection of the Exposure Template to use for each client exposure is done a
 
 For example, if the exposure on the server is using the 'Lum' Exposure Template and the profile in use on the client also defines a 'Lum' Exposure Template, then the one on the client will be used.
 
+## Exposure Planning
+
+The system that determines what exposures to take during a given target plan window is unchanged for synchronized operation and might result in taking more exposures than desired.  For example, your plan has 20 Lum exposures remaining of 3 minutes each and a one hour plan window.  The exposure planner will fill that window with 20 exposures.  However, with a server and one client, you might take nearly 40 exposures in that one hour period.  Since the planner won't run until the next planning window, you will have overshot the number of desired images and potentially wasted time.
+
+This may be addressed in a future release.  For now, you can just reduce the number of desired exposures in your plans if you're running synchronized.
+
 ## Image Grading
 
 Grading for images captured on the client is done by that client instance.  It will (mostly) operate as usual, determining if the image is acceptable or not, writing the record to the [Acquired Images](post-acquisition/acquisition-data.html) table, and updating the applicable Exposure Plan.
@@ -106,7 +109,8 @@ Two changes are required to support synchronization:
 * Since there is no guider attached to a client instance, there is no RMS metadata available so grading on RMS is skipped.
 * Since the equipment on the client instance (focal length, camera) may differ from the server and other clients, the set of comparison images must be further filtered to only compare against images for the same profile ID.
 
-Grading on the server is unchanged.
+Grading on the server is unchanged.  Note that the counts in your Exposure Plans for your target in the server profile will reflect images taken across all NINA instances.
+
 
 ## NINA Profiles for Synchronization
 
@@ -222,11 +226,8 @@ The following constants are used in the code to determine the timing of various 
 |SERVER_AWAIT_EXPOSURE_POLL_PERIOD|millisecs|1000|Poll period used by the server when waiting for all clients to accept an exposure.|
 |SERVER_AWAIT_EXPOSURE_COMPLETE_POLL_PERIOD|millisecs|1000|Poll period used by the server when waiting for all clients to complete an exposure.|
 |SERVER_AWAIT_EXPOSURE_COMPLETE_TIMEOUT|seconds|30|Timeout when waiting for all clients to complete an exposure.  Since the server will have completed the same exposure, clients should finish the same exposure soon after.|
+|SERVER_AWAIT_SOLVEROTATE_POLL_PERIOD|millisecs|1000|Poll period used by the server when waiting for clients to accept a solve/rotate.|
+|SERVER_AWAIT_SOLVEROTATE_COMPLETE_POLL_PERIOD|millisecs|1000|Poll period used by the server when waiting for clients to complete a solve/rotate.|
 |CLIENT_KEEPALIVE_PERIOD|millisecs|3000|Poll period used by clients to report current state.|
 |CLIENT_WAIT_POLL_PERIOD|millisecs|1000|Poll period used by clients when waiting for completion of a sync wait.|
 |CLIENT_ACTION_READY_POLL_PERIOD|millisecs|3000|Poll period used by clients when waiting for an action (exposure or solve/rotate).|
-
-TODO:
-public static readonly int SERVER_AWAIT_SOLVEROTATE_POLL_PERIOD = 1000;
-public static readonly int SERVER_AWAIT_SOLVEROTATE_COMPLETE_POLL_PERIOD = 1000;
-public static readonly int SERVER_AWAIT_SOLVEROTATE_COMPLETE_TIMEOUT = 30;
