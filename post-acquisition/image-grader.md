@@ -25,7 +25,14 @@ Grading is driven by a set of [preferences](../target-management/profiles.html#i
 * **_Detected Stars Sigma Factor_**: the number of standard deviations surrounding the mean for acceptable star count values
 * **_Grade HFR_**: enable grading for calculated image HFR
 * **_HFR Sigma Factor_**: the number of standard deviations surrounding the mean for acceptable values of HFR
+* **_Grade FWHM_**: enable grading for calculated image FWHM
+* **_FWHM Sigma Factor_**: the number of standard deviations surrounding the mean for acceptable values of FWHM
+* **_Grade Eccentricity_**: enable grading for calculated image Eccentricity
+* **_Eccentricity Sigma Factor_**: the number of standard deviations surrounding the mean for acceptable values of Eccentricity
 * **_Accept All Improvements_**: if true, automatically accept an image if the metric shows an improvement compared to the mean.
+
+{: .note }
+FWHM and Eccentricity grading are dependent on having the Hocus Focus plugin installed, enabled, and set up for Star Detection (Fit PSF ON). Be sure you have also enabled Hocus Focus in NINA Options > Imaging > Image options > Star Detector.
 
 The grader is invoked with the statistics for the latest image and will return true (acceptable) or false based on the following:
 * If no grading metrics are enabled, the image is acceptable.
@@ -35,8 +42,10 @@ The grader is invoked with the statistics for the latest image and will return t
   * Convert the RMS error into main camera pixels.
   * If the error value is greater than the RMS Pixel Threshold, then the image is not acceptable.
 * Retrieve the metadata for the most recent accepted images that match the current image:
+  * Same profile
   * Same target
   * Same filter
+  * Same ROI
   * Same rotation
   * Same exposure length, gain, offset, and binning
 * If the number of matching images is less than three, the image is acceptable.
@@ -49,6 +58,14 @@ The grader is invoked with the statistics for the latest image and will return t
   * Determine the mean and standard deviation of the HFR values in the matching images.
   * If Accept All Improvements is true and the HFR of the current image is less than the mean, then the image is acceptable for HFR.
   * Otherwise, if the HFR of the current image is _**not**_ within (HFR sigma factor * standard deviation) of the mean, then the image is not acceptable.
+* If FWHM is enabled for grading:
+  * Determine the mean and standard deviation of the FWHM values in the matching images.
+  * If Accept All Improvements is true and the FWHM of the current image is less than the mean, then the image is acceptable for FWHM.
+  * Otherwise, if the FWHM of the current image is _**not**_ within (FWHM sigma factor * standard deviation) of the mean, then the image is not acceptable.
+* If Eccentricity is enabled for grading:
+  * Determine the mean and standard deviation of the Eccentricity values in the matching images.
+  * If Accept All Improvements is true and the Eccentricity of the current image is less than the mean, then the image is acceptable for Eccentricity.
+  * Otherwise, if the Eccentricity of the current image is _**not**_ within (Eccentricity sigma factor * standard deviation) of the mean, then the image is not acceptable.
 
 ## Grading on RMS Error
 Attached guiders can provide RMS error values sampled over the course of an exposure.  These values are provided in units of RMS error per guide camera pixel but can be scaled to RMS error in arcseconds.  Since NINA knows the focal length of the primary system and the pixel size of the main camera, we can determine the arcseconds/pixel of the primary system and convert the guiding error in arcseconds into error per main camera pixel.
@@ -60,3 +77,4 @@ Since this calculation depends on accurate values for the focal length of the pr
 ## Notes
 * Since sky conditions can vary from night to night and over the course of a night, the Max Samples value can be used to restrict the comparison sample size to those images most likely to have been captured under similar circumstances.  On the other hand, setting a larger value should capture more of the natural variance of the variable in question.
 * It would be straightforward to add additional grading metrics using a similar variance approach.
+* If you capture a set of images under truly excellent seeing conditions and those images are accepted, subsequent images under average conditions may be rejected even though they are perfectly acceptable.  There is currently no solution to this problem short of starting a new target with fresh exposure plans.  Hopefully, this situation is rare.

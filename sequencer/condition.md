@@ -2,7 +2,7 @@
 layout: default
 title: Target Scheduler Condition
 parent: Advanced Sequencer
-nav_order: 2
+nav_order: 3
 ---
 
 # Target Scheduler Condition

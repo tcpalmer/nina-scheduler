@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Technical Details
-nav_order: 9
+nav_order: 11
 ---
 
 # Technical Details
@@ -25,6 +25,8 @@ In NINA, containers can override the default execution strategy and that capabil
 Since the plugin is rather complex, it logs to a separate file rather than the main NINA log.  These logs are saved in %localappdata%\NINA\SchedulerPlugin\Logs\ and follow the NINA log naming convention with 'TS-' prepended.  Like the main NINA logs, these will also be purged after 90 days.
 
 This log defaults to Debug level and (currently) does not follow the logging level set for the main log in NINA Options.
+
+Also, the TS log does not use rollover (switching to a different file during execution) like the main NINA log.  Although you may have more than one main NINA log file for a given execution, you will only have one TS log file for the same execution.  The NINA version and the process ID are present in all log file names and can be used to match files.
 
 ## Database
 The plugin uses a [SQLite](https://www.sqlite.org/index.html) database to store information.  This is the same database technology that NINA uses to store its local DSO catalog.

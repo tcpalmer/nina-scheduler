@@ -19,6 +19,8 @@ A set of preferences can be managed for each profile and will impact execution o
 |:--|:--|:--|:--|
 |Park On Wait|bool|false|Normally, when the planner returns a directive to wait a period of time for the next target, the plugin will simply stop tracking and guiding.  If this setting is true (and the wait is more than one minute), the mount will also be parked and then unparked when the wait is over.  If you instead use the [Before Wait/After Wait](../sequencer/index.html#custom-event-instructions) custom containers to park and unpark, you should leave this set to false.|
 |Exposure Throttle|int|125%|When Image Grading is disabled (at the Project level) and the Accepted count on Exposure Plans isn't incremented manually, the planner will keep scheduling exposures - perhaps way beyond what is reasonable.  The Exposure Throttle will instead use the total number Acquired (displayed with Desired and Accepted) to stop exposures when the number Acquired is greater than Exposure Throttle times the number Desired.  For example, if Exposure Throttle is 150%, Desired=10, and Acquired=5 then an additional 10 exposures will be scheduled.  This has no effect if Image Grading is enabled.|
+|Smart Plan Window|bool|true|If enabled, examine future potential targets to better determine the [stop time](../concepts/planning-engine.html#plan-window) for the selected target.  Otherwise, use the legacy method based only on the target's minimum imaging time and/or meridian window.|
+
 
 ### Image Grader
 The following preferences drive the behavior of the [Image Grader](../post-acquisition/image-grader.html).  Since projects have grading enabled by default and all types of grading (below) are also enabled by default, your images will be graded unless you take steps to disable it.  The defaults were selected to be relatively permissive.
@@ -32,4 +34,25 @@ The following preferences drive the behavior of the [Image Grader](../post-acqui
 |Detected Stars Sigma Factor|double|4|The number of standard deviations surrounding the mean for acceptable star count values|
 |Grade HFR|bool|true|Enable grading based on calculated image HFR|
 |HFR Sigma Factor|double|4|The number of standard deviations surrounding the mean for acceptable values of HFR|
-|Accept All Improvements|bool|true|Grading on star count and HFR will be biased based on the samples used for comparison.  If they are sub-optimal in some way (bad seeing, passing cloud) then subsequent images with significant improvements may be rejected for falling outside the standard deviation range - and the set of comparison samples will not improve.  If this setting is true, then a new image with a sample value greater than (for star count) or less than (for HFR) the mean of the comparison samples will be automatically accepted.|
+|Grade FWHM|bool|false|Enable grading based on calculated image Full Width Half Maximum.  The Hocus Focus plugin must be installed, enabled, and set up for Star Detection (Fit PSF ON).  Be sure you have enabled Hocus Focus in Options > Imaging > Image options.|
+|FWHM Sigma Factor|double|4|The number of standard deviations surrounding the mean for acceptable values of FWHM|
+|Grade Eccentricity|bool|false|Enable grading based on calculated image Eccentricity.  The Hocus Focus plugin must be installed, enabled, and set up for Star Detection (Fit PSF ON).  Be sure you have enabled Hocus Focus in Options > Imaging > Image options.|
+|Eccentricity Sigma Factor|double|4|The number of standard deviations surrounding the mean for acceptable values of FWHM|
+|Accept All Improvements|bool|true|Grading on star count, HFR, FWHM, and Eccentricity will be biased based on the samples used for comparison.  If they are sub-optimal in some way (bad seeing, passing cloud) then subsequent images with significant improvements may be rejected for falling outside the standard deviation range - and the set of comparison samples will not improve.  If this setting is true, then a new image with a sample value greater than (for star count) or less than (for HFR, FWHM, Eccentricity) the mean of the comparison samples will be automatically accepted.|
+|Move Rejected Images|bool|false|If enabled and a graded image was rejected, it will be moved to a 'rejected' folder under the image save folder.  See note below.|
+
+#### Move Rejected Images
+* Moving images may have undesirable impacts to other code (including plugins) that expects to find images in a specific location.  Potential plugin impacts:
+  * Remote Copy.  In general, the source directory for Robocopy is above the actual save location in the folder hierarchy so it should work but you should verify.
+  * Web Session History Viewer.  Although the image thumbnails will continue to work, clicking an image to see the source image will not since it was moved from the expected location.  This may be addressed in a future release of the Web plugin.
+* If you're using [synchronization](../synchronization.html) and want to enable this, be sure to enable it in the profile preferences for both the server and client profiles.
+
+### Synchronization Preferences
+The following preferences control [synchronization](../synchronization.html).
+
+|Property|Type|Default|Description|
+|:--|:--|:--|:--|
+|Enable Synchronization|bool|false|Enable synchronization for this profile.|
+|Wait Timeout|int|300|The timeout (in seconds) used by the [Target Scheduler Sync Wait](../synchronization.html#target-scheduler-sync-wait) instruction on both sync server and client instances.|
+|Action Timeout|int|300|The timeout (in seconds) used by the server when waiting for all clients to accept an _action_: either an exposure or (if applicable) a solve/rotate command.  See [Target Scheduler Sync Container](../synchronization.html#target-scheduler-sync-container).|
+|Solve/Rotate Timeout|int|300|The timeout (in seconds) used by the server when waiting for all clients to complete a solve/rotate command.  See [Slew/Center/Rotate](../synchronization.html#slewcenterrotate).|

@@ -11,7 +11,7 @@ The plugin saves metadata to the database for each exposure taken when the plugi
 
 In addition to providing the means to review acquisition data, the records are also used to provide samples for the [Image Grader](image-grader.html).
 
-![](../assets/images/acquired-images.png)
+![](../assets/images/acquired-images-2.png)
 
 ## Filtering
 
@@ -29,13 +29,25 @@ You can further restrict the records by Project, Target, and Filter used:
 ## Viewing
 
 * You can click a table header to sort the table, click the same header again to sort in the opposite direction.
-* Select a row in the table to view details.  
+* Select a row in the table to view details.
 
-## Deleting Records
+## CSV Output
 
-At present, there is no way to delete acquired image records.  Also, there is only a weak reference to the applicable project, target, and filter for each record.  You could delete or move projects, targets, or exposure plans which may impact what can be shown or selected.
+Click the CSV icon to write the results of the current query to a CSV file.  The output file does not reflect any sorting changes you make to the table itself.
 
-A future release will support deleting old records.
+The column order was chosen to mimic the CSV output of the Session Metadata plugin.
+
+## Purging Records
+
+To remove acquired image records, expand the Purge Records header.  There are two ways to select the records:
+* By date: set the Older Than date to the date desired (it defaults to nine months before present) and leave Target as 'All'.  All records - regardless of target - will be removed.
+* By date and target: set the Older Than date to the date desired and then select your target from the dropdown.  Only those records for that target older than the date will be removed.
+
+Click the delete (trashcan) icon to execute.  In both cases, you will be asked to confirm the deletion.
+
+### Notes
+* Keep in mind that these records are used for image grading so if you think you might want to continue imaging a relevant target in the future, you might not want to remove associated records.
+* There is only a weak reference to the applicable project, target, and filter for each record.  You could delete or move projects, targets, or exposure plans which may impact what can be shown, selected, or deleted.
 
 ## Data Saved
 
@@ -57,6 +69,8 @@ The following values are saved.  The description is missing for items that are s
 |Stars||
 |HFR||
 |HFR Std Dev||
+|FWHM|Requires Hocus Focus|
+|Eccentricity|Requires Hocus Focus|
 |ADU Std Dev||
 |ADU Mean||
 |ADU Median||
