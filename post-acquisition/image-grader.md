@@ -29,7 +29,8 @@ Grading is driven by a set of [preferences](../target-management/profiles.html#i
 * **_FWHM Sigma Factor_**: the number of standard deviations surrounding the mean for acceptable values of FWHM
 * **_Grade Eccentricity_**: enable grading for calculated image Eccentricity
 * **_Eccentricity Sigma Factor_**: the number of standard deviations surrounding the mean for acceptable values of Eccentricity
-* **_Accept All Improvements_**: if true, automatically accept an image if the metric shows an improvement compared to the mean.
+* **_Accept All Improvements_**: if true, automatically accept an image if the metric shows an improvement compared to the mean
+* **_Move Rejected Images_**: if true and a graded image was rejected, it will be moved to a ‘rejected’ folder under the image save folder
 
 {: .note }
 FWHM and Eccentricity grading are dependent on having the Hocus Focus plugin installed, enabled, and set up for Star Detection (Fit PSF ON). Be sure you have also enabled Hocus Focus in NINA Options > Imaging > Image options > Star Detector.
