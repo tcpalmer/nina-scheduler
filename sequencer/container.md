@@ -34,19 +34,31 @@ At this point, it probably doesn't make sense to add any trigger to this list si
 
 ## Custom Event Instructions
 
-Four areas are provided to drag/drop sequence instructions for execution at specific times during planner operation:
+Five areas are provided to drag/drop sequence instructions for execution at specific times during planner operation:
 * **Before Wait**: run before each wait operation.  For example, park the mount.
 * **After Wait**: run after each wait operation.  For example, unpark the mount.
 * **Before New Target**: run before each new or changed target begins imaging.  Instructions here will be run _after_ a slew/center so that items like autofocus can be performed pointing at the target.
 * **After New Target**: run after each new or changed target completes imaging or is interrupted.
+* **After Each Target**: run after every target plan, regardless of whether it's new or not.  An important use case of this is with the [Target Scheduler Immediate Flats](../flats.html#target-scheduler-immediate-flats) instruction.
 
 Expand the individual containers to add items and then drag/drop instructions to the drop area as usual.  In general, any NINA instruction can be added but you should always test before unattended operation.
 
 Note that the Before/After New Target instructions will _only_ be executed when the target is new or changed from the previous plan.  Returning to the same target is a common occurrence since the planner will often select the same target if nothing else is available.
 
+If you're running [synchronized](../synchronization.html), these containers will run only on the server, not clients.
+
 A timeline shows precisely when the event containers will be executed:
 
 ![](../assets/images/planning-timeline-2.png)
+
+### Coordinates Injection
+
+Some core NINA instructions assume that they can inherit target coordinates from the surrounding context - for example a parent DSO Container.  Since targets are dynamic with Target Scheduler, we have to take steps to inject the current target coordinates into those instructions if running as part of a custom event container.  For the _Before New Target_, _After New Target_, and _After Each Target_ containers, the following instructions (if found) will have this behavior:
+* Slew To Ra/Dec
+* Slew and center
+* Slew, center and rotate
+
+In general, you shouldn't have to add these instructions to an event container since Target Scheduler usually handles all target slewing for you.  However, when using Target Scheduler Immediate Flats with a wall panel flat device, you probably need Slew To Ra/Dec to return to the current target when the flats are complete.
 
 ### Custom Instruction Dos and Don'ts
 * You can elect to use Park Scope in Begin Wait and Unpark Scope in After Wait.  If you do so, you should set the [Park on Wait](../target-management/profiles.html#profile-preferences) preference to false.  However, the benefit of using the preference is that it will skip the park/unpark if the wait period is less than a minute.  In contrast, doing this in Before/After Wait would park/unpark even for a five second wait.
@@ -55,6 +67,13 @@ A timeline shows precisely when the event containers will be executed:
 * You should not add instructions in response to safety interrupts (park/unpark, close/open RoR, etc).  Instead, you should handle that logic in the regular safety portions of your sequence.
 * You can conceivably add other containers (e.g. Sequential or Parallel Instruction Set) but this has not been extensively tested.
 * If you use instructions added by other plugins, you should test extensively.
+
+### Why Can't I have a Custom Event Container for X?
+
+It might seem simple to add additional event containers - for example _After Each Exposure_ or _After Target Completed_.  However, due to the asynchronous nature of NINA's image processing, it's essentially impossible (at least for these two).  When an exposure has been downloaded from the camera, NINA starts a separate thread to finalize processing on the image (e.g. star detection, TS image grading, and moving it to the final location).  Immediately after that thread starts, NINA returns to regular instruction execution in your sequence.
+
+The events for _After Each Exposure_ and _After Target Completed_ can only be triggered once that image processing thread has completed.  But at that point, the sequencer has moved on and we don't have access to run arbitrary instructions.  Certainly, many plugins perform operations after imaging processing is complete (as does Target Scheduler).  However, in those cases the logic is fixed - not arbitrary instructions as with a custom event container.
+
 
 ## Instruction User Interface
 
