@@ -7,17 +7,13 @@ nav_order: 3
 
 # Target Scheduler Condition
 
-When the Target Scheduler is used in more advanced sequences such as those supporting safety concerns or multi-night imaging, it becomes necessary to check the state of the projects and planner to determine when to break out of loops.  The Target Scheduler Condition is a loop condition that can be added to outer loops to achieve this.  It supports to two modes of operation: _While Targets Remain Tonight_ and _While Active Projects Remain_.
+When the Target Scheduler is used in more advanced sequences such as those supporting safety concerns or multi-night imaging, it becomes necessary to check the state of the projects and planner to determine when to break out of loops.  The Target Scheduler Condition is a loop condition that can be added to outer loops to achieve this.  It supports three modes of operation: _While Targets Remain Tonight_, _While Active Projects Remain_ and _While Flats Needed_.
 
 ### When is the Condition Checked?
 
 Unlike some core NINA conditions, Target Scheduler Condition will _not_ continuously check its condition every few seconds with a background process and then immediately interrupt the sequence (as it would for a safety condition).
 
-But even NINA conditions without a background thread are checked after _every_ instruction completes.  That would be overkill in the case of Target Scheduler Condition since many of those instructions would be those automatically generated to image your targets.  We already know we have an active target at that point so there is no need to check the condition.
-
-For that reason, Target Scheduler Condition will suppress its check if the originating instruction is determined to be coming from Target Scheduler execution.
-
-Otherwise, the condition will be checked after completion of every other instruction in your sequence.
+Instead, the condition operates similar to the _Loop For Iterations_ NINA condition: it only runs the check after all instructions in the container have completed.  If the check indicates to continue, the instructions are reset and run for another iteration.
 
 ## While Targets Remain Tonight
 This mode will continue the loop as long as the Planning Engine indicates that additional targets are available tonight (either now or by waiting).
@@ -54,3 +50,7 @@ This mode will continue as long as any active Projects remain.  An [active](../t
 
 {: .warning }
 This mode should be used with care.  Since you may have an active project that can't be imaged for months due to the time of year, using this in a sequence designed for a single night might cause an infinite loop with the planner being called repeatedly until the sequence is manually stopped.  You should only use this in an outer loop designed for multi-night imaging that also includes instructions to wait until the following dusk.
+
+## While Flats Needed
+
+This mode will continue as long as the [Target Scheduler Flats](../flats.html#target-scheduler-flats) instruction has flats to take.  It does not apply to projects/targets setup for use with [Target Scheduler Immediate Flats](../flats.html#target-scheduler-immediate-flats).

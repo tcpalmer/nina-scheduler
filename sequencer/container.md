@@ -17,12 +17,12 @@ See the [technical details](../technical-details.html#target-scheduler-container
 
 The following shows a Target Scheduler Container instruction after adding to a sequence but before the sequence is running.
 
-![](../assets/images/tsc-1.png)
+![](../assets/images/tsc-2.png)
 
 It consists of three main areas:
 1. **Target Details**.  When the planner returns a target to image, the details - including the nighttime/altitude chart - will be displayed here.
 2. **Plan Progress**.  Each plan returned by the planner will generate an expandable section here containing details on what is happening and what has been completed.
-3. **Custom Triggers/Instructions**.  Expand the Triggers and other instruction containers to drag/drop other NINA sequence items as needed.
+3. **Custom Triggers/Instructions**.  Expand _Custom Event Containers_ to get access to the Triggers and other event-based instruction containers. Drag/drop other NINA sequence items to those areas as needed.
 
 ## Triggers
 
@@ -49,7 +49,7 @@ If you're running [synchronized](../synchronization.html), these containers will
 
 A timeline shows precisely when the event containers will be executed:
 
-![](../assets/images/planning-timeline-2.png)
+![](../assets/images/planning-timeline-4.png)
 
 ### Coordinates Injection
 
@@ -58,7 +58,7 @@ Some core NINA instructions assume that they can inherit target coordinates from
 * Slew and center
 * Slew, center and rotate
 
-In general, you shouldn't have to add these instructions to an event container since Target Scheduler usually handles all target slewing for you.  However, when using Target Scheduler Immediate Flats with a wall panel flat device, you probably need Slew To Ra/Dec to return to the current target when the flats are complete.
+In general, you shouldn't have to add these instructions to an event container since Target Scheduler usually handles all target slewing for you.  However, when using [Target Scheduler Immediate Flats](../flats.html#target-scheduler-immediate-flats) with a wall panel flat device, you probably need Slew To Ra/Dec to return to the current target when the flats are complete.
 
 ### Custom Instruction Dos and Don'ts
 * You can elect to use Park Scope in Begin Wait and Unpark Scope in After Wait.  If you do so, you should set the [Park on Wait](../target-management/profiles.html#profile-preferences) preference to false.  However, the benefit of using the preference is that it will skip the park/unpark if the wait period is less than a minute.  In contrast, doing this in Before/After Wait would park/unpark even for a five second wait.
@@ -67,13 +67,6 @@ In general, you shouldn't have to add these instructions to an event container s
 * You should not add instructions in response to safety interrupts (park/unpark, close/open RoR, etc).  Instead, you should handle that logic in the regular safety portions of your sequence.
 * You can conceivably add other containers (e.g. Sequential or Parallel Instruction Set) but this has not been extensively tested.
 * If you use instructions added by other plugins, you should test extensively.
-
-### Why Can't I have a Custom Event Container for X?
-
-It might seem simple to add additional event containers - for example _After Each Exposure_ or _After Target Completed_.  However, due to the asynchronous nature of NINA's image processing, it's essentially impossible (at least for these two).  When an exposure has been downloaded from the camera, NINA starts a separate thread to finalize processing on the image (e.g. star detection, TS image grading, and moving it to the final location).  Immediately after that thread starts, NINA returns to regular instruction execution in your sequence.
-
-The events for _After Each Exposure_ and _After Target Completed_ can only be triggered once that image processing thread has completed.  But at that point, the sequencer has moved on and we don't have access to run arbitrary instructions.  Certainly, many plugins perform operations after imaging processing is complete (as does Target Scheduler).  However, in those cases the logic is fixed - not arbitrary instructions as with a custom event container.
-
 
 ## Instruction User Interface
 

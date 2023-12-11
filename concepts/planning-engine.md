@@ -28,7 +28,7 @@ A Target Plan is either:
 
 The stop time is the end of the [planning window](#plan-window) and is used to interrupt the plan in case that time is exceeded.
 
-![](../assets/images/planning-timeline-1.png)
+![](../assets/images/planning-timeline-3.png)
 
 The above timeline shows a sequence of six plans generated for the Target Scheduler.  Adding optional instructions for the Before/After Wait and Before/After New Target events is discussed in [Custom Event Instructions](../sequencer/index.html#custom-event-instructions).  Detailed sequence of events:
 
@@ -37,11 +37,13 @@ The planner is called and Target 1 is returned.  Execute:
 * Slew and center on Target 1
 * Optional instructions for 'Before New Target'
 * Take planned exposures
+* Optional instructions for 'After Each Target'
 
 #### Plan 2
 The planner is called and Target 1 is again returned.  Since the target didn't change, both slew/center and 'Before New Target' are skipped.  Execute:
 * Take planned exposures
 * Optional instructions for 'After New Target' (since we will subsequently determine that a Wait is next)
+* Optional instructions for 'After Each Target'
 
 #### Plan 3
 The planner is called and a Wait is returned.  Execute:
@@ -55,6 +57,7 @@ The planner is called and Target 2 is returned.  Execute:
 * Optional instructions for 'Before New Target'
 * Take planned exposures
 * Optional instructions for 'After New Target' (since we will subsequently determine that the next target has changed)
+* Optional instructions for 'After Each Target'
 
 #### Plan 5
 The planner is called and Target 3 is returned.  Execute:
@@ -62,7 +65,7 @@ The planner is called and Target 3 is returned.  Execute:
 * Optional instructions for 'Before New Target'
 * Take planned exposures
 
-A safety interrupt (handled outside of Target Scheduler) occurs some time during the execution of Plan 5.  Any optional 'After New Target' instructions are skipped due to the interrupt.  When the safety issue has cleared, the Target Scheduler instruction will be reset to simply call the planner again.
+A safety interrupt (handled outside of Target Scheduler) occurs some time during the execution of Plan 5.  Any optional 'After New Target' and 'After Each Target' instructions are skipped due to the interrupt.  When the safety issue has cleared, the Target Scheduler instruction will be reset to simply call the planner again.
 
 #### Plan 6
 The planner is called and Target 3 is returned.  Execute:
@@ -70,6 +73,7 @@ The planner is called and Target 3 is returned.  Execute:
 * Optional instructions for 'Before New Target'
 * Take planned exposures
 * Optional instructions for 'After New Target'
+* Optional instructions for 'After Each Target'
 
 At this point, no more targets remain for the night so the Target Scheduler instruction ends and passes control to the next item in the sequence.
 

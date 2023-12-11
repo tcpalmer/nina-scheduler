@@ -4,7 +4,7 @@ title: Release Notes
 nav_order: 13
 ---
 
-# Release Notes 4.1.0.0
+# Release Notes 4.1.X.X
 
 ## Changes in this Release
 
@@ -16,6 +16,16 @@ Target Scheduler can now automate flats generation for your targets.  Two new in
 * **_Target Scheduler Immediate Flats_**
 
 See [Flat Frames](flats.html) for details.
+
+The flats capability also introduces the concept of a Target Scheduler _session identifier_ that can link flats to the associated lights.  The value is made available by a custom Image Pattern named \$\$TSSESSIONID\$\$.  The pattern can be used in your image file patterns (Options > Imaging) just like \$\$FILTER\$\$ or \$\$TARGETNAME\$\$.  The value is just a number in a fixed-width string like '0001' or '0023'.  See [Session Identifier](flats.html#session-identifier-for-lights-and-flats).
+
+### Target Scheduler Condition
+* The condition check was optimized - now only tests after all instructions in the container are complete (not after each instruction).
+* Added a 'While Flats Needed' check - continue as long as the [Target Scheduler Flats](flats.html#target-scheduler-flats) instruction has flats to take.
+
+See [Target Scheduler Condition](sequencer/condition.html) for details.
+
+## General
 
 Refer to the applicable documentation for details.  See the project [release notes](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/RELEASENOTES.md) and [change log](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/CHANGELOG.md) for the complete history.
 

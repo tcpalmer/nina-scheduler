@@ -10,7 +10,19 @@ has_children: false
 Since Target Scheduler saves details on all images captured, it can determine what flats are needed to support calibration of those images.  The **_Target Scheduler Flats_** and **_Target Scheduler Immediate Flats_** instructions can be added to your sequences to automatically take those flats.
 
 {: .note }
-The current release only supports flats taken with a flat panel device.  Support for sky flats may be added in a future release.
+The current release only supports flats taken with a flat panel device.  Support for sky flats might be added in a future release.
+
+## Concepts
+
+Five concepts are important to how flats are managed in Target Scheduler:
+* A _**light session date**_ is a date/time with a fixed time of noon and is used for all light images taken between the upcoming dusk to the following dawn.
+* A _**flat specification**_ or _**flat spec**_ encapsulates all exposure parameters used for a light that will result in a flat: filter, gain, offset, binning, readout mode, rotation, and ROI.
+* A _**light session**_ represents a unique target, light session date, and flat spec.
+* A project (and all targets under it) can have a flats handling _**cadence period**_.  This is the interval in days for the project to take flats.
+* A _**session identifier**_ is an integer value applied to all light sessions for a given target taken over the same cadence period.
+
+All these concepts are discussed in more detail below.
+
 
 ## Getting Started
 
@@ -39,6 +51,7 @@ Flats automation is enabled by setting the Flats Handling [project property](../
 * **Target Completion**: only trigger flats on target completion (all Exposure Plans 100% complete)
 * **Use With Immediate**: enable flats but only for use with the Target Scheduler Immediate Flats instruction.
 
+By selecting a cadence greater than one, you are implying that you only want to take flats for each filter once at the end of the period - no matter how many exposures were taken over multiple nights (assuming all the flat specs were the same).
 
 ## Usage in Sequence
 
@@ -145,16 +158,37 @@ Be aware that if you change the Flats Handling value after you've been operating
 
 ## Operation
 
-The instruction works by examining records in the [Acquired Images](../post-acquisition/acquisition-data.html) table for projects/targets that are enabled for flats.  Individual records are aggregated into common _flats specifications_ consisting of:
-* A light session date.  This date has a fixed time of noon and is used for all images taken between the upcoming dusk to the following dawn - a _light session_.
-* The session identifier
-* Light exposure parameters: filter, gain, offset, binning, readout mode, rotation, and ROI
+The instruction works by examining records in the [Acquired Images](../post-acquisition/acquisition-data.html) table for projects/targets that are enabled for flats.  Individual records are aggregated into common _light sessions_ consisting of:
+* Target id
+* Light session date
+* Session identifier
+* Flat spec (exposure parameters)
 
-The end result is a set of aggregated flats specifications covering all exposures taken over all light sessions.  If the same exposure parameters (filter, gain, etc) are used for multiple targets throughout a night, only one flat specification is needed to capture that.
+If you took 40 exposures each of R,G,B for target A and the same for target B over a single night (with identical exposure parameters), then after aggregation you would end up with six total light sessions:
+* 3 for target A: R, G, B
+* 3 for target B: R, G, B
 
-The set of flat specifications is then compared against the records in the Flats History table.  This table records all flat sets taken with the **_Target Scheduler Flats_** and **_Target Scheduler Immediate Flats_** instruction with the corresponding light session date.  If no history record is found that matches a given flats specification, then we potentially need to take those flats.
+### Step 1: Load Acquired Image Records
 
-If the target associated with the corresponding light session is using _Target Completion_, then the flats are taken immediately.  Otherwise, the current date is compared to the desired cadence and the flats are only taken if more days have elapsed since the light session.
+* Determine the set of Projects/Targets that might need flats.
+* Load all Acquired Image records for those targets.
+
+### Step 2: Aggregate Acquired Image Records into Light Sessions
+
+For each applicable target:
+* For each Acquired Image record for the target:
+  * Create a provisional light session for it
+  * If the list of light sessions does not already contain this one, then add it
+
+In this case 'contains' represents a comparison of all the elements of a light session: target id, light session date, session id, and flat spec.
+
+### Step 3: Cull by Cadence Period
+
+Any light sessions that took place within the current cadence period are removed.
+
+### Step 4: Cull by Flats History
+
+The set of remaining light sessions is compared against the records in the Flats History table.  This table records all flat sets taken with the **_Target Scheduler Flats_** and **_Target Scheduler Immediate Flats_** instructions with the corresponding light session details.  If no history record is found that matches a light session, then we potentially need to take the corresponding flat.
 
 ### Examples With Flats Cadence
 
@@ -169,6 +203,7 @@ In the previous example, if weather had stopped your sequence early on December 
 * The Target Scheduler Flats instruction will only work with lights acquired via Target Scheduler.
 * Images taken with either flats instruction will use either the default image file pattern or the specific one defined for FLAT exposures (Options > Imaging > File Settings).
 * For performance reasons, when determining what flats need to be taken, the instruction will only check Acquired Image records newer than 45 days ago.  Even with a flats cadence of 14, you would have a month to take required flats.  If you miss that window, you'll have to take them the old-fashioned way.
+* Any Acquired Image records saved prior to TS flats support will be skipped since they are missing information important to flats operation.
 * Determination of a light session from Acquired Image records is independent of whether they were accepted or rejected by the grader.
 * If you [purge](../post-acquisition/acquisition-data.html#purging-records) Acquired Image records younger than 45 days and the associated target is still active, you will impact flats determination.
 * If you set Flats Handling to something other than Off for a target with existing activity and then run Target Scheduler Flats, it will produce flat sets covering all previous light sessions going back 45 days ... which may be substantial.
