@@ -17,12 +17,12 @@ See the [technical details](../technical-details.html#target-scheduler-container
 
 The following shows a Target Scheduler Container instruction after adding to a sequence but before the sequence is running.
 
-![](../assets/images/tsc-1.png)
+![](../assets/images/tsc-2.png)
 
 It consists of three main areas:
 1. **Target Details**.  When the planner returns a target to image, the details - including the nighttime/altitude chart - will be displayed here.
 2. **Plan Progress**.  Each plan returned by the planner will generate an expandable section here containing details on what is happening and what has been completed.
-3. **Custom Triggers/Instructions**.  Expand the Triggers and other instruction containers to drag/drop other NINA sequence items as needed.
+3. **Custom Triggers/Instructions**.  Expand _Custom Event Containers_ to get access to the Triggers and other event-based instruction containers. Drag/drop other NINA sequence items to those areas as needed.
 
 ## Triggers
 
@@ -34,19 +34,31 @@ At this point, it probably doesn't make sense to add any trigger to this list si
 
 ## Custom Event Instructions
 
-Four areas are provided to drag/drop sequence instructions for execution at specific times during planner operation:
+Five areas are provided to drag/drop sequence instructions for execution at specific times during planner operation:
 * **Before Wait**: run before each wait operation.  For example, park the mount.
 * **After Wait**: run after each wait operation.  For example, unpark the mount.
 * **Before New Target**: run before each new or changed target begins imaging.  Instructions here will be run _after_ a slew/center so that items like autofocus can be performed pointing at the target.
 * **After New Target**: run after each new or changed target completes imaging or is interrupted.
+* **After Each Target**: run after every target plan, regardless of whether it's new or not.  An important use case of this is with the [Target Scheduler Immediate Flats](../flats.html#target-scheduler-immediate-flats) instruction.
 
 Expand the individual containers to add items and then drag/drop instructions to the drop area as usual.  In general, any NINA instruction can be added but you should always test before unattended operation.
 
 Note that the Before/After New Target instructions will _only_ be executed when the target is new or changed from the previous plan.  Returning to the same target is a common occurrence since the planner will often select the same target if nothing else is available.
 
+If you're running [synchronized](../synchronization.html), these containers will run only on the server, not clients.
+
 A timeline shows precisely when the event containers will be executed:
 
-![](../assets/images/planning-timeline-2.png)
+![](../assets/images/planning-timeline-4.png)
+
+### Coordinates Injection
+
+Some core NINA instructions assume that they can inherit target coordinates from the surrounding context - for example a parent DSO Container.  Since targets are dynamic with Target Scheduler, we have to take steps to inject the current target coordinates into those instructions if running as part of a custom event container.  For the _Before New Target_, _After New Target_, and _After Each Target_ containers, the following instructions (if found) will have this behavior:
+* Slew To Ra/Dec
+* Slew and center
+* Slew, center and rotate
+
+In general, you shouldn't have to add these instructions to an event container since Target Scheduler usually handles all target slewing for you.  However, when using [Target Scheduler Immediate Flats](../flats.html#target-scheduler-immediate-flats) with a wall panel flat device, you probably need Slew To Ra/Dec to return to the current target when the flats are complete.
 
 ### Custom Instruction Dos and Don'ts
 * You can elect to use Park Scope in Begin Wait and Unpark Scope in After Wait.  If you do so, you should set the [Park on Wait](../target-management/profiles.html#profile-preferences) preference to false.  However, the benefit of using the preference is that it will skip the park/unpark if the wait period is less than a minute.  In contrast, doing this in Before/After Wait would park/unpark even for a five second wait.

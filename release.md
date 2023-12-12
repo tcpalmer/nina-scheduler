@@ -1,42 +1,33 @@
 ---
 layout: default
 title: Release Notes
-nav_order: 12
+nav_order: 13
 ---
 
-# Release Notes 4.0.5.0
+# Release Notes 4.1.0.8
 
 ## Changes in this Release
 
 This release is available for NINA 3.  Only fixes for serious problems will be back-ported to the NINA 2 version.  This documentation is for the current NINA 3 version only.
 
-### Image Grading Changes
-* Added image grading on FWHM and Eccentricity (requires Hocus Focus plugin).  Note that grading on these metrics is disabled by default so enable via Profile Preferences if desired.
-* Added option to move rejected images to a 'rejected' directory
-* Added target rotation and ROI to the set of data saved for acquired images.  A future release will use these values when selecting 'like' images for grading.
+### Automated Flats
+Target Scheduler can now automate flats generation for your targets.  Two new instructions support this capability:
+* **_Target Scheduler Flats_**
+* **_Target Scheduler Immediate Flats_**
 
-See updates for [Image Grading](post-acquisition/image-grader.html) and [Profile Preferences](target-management/profiles.html#image-grader).
+See [Flat Frames](flats.html) for details.
 
-### Plan Window Stop Time Improvements
+The flats capability also introduces the concept of a Target Scheduler _session identifier_ that can link flats to the associated lights.  The value is made available by a custom Image Pattern named \$\$TSSESSIONID\$\$.  The pattern can be used in your image file patterns (Options > Imaging) just like \$\$FILTER\$\$ or \$\$TARGETNAME\$\$.  The value is just a number in a fixed-width string like '0001' or '0023'.  See [Session Identifier](flats.html#session-identifier-for-lights-and-flats).
 
-Previously, each target plan returned by the scheduler had a stop time determined simply by adding the project's minimum time to the start time (assuming the target doesn't set in that interval).  Now, it will look at the set of upcoming potential targets and see if the stop time can be extended without impact.  The primary benefit is that when plan windows are longer, there is a greater chance that the desired cadence of exposures and dithers will run.  See [Plan Window](concepts/planning-engine.html#plan-window) for details.
+The main Target Scheduler Container instruction has a new custom event container: _After Each Target_ which is run after every target plan, regardless of whether it’s new or not.  This was added to support the **_Target Scheduler Immediate Flats_** instruction but may have other uses.
 
-This behavior is controlled by a new profile preference: [Smart Plan Window](target-management/profiles.html#general-preferences) which is true by default.  If you want the old behavior, set it to false.
+### Target Scheduler Condition
+* The condition check was optimized - now only tests after all instructions in the container are complete (not after each instruction).
+* Added a 'While Flats Needed' check - continue as long as the [Target Scheduler Flats](flats.html#target-scheduler-flats) instruction has flats to take.
 
-### Center After Drift
+See [Target Scheduler Condition](sequencer/condition.html) for details.
 
-Prior to this release, you had to put a Center After Drift trigger inside the Triggers section of the Target Schedule container so that it could determine the current target.  This worked, but the UI fields on the trigger didn't update properly and it was a poor user experience.  Now, you should remove it from that old location and put Center After Drift into triggers for the container immediately surrounding the Target Schedule Container instruction.  TS will find it and update it as targets change throughout a session.  If you leave Center After Drift in the old location, you'll get a warning and it will be ignored.
-
-### Synchronization
-Added experimental support for [synchronization](synchronization.html) across multiple instances of NINA.  This change is the most impactful of this release to the overall code base but if you're not using synchronization, you should see no change in behavior.
-
-### Other
-* Added ability to [purge acquired image records](post-acquisition/acquisition-data.html#purging-records) by date or date/target.
-* Added [CSV output](post-acquisition/acquisition-data.html#csv-output) for acquired image records
-* The rule weight list is now sorted when displayed.
-* Fixed issue where target rotation wasn't being sent to the Framing Wizard.
-* You can now delete all exposure plans on a target at once.
-* All sequencer instructions moved to new category "Target Scheduler".
+## General
 
 Refer to the applicable documentation for details.  See the project [release notes](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/RELEASENOTES.md) and [change log](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/CHANGELOG.md) for the complete history.
 

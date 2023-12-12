@@ -44,6 +44,7 @@ When you import mosaic panels into a project, the Mosaic Project flag is automat
 |Dither After Every|integer 0-N|Value to determine how dithering is handled.  See below for details.|
 |Enable Image Grader|boolean|Enable/disable the [Image Grader](../post-acquisition/image-grader.html).|
 |Mosaic Project|boolean|Mark the project as containing mosaic panels.  This defaults to false.  It can be changed manually but will automatically be set to true if you import panels from the Framing Assistant.  At present, the only logic this impacts is the Mosaic Completion scoring rule.|
+|Flats Handling|integer|Specify behavior for [automated flats](../sequencer/flats.html).|
 |Rule Weights|integer 0-100|Weight values for each Scoring Engine rule - see below.|
 
 #### Project State
