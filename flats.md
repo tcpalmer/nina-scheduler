@@ -10,6 +10,9 @@ has_children: false
 Since Target Scheduler saves details on all images captured, it can determine what flats are needed to support calibration of those images.  The **_Target Scheduler Flats_** and **_Target Scheduler Immediate Flats_** instructions can be added to your sequences to automatically take those flats.
 
 {: .note }
+Automated flats will be generated only for lights acquired with release 4.1.0.8 and later since it uses additional information to correlate lights and flats.
+
+{: .note }
 The current release only supports flats taken with a flat panel device.  Support for sky flats might be added in a future release.
 
 ## Concepts
@@ -18,7 +21,7 @@ Five concepts are important to how flats are managed in Target Scheduler:
 * A _**light session date**_ is a date/time with a fixed time of noon and is used for all light images taken between the upcoming dusk to the following dawn.
 * A _**flat specification**_ or _**flat spec**_ encapsulates all exposure parameters used for a light that will result in a flat: filter, gain, offset, binning, readout mode, rotation, and ROI.
 * A _**light session**_ represents a unique target, light session date, and flat spec.
-* A project (and all targets under it) can have a flats handling _**cadence period**_.  This is the interval in days for the project to take flats.
+* A project (and all targets under it) can have a flats handling _**cadence period**_.  This is the interval in days for the project to take flats.  Other settings are also available - see below.
 * A _**session identifier**_ is an integer value applied to all light sessions for a given target taken over the same cadence period.
 
 All these concepts are discussed in more detail below.
@@ -89,6 +92,7 @@ If you have a wall panel, it's a bit more complex:
 * Slew To Alt/Az
 * Set Tracking Stopped
 * Target Scheduler Immediate Flats
+* Open Flat Panel Cover
 * Slew and center
 
 The first alt/az slew should position the scope to point at your wall panel.  The final slew will slew the mount back to the target coordinates and plate solve.  You could run a Slew, Center, and Rotate here, but you probably want to leave the rotator where it is in case the same target is returned next by the planner.

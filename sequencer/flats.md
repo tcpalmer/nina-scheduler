@@ -11,7 +11,7 @@ Target Scheduler supports two instructions for taking flats.  Additional details
 
 ## Target Scheduler Flats
 
-This instruction takes flats periodically based on a project setting.  For example, you can set the cadence to two which means "don't let two days pass without taking the flats for the corresponding light sessions".
+This instruction takes flats periodically based on a project setting.  For example, you can set the cadence to two which means "don't let two days pass without taking the flats for the corresponding light sessions".  Rather than a cadence, you can set your project to only take flats once the targets are complete (exposure plans all 100% complete).
 
 This instruction works for all applicable targets and is typically inserted into your sequence after you're done with imaging for the night.
 
