@@ -82,17 +82,17 @@ Note that a flip-flat will be left in the closed position - add an instruction t
 
 ### Target Scheduler Immediate Flats
 
-This instruction _**must**_ be placed into the _After Each Target_ custom event container of Target Scheduler.  Otherwise it will not work since it needs access to the current plan target and assumes that the rotator doesn't need to be moved from the position set via the previous slew, center, and rotate.
+This instruction _**must**_ be placed into the _After Each Target_ custom event container of Target Scheduler.  Otherwise, it will not work since it needs access to the current plan target and assumes that the rotator doesn't need to be moved from the position set via the previous slew, center, and rotate.
 
-If your flat device is a flip-flat, then your instructions in _After Each Target_ might be:
+Unlike **_Target Scheduler Flats_**, **_Target Scheduler Immediate Flats_** will reopen a flip-flat cover when done.
+
+If your flat device is a flip-flat, then your instructions in _After Each Target_ might be simply:
 * Target Scheduler Immediate Flats
-* Open Flat Panel Cover
 
 If you have a wall panel, it's a bit more complex:
 * Slew To Alt/Az
 * Set Tracking Stopped
 * Target Scheduler Immediate Flats
-* Open Flat Panel Cover
 * Slew and center
 
 The first alt/az slew should position the scope to point at your wall panel.  The final slew will slew the mount back to the target coordinates and plate solve.  You could run a Slew, Center, and Rotate here, but you probably want to leave the rotator where it is in case the same target is returned next by the planner.
