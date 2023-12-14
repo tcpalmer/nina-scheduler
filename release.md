@@ -4,28 +4,18 @@ title: Release Notes
 nav_order: 13
 ---
 
-# Release Notes 4.1.0.8
+# Release Notes 4.1.1.1
 
 ## Changes in this Release
 
 This release is available for NINA 3.  Only fixes for serious problems will be back-ported to the NINA 2 version.  This documentation is for the current NINA 3 version only.
 
-### Automated Flats
-Target Scheduler can now automate flats generation for your targets.  Two new instructions support this capability:
-* **_Target Scheduler Flats_**
-* **_Target Scheduler Immediate Flats_**
+* Fixed bug in TS Condition - check wasn't running the first time through
+* Immediate flats wasn't handling Repeat Flat Set off correctly
+* Immediate flats instruction will now open a flip-flat cover when done
+* Updated for latest NINA 3 beta libraries
 
-See [Flat Frames](flats.html) for details.
-
-The flats capability also introduces the concept of a Target Scheduler _session identifier_ that can link flats to the associated lights.  The value is made available by a custom Image Pattern named \$\$TSSESSIONID\$\$.  The pattern can be used in your image file patterns (Options > Imaging) just like \$\$FILTER\$\$ or \$\$TARGETNAME\$\$.  The value is just a number in a fixed-width string like '0001' or '0023'.  See [Session Identifier](flats.html#session-identifier-for-lights-and-flats).
-
-The main Target Scheduler Container instruction has a new custom event container: _After Each Target_ which is run after every target plan, regardless of whether it’s new or not.  This was added to support the **_Target Scheduler Immediate Flats_** instruction but may have other uses.
-
-### Target Scheduler Condition
-* The condition check was optimized - now only tests after all instructions in the container are complete (not after each instruction).
-* Added a 'While Flats Needed' check - continue as long as the [Target Scheduler Flats](flats.html#target-scheduler-flats) instruction has flats to take.
-
-See [Target Scheduler Condition](sequencer/condition.html) for details.
+The previous release introduced [automated flats](flats.html) for Target Scheduler.
 
 ## General
 
