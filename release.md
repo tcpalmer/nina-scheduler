@@ -4,18 +4,17 @@ title: Release Notes
 nav_order: 13
 ---
 
-# Release Notes 4.1.1.1
+# Release Notes 4.1.1.3
 
 ## Changes in this Release
 
 This release is available for NINA 3.  Only fixes for serious problems will be back-ported to the NINA 2 version.  This documentation is for the current NINA 3 version only.
 
-* Fixed bug in TS Condition - check wasn't running the first time through
-* Immediate flats wasn't handling Repeat Flat Set off correctly
-* Immediate flats instruction will now open a flip-flat cover when done
-* Updated for latest NINA 3 beta libraries
+* Fixed bug in TS Flats: if your project flats cadence is greater than 1, then it wasn't properly accounting for flats for the same filter already taken - you'd basically take too many.
+* Fixed bug with determining target completeness when image grading is off and exposure throttling applies.
+* Fixed missing TS version in TS log.
 
-The previous release introduced [automated flats](flats.html) for Target Scheduler.
+The release is a patch for the major release that introduced [automated flats](flats.html) for Target Scheduler.
 
 ## General
 
