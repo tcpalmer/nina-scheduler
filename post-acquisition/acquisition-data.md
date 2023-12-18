@@ -48,6 +48,7 @@ Click the delete (trashcan) icon to execute.  In both cases, you will be asked t
 ### Notes
 * Keep in mind that these records are used for image grading so if you think you might want to continue imaging a relevant target in the future, you might not want to remove associated records.
 * There is only a weak reference to the applicable project, target, and filter for each record.  You could delete or move projects, targets, or exposure plans which may impact what can be shown, selected, or deleted.
+* You can however, choose to automatically delete the records associated with targets when deleting projects and targets.  See the _Delete Acquired Images_ [preference](../target-management/profiles.html#profile-preferences) (enabled by default).
 
 ## Data Saved
 

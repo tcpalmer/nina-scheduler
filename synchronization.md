@@ -183,6 +183,8 @@ Sequence End Area
   Disconnect Equipment
 ```
 
+Note that a sync client can use the [Target Scheduler Condition](sequencer/condition.html) instruction.  In this case, the condition checks for _While Targets Remain Tonight_ and _While Active Projects Remain_ will query the projects and targets associated with the server instance.
+
 ## Best Practices
 
 * Be sure you understand how NINA instances become a server or a client.  The first NINA instance executed (e.g. double-clicking the NINA icon) will become a server if the profile you select is enabled for synchronization.  Any NINA instances executed after the server automatically become clients (assuming their profiles are also enabled for synchronization).  Determination of server/client has nothing to do with when sequences are started in any instance.

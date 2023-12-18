@@ -15,6 +15,9 @@ Unlike some core NINA conditions, Target Scheduler Condition will _not_ continuo
 
 Instead, the condition operates similar to the _Loop For Iterations_ NINA condition: it only runs the check after all instructions in the container have completed.  If the check indicates to continue, the instructions are reset and run for another iteration.
 
+### What Profile is used for the Check?
+Under normal usage, the profile used to determine the projects and targets applicable to the check is simply the current profile.  However, if the NINA instance is running as a [synchronized](../synchronization.html) client, then the check will actually use the sync server's profile since that's where the applicable projects/targets are defined.
+
 ## While Targets Remain Tonight
 This mode will continue the loop as long as the Planning Engine indicates that additional targets are available tonight (either now or by waiting).
 

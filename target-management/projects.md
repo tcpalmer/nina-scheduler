@@ -22,6 +22,10 @@ Click the Edit icon to begin editing the project.  The property value fields bec
 
 When done, click the Save icon to save your changes or the Cancel icon to cancel.
 
+### Project Deleting
+
+Click the Delete icon to delete a project and all associated targets.  If the _Delete Acquired Images_ [preference](profiles.html#profile-preferences) (enabled by default) is on, then any [acquired image](../post-acquisition/acquisition-data.html) records (not image files) associated with those targets will also be deleted.
+
 ### Mosaic Panel Import
 If you used the NINA Framing Assistant to create mosaic panels for a target, you can import them all as new Targets under the project.  First, configure your panels in the Framing Assistant.  Then return to the plugin management UI and view the desired project and click the Mosaic Import icon to begin.  If the icon isn't enabled, you may have to select something else in the navigation tree and then return to the project.
 

@@ -33,6 +33,10 @@ To import a target, click the Edit icon to begin editing.  Then click the Import
 
 When done, click the Save icon to save your changes or the Cancel icon to cancel.
 
+### Target Delete
+
+To delete a target, click the Delete icon.  If the _Delete Acquired Images_ [preference](profiles.html#profile-preferences) (enabled by default) is on, then any [acquired image](../post-acquisition/acquisition-data.html) records (not image files) associated with that target will also be deleted.
+
 ### Target Properties
 
 |Property|Type|Description|
