@@ -4,16 +4,14 @@ title: Release Notes
 nav_order: 13
 ---
 
-# Release Notes 4.1.2.0
+# Release Notes 4.1.2.2
 
 ## Changes in this Release
 
 This release is available for NINA 3.  Only fixes for serious problems will be back-ported to the NINA 2 version.  This documentation is for the current NINA 3 version only.
 
-* Fixed bug in smart plan window - was skipping projects incorrectly
-* Fixed another bug with determining target completed
-* You can now choose to delete acquired image records (not image files) when deleting the associated target.  See the _Delete Acquired Images_ [preference](target-management/profiles.html#profile-preferences) (enabled by default).
-* If running as a [sync client](synchronization.html), TS Condition will now use the server's data for the targets remain or projects remain checks
+* Fixed bug in readout mode handling
+* Fixed bug with Percent Complete and Mosaic Complete scoring rules if image grading is off
 
 See below for details on [previous releases](#previous-releases).
 
@@ -28,11 +26,19 @@ By definition, pre-releases have had limited testing.  Hopefully, if something g
 
 ## Known Issues
 
-- Icons disappear when using Light or Seance color schemes.
-- Currently, a slew will always do a center which will also rotate a dome if connected.  However, if we provide a way to disable plate solving, then it would use the SlewScopeToRaDec instruction which does not rotate a dome.  Could possibly add a SynchronizeDome instruction with the slew.  Would need someone with a dome to disable platesolving and test such a fix.
-- Although profiles/projects/targets are initially sorted properly, adding one or changing a name doesn't properly re-sort.  However, you can click the refresh icon on the tree to restore the sort order.
+* If image grading is off, the completion percentage on exposure plans is not calculated properly (i.e. based on the exposure throttle).  Also, the green/red active/inactive icons (which depend on the completeness calculation) will not be correct.
+* Icons disappear when using Light or Seance color schemes.
+* Currently, a slew will always do a center which will also rotate a dome if connected.  However, if we provide a way to disable plate solving, then it would use the SlewScopeToRaDec instruction which does not rotate a dome.  Could possibly add a SynchronizeDome instruction with the slew.  Would need someone with a dome to disable platesolving and test such a fix.
+* Although profiles/projects/targets are initially sorted properly, adding one or changing a name doesn't properly re-sort.  However, you can click the refresh icon on the tree to restore the sort order.
 
 ## Previous Releases
+
+### Target Scheduler 4.1.2.0
+_Released December 18, 2023_
+* Fixed bug in smart plan window - was skipping projects incorrectly
+* Fixed another bug with determining target completed
+* You can now choose to delete acquired image records (not image files) when deleting the associated target.  See the _Delete Acquired Images_ [preference](target-management/profiles.html#profile-preferences) (enabled by default).
+* If running as a [sync client](synchronization.html), TS Condition will now use the server's data for the targets remain or projects remain checks
 
 ### Target Scheduler 4.1.1.3
 _Released December 15, 2023_
