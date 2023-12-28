@@ -5,9 +5,6 @@ nav_order: 7
 has_children: true
 ---
 
-{: .warning }
-The plugin is still in a preliminary release state and suitable only for beta testing.  Users should thoroughly test sequences before attempting unattended use.
-
 # Usage with the Advanced Sequencer
 
 All Target Scheduler sequence instructions can be found under the "Target Scheduler" category in the sequencer interface.

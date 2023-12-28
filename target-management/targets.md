@@ -33,6 +33,8 @@ To import a target, click the Edit icon to begin editing.  Then click the Import
 
 When done, click the Save icon to save your changes or the Cancel icon to cancel.
 
+For importing targets in bulk, see [below](#bulk-target-import).
+
 ### Target Delete
 
 To delete a target, click the Delete icon.  If the _Delete Acquired Images_ [preference](profiles.html#profile-preferences) (enabled by default) is on, then any [acquired image](../post-acquisition/acquisition-data.html) records (not image files) associated with that target will also be deleted.
@@ -47,3 +49,38 @@ To delete a target, click the Delete icon.  If the _Delete Acquired Images_ [pre
 |Rotation|degrees 0-360|Frame rotation for the target.  If a rotator is attached, it will be set to this angle.  If a target is imported and the source supports rotation, it will be set on import.|
 |ROI|integer 1-100|Region of Interest, will operate the same as the existing Take Subframe Exposure instruction.|
 
+## Bulk Target Import
+
+You can import multiple targets at once using the bulk import feature.  The importer supports two CSV formats (described below).
+
+The procedure to perform a bulk import is the same regardless of CSV format.
+
+![](../assets/images/bulk-import.png)
+
+1. Navigate to the applicable Profile in the navigation tree.  Bulk imports are always done at the profile level.
+2. Click the import icon to expand the Import Targets section.
+3. Click the '...' to select your CSV file.
+4. You may optionally filter the targets to a single type by selecting the desired type in the Import Type Filter dropdown.  This dropdown will populate with the unique set of types after your CSV file has been selected.
+5. Select the project to import the targets into.  This can be a new project or any other project currently defined for the profile.
+6. By default, imported targets will have no Exposure Plans added.  However, you can select an existing target to use as a 'template': all exposure plans from the template target are copied to each new target (accepted and acquired counts are cleared).
+7. When ready, click the import icon to execute.
+
+You will be asked to confirm before the imported targets are saved.
+
+By using the Import Type Filter and Target Templates, you can segregate imported targets by type while applying exposure plans appropriate to each type.  For example L/R/G/B for galaxies, Ha/OIII/SII for emission nebulae, etc. 
+
+### Target Scheduler CSV
+
+Target Scheduler uses a simple CSV file for some operations.  If you have an existing list of targets, it's usually straightforward to convert it into this format.  The file should include the header row and adhere to general CSV formatting conventions.
+
+Columns:
+* Type: target type or category, e.g. 'Galaxy' or 'Dark Nebula'
+* Name: name, e.g. 'M 42'
+* Ra: right ascension, e.g. 03h 47m 01s
+* Dec: declination, e.g. 24º 07' 02"
+* Rotation: frame rotation, e.g. 90
+* ROI: region of interest (1-100), e.g. 80
+
+### Telescopius CSV
+
+You can also import targets that were exported in CSV format from [Telescopius](https://telescopius.com/).

@@ -17,9 +17,6 @@ The goal of the plugin is not to squeeze every available second out of an imagin
 {: .note }
 This documentation describes the latest version of the plugin which is for NINA 3 only.  Version 0.8.0.0 and earlier were for NINA 2.  No further updates will be added to that version unless a serious problem is discovered and the user cannot move to NINA 3.
 
-{: .warning }
-The Target Scheduler Plugin is currently in a pre-release state - please read the [Release Status](release.html) page for more information.
-
 ## Getting Started
 You should first familiarize yourself with the [concepts](concepts/index.html) underlying the plugin.  After that, visit the [Getting Started](getting-started.html) page for prerequisites and next steps.
 
