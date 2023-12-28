@@ -51,16 +51,18 @@ Any telescope instructions outside of Target Scheduler Container should work as 
 Any utility instructions outside of Target Scheduler Container should work as expected.  Some of the 'Wait' instructions may be appropriate in containers above Target Scheduler Container in the sequence hierarchy.  However, those used to control imaging start/stop times are typically not needed since target visibility is managed by the Planning Engine.  This is certainly true of **Wait Until Above Horizon**.
 
 ### Loop Conditions
-It may be appropriate to add loop conditions to containers above Target Scheduler Container in the sequence hierarchy.  This is often used to handle global concerns (Loop While Safe) or to run a sequence over multiple days.
+It may be appropriate to add loop conditions to containers above Target Scheduler Container in the sequence hierarchy.  This is often used to handle global concerns (Loop While Safe) or to run a sequence over multiple days (e.g. using the [Target Scheduler Condition](condition.html)).
 
 However, there is no need for the typical loop conditions that manage target start/stop times since these are handled by the Planning Engine.
 
 ### Triggers
-* **Synchronize Dome**.  Should work but should be tested with your equipment.
-* The autofocus triggers should all work properly and are typically added directly to Target Scheduler Container.
-* The guider triggers should all work properly.  You only need the Dither After Exposures trigger if your project does not specify dithering.
-* **Center After Drift**.  Should be added directly to Target Scheduler Container and should work but should be tested with your equipment.
-* **Meridian Flip**.  Should be added directly to Target Scheduler Container and should work but should be tested with your equipment.
+In general, you should add triggers to the Sequential Sequence container immediately surrounding the Target Scheduler Container (and **_not_** the Triggers section under Target Scheduler Container).  They will typically present a better user experience when placed there.
+
+Some triggers need to know the current target and since Target Scheduler Container can switch targets many times throughout a session, this might be a problem.  In particular:
+* **Center After Drift**.  Should be added to the Sequential Sequence container immediately surrounding the Target Scheduler Container.  It will be detected when placed there and the current target will be sent to it each time a new target is returned by the planner. 
+* **Meridian Flip**.  Can really be added anywhere above Target Scheduler Container since it will fall back to using mount coordinates if it can't determine a target.
+
+You can certainly add other triggers to the Triggers section under Target Scheduler Container but you'll need to test to ensure it's working as desired.
 
 ## Items Added By Other Plugins
 
