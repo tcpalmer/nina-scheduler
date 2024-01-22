@@ -35,5 +35,3 @@ You can also use normal or low priority projects to slip in some imaging on an u
 ## Surveys
 
 The automation provided by the plugin is well-suited to performing survey operations like searching for new supernovas or imaging multiple areas looking for (perhaps undiscovered) faint nebulosity or other phenomena.  Such projects can be set up for quicker plans that optimize imaging - for example west to east priority (via the Setting Soonest scoring rule).
-
-The upcoming feature to bulk load projects/targets will facilitate this type of work.

@@ -95,6 +95,14 @@ The selection of the Exposure Template to use for each client exposure is done a
 
 For example, if the exposure on the server is using the 'Lum' Exposure Template and the profile in use on the client also defines a 'Lum' Exposure Template, then the one on the client will be used.
 
+### Usage Without a Filter Wheel
+
+If you're not using a filter wheel on either your server or client instances, you can set up your Exposure Templates as described in [color cameras](target-management/exposure-templates.html#color-cameras).  You could also use a monochrome camera and filter wheel on your server instance with a client running a color camera:
+* In your client profile, set up your filter wheel and exposure templates as discussed in [color cameras](target-management/exposure-templates.html#color-cameras).  You'll need dummy entries for all filters that might be scheduled on the server instance.  Be sure the names match exactly.
+* Don't connect a filter wheel in your client sequence and any switch filter instructions will simply be ignored.
+
+When the client receives an exposure, it will look up the Exposure Template of the same name (as discussed above) and use it.  As usual, it's best if the exposure times for the client are less than or equal to the server exposure times for each filter.
+
 ## Exposure Planning
 
 The system that determines what exposures to take during a given target plan window is unchanged for synchronized operation and might result in taking more exposures than desired.  For example, your plan has 20 Lum exposures remaining of 3 minutes each and a one hour plan window.  The exposure planner will fill that window with 20 exposures.  However, with a server and one client, you might take nearly 40 exposures in that one hour period.  Since the planner won't run until the next planning window, you will have overshot the number of desired images and potentially wasted time.

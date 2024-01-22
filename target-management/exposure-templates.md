@@ -65,3 +65,13 @@ When enabled, set distance to the minimum acceptable separation at full moon.  T
 
 The values used on the ACP site are very conservative.  For narrowband imaging you could get away with distance=60 and width=7 which would need 60° separation at full moon but only 30° at first or last quarter.
 
+## Color Cameras
+
+If you're using Target Scheduler with a color camera and either don't use a filter wheel or use a single filter (e.g. for light pollution) in a filter tray for long periods of time, you can still configure Exposure Templates to work for your setup:
+* Set up a dummy filter for your Filter Wheel.  Go to NINA Options > Equipment > Filter Wheel and add a new filter.  You need to provide a name, for example 'LP' or 'dummy'.
+* In Target Scheduler plugin > Target Management, add a new Exposure Template as described above.  Set the Filter dropdown value to the filter you just created and name the Exposure Template appropriately (e.g. 'LP' or 'dummy').
+* Set the other properties (exposure time, gain, offset, etc) as needed for your camera.
+
+You can now reference this Exposure Template from your [Exposure Plans](exposure-plans.html) as usual.  In your NINA sequence, don't connect a filter wheel and any instruction to switch filters will simply be ignored.
+
+You can implement a similar setup if using Target Scheduler with [synchronization](../synchronization.html#usage-without-a-filter-wheel).
