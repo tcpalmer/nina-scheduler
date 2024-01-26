@@ -36,6 +36,7 @@ Proper operation of synchronization for Target Scheduler will assume the followi
 * The server instance should manage all safety related activities (e.g. park on unsafe, close roof, etc).
 * The sequences used on all NINA instances will be customized to support synchronization.
 * The TS projects/targets should handle dithering themselves and not rely on a Dither After Exposures trigger in the sequence.
+* Be sure your PC can handle running two instances of NINA.  The [minimum system requirements](https://nighttime-imaging.eu/docs/master/site/requirements/) are for one instance, not two.  Some NUCs or other mini-PCs may have trouble running in synchronized mode.
 
 ## Getting Started
 

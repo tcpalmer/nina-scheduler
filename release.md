@@ -4,13 +4,17 @@ title: Release Notes
 nav_order: 13
 ---
 
-# Release Notes 4.2.0.0
+# Release Notes 4.3.0.0
 
 ## Changes in this Release
 
 This release is available for NINA 3.  Only fixes for serious problems will be back-ported to the NINA 2 version.  This documentation is for the current NINA 3 version only.
 
-* Added ability to [bulk load targets](target-management/targets.html#bulk-target-import) from CSV files.
+* Fixed issue where TS Condition wasn't working when called in outer containers
+* Increased timeout for sync client registration
+* Added validation of TS Container triggers and custom event containers
+* Stopped cloning of TS Container triggers into plan sub-container (now run normally)
+* Added additional logging of sequence item lifecycle events
 
 See below for details on [previous releases](#previous-releases).
 
@@ -26,6 +30,10 @@ Refer to the applicable documentation for details.  See the project [release not
 * Although profiles/projects/targets are initially sorted properly, adding one or changing a name doesn't properly re-sort.  However, you can click the refresh icon on the tree to restore the sort order.
 
 ## Previous Releases
+
+### Target Scheduler 4.2.0.0
+_Released December 28, 2023_
+* Added ability to [bulk load targets](target-management/targets.html#bulk-target-import) from CSV files.
 
 ### Target Scheduler 4.1.2.2
 _Released December 21, 2023_

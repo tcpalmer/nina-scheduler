@@ -26,11 +26,13 @@ It consists of three main areas:
 
 ## Triggers
 
-Sequence triggers are generally used to either invoke some operation or interrupt execution based on the state of the software and the attached equipment.  Unlike the DSO Instruction Set container which has a fixed target for the duration of an imaging session, the Target Scheduler Container may get a new target each time it calls the Planning Engine.  This poses challenges when using triggers that depend on knowing the coordinates of the current target.  
+Sequence triggers are generally used to either invoke some operation or interrupt execution based on the state of the software and the attached equipment.  Unlike the DSO Instruction Set container which has a fixed target for the duration of an imaging session, the Target Scheduler Container may get a new target each time it calls the Planning Engine.  This poses challenges when using triggers that depend on knowing the coordinates of the current target:
+* During a Wait period, the target has default coordinates of RA 0 and Dec 0.
+* When the planner returns a new target the coordinates are updated to reflect that target.
+
+Any triggers placed under Target Scheduler Container should be thoroughly tested before unattended operation.
 
 In releases prior to 4.0.5.0, it was necessary to place the Center After Drift trigger into the Triggers list inside Target Scheduler Container so that it could follow the current target.  However, the code will now recognize a Center After Drift trigger placed into the same container that holds Target Scheduler Container and automatically update it when the target changes.  This provides a much better user experience since the trigger display updates properly.
-
-At this point, it probably doesn't make sense to add any trigger to this list since all known triggers will work correctly and provide a better experience when placed outside Target Scheduler Container.  In fact, if you place a Center After Drift trigger there, it will ignore it and warn you.  The entire Triggers section may be removed in the future to avoid confusion.
 
 ## Custom Event Instructions
 
@@ -67,6 +69,10 @@ In general, you shouldn't have to add these instructions to an event container s
 * You should not add instructions in response to safety interrupts (park/unpark, close/open RoR, etc).  Instead, you should handle that logic in the regular safety portions of your sequence.
 * You can conceivably add other containers (e.g. Sequential or Parallel Instruction Set) but this has not been extensively tested.
 * If you use instructions added by other plugins, you should test extensively.
+
+## Validation
+
+Target Scheduler Container will perform the usual sequence validation checks on any triggers and instructions added to the custom event containers.  If validation fails, the standard validation error marker will be displayed and the reason is available by mousing over the offending instruction.  Be aware that Target Scheduler Container will be _skipped entirely_ if validation errors remain when the sequence reaches that point.
 
 ## Instruction User Interface
 

@@ -14,12 +14,11 @@ The Target Scheduler Container instruction takes a similar approach.  When a new
 * Instantiates an internal container to run the slew and imaging instructions specific to the target.
 * Adds special triggers to the internal container:
   * A custom trigger to stop execution of the internal container at the end time of the applicable target plan (specifically, if the expected duration of the next instruction would exceed the end time).
-* Clones any triggers on the parent Target Scheduler Container and adds them to this list (where they can get access to the current target if needed).
 * Executes the internal target container.  When it completes, it calls the Planning Engine again to get the next target.
 
-In NINA, containers can override the default execution strategy and that capability is used by the internal target container.  This strategy performs two functions:
-* It monitors the progress of executing instructions and updates the status display in the parent Target Scheduler Container.
-* It runs ancestor triggers and conditions as needed on the _parent_ of Target Scheduler Container, skipping that container itself.  We must skip execution of the triggers directly added to Target Scheduler Container since those only serve as the source for cloning into the internal target container.
+In NINA, containers can override the default execution strategy and that capability is used by the internal target container.  This strategy monitors the progress of executing instructions and updates the status display in the parent Target Scheduler Container.
+
+Any triggers added to the Target Scheduler Container instruction will be checked and executed normally by this strategy since all ancestor triggers (those on parent containers up to the root sequence container) are always given a chance to run.
 
 ## Logging
 Since the plugin is rather complex, it logs to a separate file rather than the main NINA log.  These logs are saved in %localappdata%\NINA\SchedulerPlugin\Logs\ and follow the NINA log naming convention with 'TS-' prepended.  Like the main NINA logs, these will also be purged after 90 days.
