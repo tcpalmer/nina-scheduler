@@ -35,6 +35,9 @@ When done, click the Save icon to save your changes or the Cancel icon to cancel
 
 For importing targets in bulk, see [below](#bulk-target-import).
 
+{: .warning }
+If your target is in edit mode and you leave the plugin page and then use the Framing Assistant to look up a target, that target's name and coordinates will overwrite your existing target.  This is a consequence of internal NINA property change notifications.  Of course, you would still have to save the target before the change is finalized.
+
 ### Target Delete
 
 To delete a target, click the Delete icon.  If the _Delete Acquired Images_ [preference](profiles.html#profile-preferences) (enabled by default) is on, then any [acquired image](../post-acquisition/acquisition-data.html) records (not image files) associated with that target will also be deleted.
