@@ -4,14 +4,14 @@ title: Release Notes
 nav_order: 13
 ---
 
-# Release Notes 4.3.2.1
-_Released February 12, 2024_
+# Release Notes 4.3.3.0
+_Released February 15, 2024_
 
 ## Changes in this Release
 
 This release is available for NINA 3.  Only fixes for serious problems will be back-ported to the NINA 2 version.  This documentation is for the current NINA 3 version only.
 
-* Fixed exposure completion reversion caused by previous percent complete rule fix
+* Refactored target and exposure planning percent complete handling
 
 See below for details on [previous releases](#previous-releases).
 
@@ -28,8 +28,13 @@ Refer to the applicable documentation for details.  See the project [release not
 
 ## Previous Releases
 
+### Target Scheduler 4.3.2.1
+_Released February 12, 2024_
+* Fixed exposure completion reversion caused by previous percent complete rule fix
+
 ### Target Scheduler 4.3.2.0
 _Released February 6, 2024_
+* Fixed bug in percent complete scoring rule for completed exposure plans
 
 ### Target Scheduler 4.3.1.0
 _Released February 2, 2024_
