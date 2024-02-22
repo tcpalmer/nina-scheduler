@@ -11,7 +11,7 @@ In order to increase the level of automation, the plugin includes rudimentary im
 
 Automatic image grading is inherently problematic and this plugin is not the place to make the final determination on whether an image is acceptable or not.  Towards that end, the plugin will **_never_** delete any of your images.  You are also free to disable Image Grading and manage the accepted count on your Exposure Plans manually - for example after reviewing the images yourself or using more sophisticated (external) analysis methods.
 
-If you do elect to manually accept/reject, be aware that the [Planning Engine](../concepts/planning-engine.html) will continue to schedule exposures for all Exposure Plans where the number of accepted images is less than the number desired.  If you don't actively grade after each session, your plans may request excessive images of one plan at the expense of others.  If this is a concern, see the Exposure Throttle in the [preferences](../target-management/profiles.html#general-preferences).
+Note however that when grading is disabled, the percent complete calculation for an Exposure Plan is independent of the Accepted count and instead only depends on the Acquired count and the [Exposure Throttle](../target-management/profiles.html#general-preferences) preference.  See [Exposure Plans](../target-management/exposure-plans.html#number-of-images--percent-complete) for more information.
 
 ## Grading Approach
 
