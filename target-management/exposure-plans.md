@@ -47,15 +47,24 @@ When the target is _not_ in Edit mode, you can delete exposure plans by clicking
 |Exposure|double|Exposure time in seconds.  Leave blank to use the default defined for the template.|
 |Desired|integer|Number of desired images for this plan - see below.|
 |Accepted|integer|Number of accepted images for this plan - see below.|
-|Acquired|integer|Total number of images acquired for this plan.  Read only.|
+|Acquired|integer|Total number of images acquired for this plan.  Read only - see below.|
+|Percent Complete|percentage|How close the plan is to complete.  Read only - see below.|
  
-### Number of Images
+### Number of Images / Percent Complete
 
-As part of an exposure plan, you set the total number of images you **_Desire_** for the plan.  The plugin will continue to schedule exposures for this plan as long as the number desired is greater than the number **_Accepted_**.
+As part of an exposure plan, you set the total number of images you **_Desire_** for the plan.  The plugin will continue to schedule exposures for this plan as long as the _Percent Complete_ is less than 100%.  The Percent Complete calculation depends on whether [image grading](../post-acquisition/image-grader.html) is enabled for the corresponding project:
 
-The number of Accepted images can either be automatically set by action of the [Image Grader](../post-acquisition/image-grader.html) (incremented for each image that passes) or the value can be managed manually if you prefer.  If you manage it manually however, you are responsible for adjusting the value after you have reviewed the latest images - otherwise the plugin will continue to schedule exposures even if the number Desired is surpassed.  The [Exposure Throttle](profiles.html#general-preferences) preference can be used to manage this behavior.
+#### Image Grading Enabled
 
-The number **_Acquired_** is incremented for each exposure and is read-only.
+When image grading is enabled on the project (the default), the **_Accepted_** count in the exposure plan is automatically incremented for each image that passes grading.  In this case, percent complete is simply the Accepted/Desired ratio.
+
+Even though the Accepted count is managed automatically when grading, you are still free to edit it up/down as needed.  You are always encouraged to examine your images in your favorite post-processing tool since grading there is likely to be much more sophisticated than the built-in image grader.
+
+#### Image Grading Disabled
+
+When image grading is disabled, then Accepted is _not_ incremented automatically and isn't a factor in determining Percent Complete.  In this case the [Exposure Throttle](profiles.html#general-preferences) preference is used and completeness is Acquired / (ExposureThrottle * Desired).
+
+The **_Acquired_** count is always incremented for each exposure and cannot be edited.
 
 ## Exposure Order
 

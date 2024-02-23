@@ -4,14 +4,16 @@ title: Release Notes
 nav_order: 13
 ---
 
-# Release Notes 4.3.3.0
-_Released February 15, 2024_
+# Release Notes 4.3.4.0
+_Released February 23, 2024_
 
 ## Changes in this Release
 
 This release is available for NINA 3.  Only fixes for serious problems will be back-ported to the NINA 2 version.  This documentation is for the current NINA 3 version only.
 
-* Refactored target and exposure planning percent complete handling
+* Added toggle in Projects navigation to color projects and targets by whether they are active or not
+* Added toggle in Projects navigation to show/hide projects and targets by whether they are active or not
+* Added copy/paste/reset for Project Scoring Rule Weights
 
 See below for details on [previous releases](#previous-releases).
 
@@ -27,6 +29,10 @@ Refer to the applicable documentation for details.  See the project [release not
 * Although profiles/projects/targets are initially sorted properly, adding one or changing a name doesn't properly re-sort.  However, you can click the refresh icon on the tree to restore the sort order.
 
 ## Previous Releases
+
+### Target Scheduler 4.3.3.0
+_Released February 15, 2024_
+* Refactored target and exposure planning percent complete handling
 
 ### Target Scheduler 4.3.2.1
 _Released February 12, 2024_
