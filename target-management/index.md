@@ -36,7 +36,7 @@ The following icons provide access to all management actions.
 |![](../assets/images/save-icon.png)|Save|Save the current item (only enabled in Edit mode after changes have been made).|
 |![](../assets/images/cancel-icon.png)|Cancel|Cancel the current edit operation (only enabled in Edit mode).|
 |![](../assets/images/add-icon.png)|Add|Add a new item (the type depends on the context).  New items are automatically saved, appear in the tree, and are selected for further action.|
-|![](../assets/images/paste-icon.png)|Paste|Paste a copy of an item from the clipboard.  The icon is only enabled when the clipboard contains an item of the appropriate type for the current context.  After pasting, the clipboard is cleared to prevent confusion later (except for copied Exposure Plans which are retained).|
+|![](../assets/images/paste-icon.png)|Paste|Paste a copy of an item from the clipboard.  The icon is only enabled when the clipboard contains an item of the appropriate type for the current context.  After pasting, the clipboard is cleared to prevent confusion later (except for copied Exposure Plans or Scoring Rule Weights which are retained).|
 |![](../assets/images/checkmark-icon.png)|Active/Enabled|Indicates that the item is active/enabled.  See below.|
 |![](../assets/images/disabled-icon.png)|Inactive/Disabled|Indicates that the item is inactive/disabled.  See below.|
 |![](../assets/images/settings-icon.png)|Settings|Jump to the view/edit panel for the item.|
@@ -45,7 +45,7 @@ The following icons provide access to all management actions.
 |![](../assets/images/expand-all-icon.png)|Expand All|Expand all nodes in the corresponding navigation tree.|
 |![](../assets/images/eyedropper-inactive-icon.png)![](../assets/images/eyedropper-active-icon.png)|Color Projects/Targets|Color projects and targets by active/inactive in the navigation tree (click to toggle).  See below.|
 |![](../assets/images/showactive-inactive-icon.png)![](../assets/images/showactive-active-icon.png)|Display Projects/Targets Active Only|Display all projects and targets in the navigation tree or only those that are active (click to toggle).  See below.|
-|![](../assets/images/refresh-icon.png)|Refresh|Refresh/reload.  Most often needed for the navigation trees after adding or removing NINA profiles.|
+|![](../assets/images/refresh-icon.png)|Refresh/Reset|Refresh/reload.  Most often needed for the navigation trees after adding or removing NINA profiles.  Also used to reset Scoring Rule Weights back to the defaults.|
 
 ### Active/Enabled
 
@@ -62,7 +62,7 @@ A Project is active/enabled if:
 * The State is Active
 * At least one of its Targets is active/enabled with at least one incomplete exposure plan.
 
-A project with no targets is considered inactive since it wouldn't be considered by the planner.  Also, note that projects will show as active/enabled but not be scheduled if the project belongs to a NINA profile that isn't currently active.
+A project with no targets is considered inactive since it wouldn't be considered by the planner.  Also, note that projects may show as active/enabled but not be scheduled if the project belongs to a NINA profile that isn't currently active.
 
 ### Orphaned Items
 

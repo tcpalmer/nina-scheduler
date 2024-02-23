@@ -96,3 +96,11 @@ Note that the Dither setting is ignored if you're using an [override exposure or
 #### Scoring Engine Rule Weights
 
 Each rule for the [Scoring Engine](../concepts/planning-engine.html#scoring-engine-1) has an associated weight value that can be adjusted per project.  When the engine runs, the score for each rule is calculated for the target and then multiplied by the rule's weight value.  Weights can vary from 0 (disabling the rule entirely) to 100 (maximum effect).
+
+You can copy and paste Rule Weights from one project to another.  You can also reset the weights back to the defaults.  Notes:
+* Copy, paste, and reset happen immediately **_outside_** of edit mode.
+* The paste buffer is not cleared when you paste, making it easy to repeatedly copy the same set to multiple projects.
+* Copy, paste, and reset are disabled if the Project is in edit mode.
+
+{: .warning }
+Again, the scoring rule weight copy, paste, and reset operations are saved to the database **_immediately_** without any warning or chance to cancel.
