@@ -11,7 +11,7 @@ When the Target Scheduler is used in more advanced sequences such as those suppo
 
 ### When is the Condition Checked?
 
-Unlike some core NINA conditions, Target Scheduler Condition will _not_ continuously check its condition every few seconds with a background process and then immediately interrupt the sequence (as it would for a safety condition).
+Unlike some core NINA conditions, Target Scheduler Condition will _not_ continuously check its condition every few seconds with a background process and then immediately interrupt the sequence (as it would for a safety condition).  (If you need background checking, see [Target Scheduler Background Condition](backgroundcondition.html).)
 
 Instead, the condition operates similar to the _Loop For Iterations_ NINA condition: it only runs the check after all instructions in the container have completed.  If the check indicates to continue, the instructions are reset and run for another iteration.
 

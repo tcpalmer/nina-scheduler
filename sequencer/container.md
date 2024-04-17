@@ -30,7 +30,7 @@ Sequence triggers are generally used to either invoke some operation or interrup
 * During a Wait period, the target has default coordinates of RA 0 and Dec 0.
 * When the planner returns a new target the coordinates are updated to reflect that target.
 
-Any triggers placed under Target Scheduler Container should be thoroughly tested before unattended operation.
+Any triggers placed _under_ Target Scheduler Container should be thoroughly tested before unattended operation.  In general, it's not necessary (and perhaps incorrect) to put any of the core NINA triggers inside this triggers container.  Triggers added by other plugins may need to be placed here but you're on your own.
 
 In releases prior to 4.0.5.0, it was necessary to place the Center After Drift trigger into the Triggers list inside Target Scheduler Container so that it could follow the current target.  However, the code will now recognize a Center After Drift trigger placed into the same container that holds Target Scheduler Container and automatically update it when the target changes.  This provides a much better user experience since the trigger display updates properly.
 
