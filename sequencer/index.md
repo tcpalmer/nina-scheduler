@@ -12,6 +12,7 @@ All Target Scheduler sequence instructions can be found under the "Target Schedu
 The following instructions are implemented:
 * [Target Scheduler Container](container.html).  This is the primary instruction associated with the plugin and typically replaces the Deep Sky Object Instruction Set container in your sequences.
 * [Target Scheduler Condition](condition.html) is a loop condition that can break out of loop in circumstances related to scheduler operation.  This is mostly needed for more complex scenarios dealing with safety concerns or multi-night imaging.
+* [Target Scheduler Background Condition](backgroundcondition.html) is a variant loop condition that will interrupt a sequence if it determines that no more targets remain for the night.
 * [Target Scheduler Flats](flats.html#target-scheduler-flats) is used to take flat frames based on the lights taken recently for your targets.
 * [Target Scheduler Immediate Flats](flats.html#target-scheduler-immediate-flats) is used to take flat frames based on the lights taken for a target you just imaged.
 * [Target Scheduler Sync Container](../synchronization.html#target-scheduler-sync-container) is the counterpart to Target Scheduler Container and is used for synchronization.

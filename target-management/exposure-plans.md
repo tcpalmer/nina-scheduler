@@ -95,4 +95,5 @@ It's important to understand the following when overriding Exposure Order:
 * You are responsible for ensuring that the ordering makes sense.  In particular, if you delete the last instance of an Exposure Plan in the override list, then that plan would never get scheduled.  You would have to cancel the override and then recreate it.
 * If you add or delete Exposure plans, then the override list is reset back to the default order.  **_There is no warning before this takes place._**
 * If you change the Exposure Template for a plan, that plan will be updated to the new template name in the override list.
+* An override order will be copied when exposure plans are pasted.  This will happen when exposures plans are pasted, when a target is pasted, or during a bulk import when the template target has an override order.
 * Be aware that you're likely to over-dither as exposure plans reach completion or are rejected for moon avoidance.  The dithers are fixed in the order and the fact that exposures prior to that are dropped doesn't stop inclusion of the dither.

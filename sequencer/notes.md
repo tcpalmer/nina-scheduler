@@ -2,7 +2,7 @@
 layout: default
 title: Sequence Item Notes
 parent: Advanced Sequencer
-nav_order: 5
+nav_order: 6
 ---
 
 # Sequence Item Notes

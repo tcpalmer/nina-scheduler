@@ -65,7 +65,7 @@ The procedure to perform a bulk import is the same regardless of CSV format.
 3. Click the '...' to select your CSV file.
 4. You may optionally filter the targets to a single type by selecting the desired type in the Import Type Filter dropdown.  This dropdown will populate with the unique set of types after your CSV file has been selected.
 5. Select the project to import the targets into.  This can be a new project or any other project currently defined for the profile.
-6. By default, imported targets will have no Exposure Plans added.  However, you can select an existing target to use as a 'template': all exposure plans from the template target are copied to each new target (accepted and acquired counts are cleared).
+6. By default, imported targets will have no Exposure Plans added.  However, you can select an existing target to use as a 'template': all exposure plans from the template target are copied to each new target (accepted and acquired counts are cleared).  If the template target has an override exposure order, it will be copied too.
 7. When ready, click the import icon to execute.
 
 You will be asked to confirm before the imported targets are saved.
@@ -74,7 +74,7 @@ By using the Import Type Filter and Target Templates, you can segregate imported
 
 ### Target Scheduler CSV
 
-Target Scheduler uses a simple CSV file for some operations.  If you have an existing list of targets, it's usually straightforward to convert it into this format.  The file should include the header row and adhere to general CSV formatting conventions.
+Target Scheduler uses a simple CSV file for some operations.  If you have an existing list of targets, it's usually straightforward to convert it into this format.  The file should include the header row and adhere to general CSV formatting conventions.  See the 2024 [Messier Marathon](../events/TS-MM-2024.csv) file for an example.
 
 Columns:
 * Type: target type or category, e.g. 'Galaxy' or 'Dark Nebula'
