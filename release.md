@@ -23,7 +23,6 @@ Refer to the applicable documentation for details.  See the project [release not
 
 ## Known Issues
 
-* If image grading is off, the completion percentage on exposure plans is not calculated properly (i.e. based on the exposure throttle).  Also, the green/red active/inactive icons (which depend on the completeness calculation) will not be correct.
 * Icons disappear when using Light or Seance color schemes.
 * Currently, a slew will always do a center which will also rotate a dome if connected.  However, if we provide a way to disable plate solving, then it would use the SlewScopeToRaDec instruction which does not rotate a dome.  Could possibly add a SynchronizeDome instruction with the slew.  Would need someone with a dome to disable platesolving and test such a fix.
 * Although profiles/projects/targets are initially sorted properly, adding one or changing a name doesn't properly re-sort.  However, you can click the refresh icon on the tree to restore the sort order.
