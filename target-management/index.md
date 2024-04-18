@@ -66,4 +66,4 @@ A project with no targets is considered inactive since it wouldn't be considered
 
 ### Orphaned Items
 
-If you delete a NINA profile that had Projects or Exposure Templates attached to it, then they become _orphaned_.  If so, you will see an item in the Profiles list named 'ORPHANED'.  If you select it, you'll be presented with a list of impacted items and can choose to either move or delete each one.
+If you delete a NINA profile that had Projects or Exposure Templates attached to it or copy the Target Scheduler database to a new PC, then Projects and Exposure Templates become _orphaned_.  If so, you will see an item in the Profiles list named 'ORPHANED'.  If you select it, you'll be presented with a list of impacted items and can choose to either move or delete each one.
