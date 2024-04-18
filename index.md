@@ -14,9 +14,6 @@ You enter your desired projects, targets, and exposure plans into a UI exposed b
 
 The goal of the plugin is not to squeeze every available second out of an imaging window.  You may have periods where it doesn't seem to be particularly optimal (hopefully reduced as the plugin improves).  It should, however, significantly reduce the configuration and setup burden associated with sophisticated, multi-target acquisition.
 
-{: .note }
-This documentation describes the latest version of the plugin which is for NINA 3 only.  Version 0.8.0.0 and earlier were for NINA 2.  No further updates will be added to that version unless a serious problem is discovered and the user cannot move to NINA 3.
-
 ## Getting Started
 You should first familiarize yourself with the [concepts](concepts/index.html) underlying the plugin.  After that, visit the [Getting Started](getting-started.html) page for prerequisites and next steps.
 
