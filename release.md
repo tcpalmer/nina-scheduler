@@ -4,16 +4,11 @@ title: Release Notes
 nav_order: 13
 ---
 
-# Release Notes 4.3.6.0
-_Released April 17, 2024_
-
-## Changes in this Release
-
-* Added Target Scheduler Background Condition sequencer instruction
-* TS Container UI reworked to be more like a standard container and with better scrolling behavior (thanks Stefan)
-* Fixed problem with override exposure order not being copied on paste operations and bulk import
-* Fixed bug where internal filter name is unknown for OSC users
-* Fixed bug (hopefully) where sync client was failing to process images and update the database
+## Release Notes 4.4.0.0
+_Released May 4, 2024_
+* Added additional moon avoidance options:
+    * Ability to reject exposures when the moon is above a maximum altitude
+    * Ability to progressively relax classic avoidance when the moon is near or below the horizon
 
 See below for details on [previous releases](#previous-releases).
 
@@ -28,6 +23,14 @@ Refer to the applicable documentation for details.  See the project [release not
 * Although profiles/projects/targets are initially sorted properly, adding one or changing a name doesn't properly re-sort.  However, you can click the refresh icon on the tree to restore the sort order.
 
 ## Previous Releases
+
+### Target Scheduler 4.3.6.0
+_Released April 17, 2024_
+* Added Target Scheduler Background Condition sequencer instruction
+* TS Container UI reworked to be more like a standard container and with better scrolling behavior (thanks Stefan)
+* Fixed problem with override exposure order not being copied on paste operations and bulk import
+* Fixed bug where internal filter name is unknown for OSC users
+* Fixed bug (hopefully) where sync client was failing to process images and update the database
 
 ### Target Scheduler 4.3.5.0
 _Released March 8, 2024_
