@@ -6,12 +6,14 @@ nav_order: 13
 
 ## Release Notes 4.4.0.0
 _Released June 8, 2024_
+
+## Changes in this Release
 * Added ability to progressively relax classic moon avoidance when the moon is near or below the horizon
 * Fixed (hopefully) crash when making some TS database changes after other NINA operations
 * Fixed bug with nighttime only exposures and high latitudes near summer solstice
 * Fixed bug logging training flat details which broke taking some flats
 
-See below for details on [previous releases](#previous-releases).
+* See below for details on [previous releases](#previous-releases).
 
 ## General
 
@@ -24,6 +26,10 @@ Refer to the applicable documentation for details.  See the project [release not
 * Although profiles/projects/targets are initially sorted properly, adding one or changing a name doesn't properly re-sort.  However, you can click the refresh icon on the tree to restore the sort order.
 
 ## Previous Releases
+
+### Target Scheduler 4.3.7.0
+_Released May 5, 2024_
+* Raised timeouts/deadlines for sync operations
 
 ### Target Scheduler 4.3.6.0
 _Released April 17, 2024_
