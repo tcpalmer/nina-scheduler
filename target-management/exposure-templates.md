@@ -30,32 +30,52 @@ When done, click the Save icon to save your changes or the Cancel icon to cancel
 
 ### Exposure Template Properties
 
-|Property|Type|Description|
-|:--|:--|:--|
-|Name|string|The name of the template|
-|Filter|dropdown|The name of the associated filter on the filter wheel for the profile.|
-|Default Exposure|double|The default exposure duration to use unless overridden in Exposure Plans.  Exposure plans using the template default will pick up a change on the next planning run.|
-|Gain|integer|The desired gain setting for the exposure.  Leave blank to use the default defined for the camera.|
-|Offset|integer|The desired offset setting for the exposure.  Leave blank to use the default defined for the camera.|
-|Binning|dropdown|The binning mode for the exposure.|
-|Readout Mode|integer|The desired readout mode setting for the exposure.  Leave blank to use the default defined for the camera.|
-|Acceptable Twilight|dropdown|The brightest level of twilight that is suitable for using this filter.|
-|Moon Avoidance|boolean|Enable/disable the moon avoidance calculation - see below.|
-|Avoidance Separation|double 0-180|The separation angle for the moon avoidance calculation - see below.|
-|Avoidance Width|integer 1-14|The width in days for the moon avoidance calculation - see below.|
-|Maximum Humidity|double|Not currently implemented.|
+| Property                 | Type         | Description                                                                                                                                                          |
+|:-------------------------|:-------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name                     | string       | The name of the template                                                                                                                                             |
+| Filter                   | dropdown     | The name of the associated filter on the filter wheel for the profile.                                                                                               |
+| Default Exposure         | double       | The default exposure duration to use unless overridden in Exposure Plans.  Exposure plans using the template default will pick up a change on the next planning run. |
+| Gain                     | integer      | The desired gain setting for the exposure.  Leave blank to use the default defined for the camera.                                                                   |
+| Offset                   | integer      | The desired offset setting for the exposure.  Leave blank to use the default defined for the camera.                                                                 |
+| Binning                  | dropdown     | The binning mode for the exposure.                                                                                                                                   |
+| Readout Mode             | integer      | The desired readout mode setting for the exposure.  Leave blank to use the default defined for the camera.                                                           |
+| Acceptable Twilight      | dropdown     | The brightest level of twilight that is suitable for using this filter.                                                                                              |
+| Maximum Humidity         | double       | Not currently implemented.                                                                                                                                           |
+| Enable Classic Avoidance | boolean      | Enable/disable the classic moon avoidance calculation - see below.                                                                                                   |
+| Classic Separation       | 0 to 180°    | The separation angle for the moon avoidance calculation - see below.                                                                                                 |
+| Classic Width            | integer 1-14 | The width in days for the moon avoidance calculation - see below.                                                                                                    |
+| Relaxation / Scale       | dropdown     | The scaling factor (or off) for avoidance relaxation - see below.                                                                                                    |
+| Minimum Altitude         | -90° to -1°  | The lower moon altitude limit of the relaxation range for avoidance relaxation - see below.                                                                          |
+| Maximum Altitude          | 0° to 30°    | The upper moon altitude limit of the relaxation range for avoidance relaxation - see below.                                                                          |
 
-### Moon Avoidance
 
-The Moon Avoidance formula ("_Moon-Avoidance Lorentzian_") was formulated by the [Berkeley Automated Imaging Telescope](http://astron.berkeley.edu/~bait/) (BAIT) team.  The formulation used here is from [ACP](http://bobdenny.com/ar/RefDocs/HelpFiles/ACPScheduler81Help/Constraints.htm).
+## Moon Avoidance
+
+Exposure Templates provide multiple options for controlling when exposures are permitted given the moon age (phase), separation from the target, and altitude.
+
+### Classic Moon Avoidance
+
+The Classic Moon Avoidance formula ("_Moon-Avoidance Lorentzian_") was formulated by the [Berkeley Automated Imaging Telescope](http://astron.berkeley.edu/~bait/) (BAIT) team.  The formulation used here is from [ACP](http://bobdenny.com/ar/RefDocs/HelpFiles/ACPScheduler81Help/Constraints.htm).
 
 The formula takes two fixed parameters: _separation_ (aka distance, in degrees) and _width_ (days).  From ACP:
 *At full Moon the avoidance will be distance, and width days before (or after) the avoidance will be one half distance.*
 
 If the angular distance from your target to the moon is less than the calculated avoidance separation, the exposure plan will be rejected.  The separation is calculated at the midpoint time between the start and end time imaging times determined in the planner.  As the separation increases or decreases throughout a night, the avoidance determination may change as the planner is called again.
 
-#### Setting Parameters
-When enabled, set distance to the minimum acceptable separation at full moon.  Then use width to control how quickly the curve drops from the distance value.  Some charts make this clear: X = moon age in days, Y = calculated distance.
+### Relaxing Classic Moon Avoidance
+
+Since the impact of the moon on sky quality diminishes as the moon gets near or below the horizon, it may be desirable to relax the impact of classic avoidance when this occurs.  If the Relaxation / Scale property is not 'Off', then relaxation applies:
+* The scale value adjusts the impact by reducing the separation parameter, in effect shifting the entire avoidance curve down and permitting closer separations independent of moon age.
+* The Minimum and Maximum Altitude values define the range over which relaxation occurs:
+  * If the moon altitude is below the minimum, then avoidance is off altogether and the exposure will not be rejected (at least not for moon avoidance).
+  * If the altitude is above the maximum, then classic, unrelaxed avoidance applies.
+
+Otherwise, both the separation and width properties are scaled by the altitude to reduce the impact of avoidance:
+* Separation = Separation + RelaxScale * (_altitude_ - MaxAltitude)
+* Width = Width * ((_altitude_ - MinimumAltitude) / (MaximumAltitude - MinimumAltitude))
+
+#### Setting Classic Parameters
+When enabled, set Separation to the minimum acceptable separation at full moon.  Then use Width to control how quickly the curve drops from the distance value.  Some charts make this clear: X = moon age in days, Y = calculated distance.
 
 ![](../assets/images/moon-avoid-1.png)
 *Distance=120 and width=14*
@@ -64,6 +84,14 @@ When enabled, set distance to the minimum acceptable separation at full moon.  T
 *Distance=120 and width=4, showing much faster falloff from the peak distance value*
 
 The values used on the ACP site are very conservative.  For narrowband imaging you could get away with distance=60 and width=7 which would need 60° separation at full moon but only 30° at first or last quarter.
+
+#### Setting Relaxation Parameters
+
+By default, relaxation will be off.  If avoidance is enabled, you can enable relaxation by setting a scale factor of 1-8.  The range defaults to -15° - 5°.  To adjust:
+* More conservative (closer to classic): decrease the scale, increase the min-max range, and/or shift the range to lower altitudes.
+* More aggressive: increase the scale, decrease the min-max range, and/or shift the range to higher altitudes.
+
+The [attached Excel spreadsheet](Relaxed-Moon-Avoidance.xlsx) lets you experiment with different avoidance and relaxation settings and see the impact.
 
 ## Color Cameras
 
