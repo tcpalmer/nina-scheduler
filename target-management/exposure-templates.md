@@ -41,7 +41,6 @@ When done, click the Save icon to save your changes or the Cancel icon to cancel
 | Readout Mode             | integer      | The desired readout mode setting for the exposure.  Leave blank to use the default defined for the camera.                                                           |
 | Acceptable Twilight      | dropdown     | The brightest level of twilight that is suitable for using this filter.                                                                                              |
 | Maximum Humidity         | double       | Not currently implemented.                                                                                                                                           |
-| Max Moon Altitude        | angle        | Optionally reject exposures if moon is above this altitude - see below.                                                                                              |
 | Enable Classic Avoidance | boolean      | Enable/disable the classic moon avoidance calculation - see below.                                                                                                   |
 | Classic Separation       | 0 to 180°    | The separation angle for the moon avoidance calculation - see below.                                                                                                 |
 | Classic Width            | integer 1-14 | The width in days for the moon avoidance calculation - see below.                                                                                                    |
@@ -53,13 +52,6 @@ When done, click the Save icon to save your changes or the Cancel icon to cancel
 ## Moon Avoidance
 
 Exposure Templates provide multiple options for controlling when exposures are permitted given the moon age (phase), separation from the target, and altitude.
-
-### Maximum Altitude
-
-By setting the Max Moon Altitude property to a value other than 'Off', you can reject all exposures when the moon is above the value.  Note that this is in effect whether classic avoidance is enabled or not.
-
-Moon altitude is changing much faster than moon age - potentially at the sidereal rate.  To be conservative, the moon altitude used for comparison is the greater of the values at the start or end of the target plan.
-
 
 ### Classic Moon Avoidance
 
@@ -95,7 +87,7 @@ The values used on the ACP site are very conservative.  For narrowband imaging y
 
 #### Setting Relaxation Parameters
 
-By default, relaxation will be on if avoidance is enabled, using a scale of 2 and an altitude range of -15° to 5°.  To adjust:
+By default, relaxation will be off.  If avoidance is enabled, you can enable relaxation by setting a scale factor of 1-8.  The range defaults to -15° - 5°.  To adjust:
 * More conservative (closer to classic): decrease the scale, increase the min-max range, and/or shift the range to lower altitudes.
 * More aggressive: increase the scale, decrease the min-max range, and/or shift the range to higher altitudes.
 

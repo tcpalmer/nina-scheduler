@@ -5,10 +5,11 @@ nav_order: 13
 ---
 
 ## Release Notes 4.4.0.0
-_Released May 4, 2024_
-* Added additional moon avoidance options:
-    * Ability to reject exposures when the moon is above a maximum altitude
-    * Ability to progressively relax classic avoidance when the moon is near or below the horizon
+_Released June 8, 2024_
+* Added ability to progressively relax classic moon avoidance when the moon is near or below the horizon
+* Fixed (hopefully) crash when making some TS database changes after other NINA operations
+* Fixed bug with nighttime only exposures and high latitudes near summer solstice
+* Fixed bug logging training flat details which broke taking some flats
 
 See below for details on [previous releases](#previous-releases).
 
