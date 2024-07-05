@@ -4,18 +4,17 @@ title: Release Notes
 nav_order: 13
 ---
 
-## Release Notes 4.5.0.0
-_Released June 19, 2024_
+## Release Notes 4.5.1.0
+_Released July 5, 2024_
 
 ## Changes in this Release
-* Relaxed matching criteria for trained flats, will now match if gain or offset is not equal
-* Added additional logging for flat panel operations
+* Fixed bug with smart plan window and concurrent or future potential targets
 
 See below for details on [previous releases](#previous-releases).
 
 ## General
 
-Refer to the applicable documentation for details.  See the project [release notes](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/RELEASENOTES.md) and [change log](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/CHANGELOG.md) for the complete history.
+Refer to the applicable documentation for details.  See the project [change log](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/CHANGELOG.md) for the complete history.
 
 ## Known Issues
 
@@ -24,6 +23,11 @@ Refer to the applicable documentation for details.  See the project [release not
 * Although profiles/projects/targets are initially sorted properly, adding one or changing a name doesn't properly re-sort.  However, you can click the refresh icon on the tree to restore the sort order.
 
 ## Previous Releases
+
+### Target Scheduler 4.5.0.0
+_Released June 19, 2024_
+* Relaxed matching criteria for trained flats, will now match if gain or offset is not equal
+* Added additional logging for flat panel operations
 
 ### Target Scheduler 4.4.0.0
 _Released June 8, 2024_
