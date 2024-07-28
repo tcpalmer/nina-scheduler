@@ -55,7 +55,7 @@ Exposure Templates provide multiple options for controlling when exposures are p
 
 ### Classic Moon Avoidance
 
-The Classic Moon Avoidance formula ("_Moon-Avoidance Lorentzian_") was formulated by the [Berkeley Automated Imaging Telescope](http://astron.berkeley.edu/~bait/) (BAIT) team.  The formulation used here is from [ACP](http://bobdenny.com/ar/RefDocs/HelpFiles/ACPScheduler81Help/Constraints.htm).
+The Classic Moon Avoidance formula ("_Moon-Avoidance Lorentzian_") was formulated by the [Berkeley Automated Imaging Telescope](https://w.astro.berkeley.edu/bait/) (BAIT) team.  The formulation used here is from [ACP](http://bobdenny.com/ar/RefDocs/HelpFiles/ACPScheduler81Help/Constraints.htm).
 
 The formula takes two fixed parameters: _separation_ (aka distance, in degrees) and _width_ (days).  From ACP:
 *At full Moon the avoidance will be distance, and width days before (or after) the avoidance will be one half distance.*
@@ -91,7 +91,7 @@ By default, relaxation will be off.  If avoidance is enabled, you can enable rel
 * More conservative (closer to classic): decrease the scale, increase the min-max range, and/or shift the range to lower altitudes.
 * More aggressive: increase the scale, decrease the min-max range, and/or shift the range to higher altitudes.
 
-The [attached Excel spreadsheet](Relaxed-Moon-Avoidance.xlsx) lets you experiment with different avoidance and relaxation settings and see the impact.
+The [attached Excel spreadsheet](Relaxed-Moon-Avoidance.xlsx) lets you experiment with different avoidance and relaxation settings and see the impact.  It can be used for both classic and relaxed avoidance.
 
 ## Color Cameras
 
