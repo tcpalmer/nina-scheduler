@@ -42,6 +42,10 @@ If your target is in edit mode and you leave the plugin page and then use the Fr
 
 To delete a target, click the Delete icon.  If the _Delete Acquired Images_ [preference](profiles.html#profile-preferences) (enabled by default) is on, then any [acquired image](../post-acquisition/acquisition-data.html) records (not image files) associated with that target will also be deleted.
 
+### Reset Completion
+
+You can reset completion for a target.  This will set the Accepted and Acquired fields to zero on all Exposure Plans for the target.  Associated [acquired images](../post-acquisition/acquisition-data.html) are not removed.
+
 ### Target Properties
 
 |Property|Type|Description|

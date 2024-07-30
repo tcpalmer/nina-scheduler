@@ -31,6 +31,10 @@ If you used the NINA Framing Assistant to create mosaic panels for a target, you
 
 When you import mosaic panels into a project, the Mosaic Project flag is automatically set to true.
 
+### Reset Completion
+
+You can reset completion for an entire project.  This will set the Accepted and Acquired fields to zero on all Exposure Plans for all Targets under this project.  Associated [acquired images](../post-acquisition/acquisition-data.html) are not removed.
+
 ### Project Properties
 
 |Property|Type|Description|
@@ -51,6 +55,9 @@ When you import mosaic panels into a project, the Mosaic Project flag is automat
 |Flats Handling|integer|Specify behavior for [automated flats](../sequencer/flats.html).|
 |Rule Weights|integer 0-100|Weight values for each Scoring Engine rule - see below.|
 
+#### Project Name
+If Target Scheduler is actively taking images for a managed target (lights or flats), the name of the associated project is available in the custom image file pattern \$\$TSPROJECTNAME\$\$.  The pattern can be used in your image file patterns (Options > Imaging) just like \$\$FILTER\$\$ or \$\$TARGETNAME\$\$.
+
 #### Project State
 
 The project state provides control over whether a project is considered for scheduling or not - and only Active projects are considered.  When a project is first created, the state is Draft; complete project/target setup and then set the state to Active.  Use the Inactive and Closed states as needed.
@@ -63,7 +70,7 @@ If a project specifies a meridian window, then the minimum time cannot be greate
 Your horizon (the altitude at any azimuth) used to determine target visibility is controlled as follows:
 * If you set Use Custom Horizon to false, then your horizon is the value you set for Minimum Altitude.
 * If you enable Use Custom Horizon, it will use the custom horizon for your NINA profile (from NINA Options > General > Astrometry) and calculate your visibility horizon as the greater of the custom horizon at each azimuth _or_ the Minimum Altitude setting.
-* When using your Custom Horizon, you can also extend it towards the zenith by entering a Horizon Offset.  This can be used to add a few  degrees to ensure you're clearing all obstructions.
+* When using your Custom Horizon, you can also extend it towards the zenith by entering a Horizon Offset.  This can be used to add a few degrees to ensure you're clearing all obstructions.
 
 The Minimum Altitude setting is therefore a 'floor' - you'll never try to image targets for the project while they are below this altitude, even if your Custom Horizon is lower.
 

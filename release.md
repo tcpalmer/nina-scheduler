@@ -4,11 +4,14 @@ title: Release Notes
 nav_order: 13
 ---
 
-## Release Notes 4.5.1.0
-_Released July 5, 2024_
+## Release Notes 4.6.0.0
+_Released XX XX, 2024_
 
 ## Changes in this Release
-* Fixed bug with smart plan window and concurrent or future potential targets
+* Added ability to reset target completion at the profile, project, and target levels.
+* Added support for TSPROJECTNAME path variable.
+* TS Flats instruction no longer displays misleading progress when idle.
+* Fixed bug with caching and project/target horizon changes.
 
 See below for details on [previous releases](#previous-releases).
 
@@ -23,6 +26,10 @@ Refer to the applicable documentation for details.  See the project [change log]
 * Although profiles/projects/targets are initially sorted properly, adding one or changing a name doesn't properly re-sort.  However, you can click the refresh icon on the tree to restore the sort order.
 
 ## Previous Releases
+
+### Target Scheduler 4.5.1.0
+_Released July 5, 2024_
+* Fixed bug with smart plan window and concurrent or future potential targets
 
 ### Target Scheduler 4.5.0.0
 _Released June 19, 2024_
