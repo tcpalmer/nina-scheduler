@@ -5,7 +5,7 @@ nav_order: 13
 ---
 
 ## Release Notes 4.6.0.0
-_Released XX XX, 2024_
+_Released July 30, 2024_
 
 ## Changes in this Release
 * Added ability to reset target completion at the profile, project, and target levels.
