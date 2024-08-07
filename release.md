@@ -4,14 +4,12 @@ title: Release Notes
 nav_order: 13
 ---
 
-## Release Notes 4.6.0.0
-_Released July 30, 2024_
+## Release Notes 4.7.1.0
+_Released August 7, 2024_
 
 ## Changes in this Release
-* Added ability to reset target completion at the profile, project, and target levels.
-* Added support for TSPROJECTNAME path variable.
-* TS Flats instruction no longer displays misleading progress when idle.
-* Fixed bug with caching and project/target horizon changes.
+* Added support for custom event containers in the Target Scheduler Sync Container instruction.
+* Added support for running TS Flats instruction in a sync client sequence.
 
 See below for details on [previous releases](#previous-releases).
 
@@ -26,6 +24,13 @@ Refer to the applicable documentation for details.  See the project [change log]
 * Although profiles/projects/targets are initially sorted properly, adding one or changing a name doesn't properly re-sort.  However, you can click the refresh icon on the tree to restore the sort order.
 
 ## Previous Releases
+
+### Target Scheduler 4.6.0.0
+_Released July 30, 2024_
+* Added ability to reset target completion at the profile, project, and target levels.
+* Added support for TSPROJECTNAME path variable.
+* TS Flats instruction no longer displays misleading progress when idle.
+* Fixed bug with caching and project/target horizon changes.
 
 ### Target Scheduler 4.5.1.0
 _Released July 5, 2024_

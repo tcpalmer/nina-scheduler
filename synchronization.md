@@ -7,9 +7,6 @@ has_children: false
 
 # Synchronization
 
-{: .warning }
-The synchronization capability should be considered experimental at this point.  The implementation is complex and comprehensive testing is challenging.  You should expect the capability to evolve quickly as problems are fixed.
-
 The existing NINA Synchronization plugin provides support for multiple OTAs/cameras on a single mount with a single guider.  It does this by setting up communications between two or more running instances of NINA and then synchronizing some activities via custom instructions in each sequence.  The main use case is to have a primary NINA instance (server) handle mount operations and guiding and then synchronize with secondary instances (clients), so they can take exposures when the primary is but then wait while the primary is doing any mount operations (slew, dither).
 
 By controlling target selection and exposure planning, Target Scheduler (TS) precludes using the existing instructions implemented by the Synchronization plugin.  There are several challenges but the primary block is that in TS, projects and targets explicitly belong to one NINA profile.  Since you can only run multiple instances of NINA if each is running a different profile, each instance would see a different set of active projects and targets.
@@ -68,7 +65,7 @@ In general, there must be a 1-1 relationship between Target Scheduler Sync Wait 
 
 The **_Target Scheduler Sync Container_** instruction is used only in client sequences and should be added so that it runs at the same time as a corresponding Target Scheduler Container instruction in the server sequence.  This can be done with one or more Target Scheduler Sync Wait instructions.
 
-This instruction will poll the server until the server is ready to send an exposure.  At that point, the following happens on the client:
+This instruction will poll the server until the server is ready to send an exposure (or other action).  In the case of an exposure, the following happens on the client:
 * Exposure is accepted and the server is notified
 * Camera readout mode is set and filter is switched (if needed)
 * Exposure is taken
@@ -85,6 +82,9 @@ If the scheduler returns an empty plan then imaging is done for the night and th
 The server instance will execute the slew/center at the start of a new target as usual.  Assuming server and client are in sync, the client will be doing nothing during this operation - simply waiting on the next action from the server.
 
 However, if the server has a rotator connected, it will perform the slew/center/rotate and then inform the client that it needs to perform a solve/rotate.  If the client also has a rotator connected, it will execute the operation.  The server will wait for this to complete (or time out) before continuing with exposures.
+
+## Custom Event Containers
+You can add [custom event containers](sequencer/container.html#custom-event-instructions) to the Target Scheduler Sync Container instruction just like Target Scheduler Container.  When the server detects that it's time to run a specific event container, it will alert the client which will pick it up as the next action to run.  When done, the client will inform the server which will then continue.  Note that the client will be alerted regardless of whether the server has instructions in its corresponding container or not.
 
 ## Selection of Exposure Templates
 

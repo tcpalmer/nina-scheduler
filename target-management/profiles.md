@@ -51,9 +51,10 @@ The following preferences drive the behavior of the [Image Grader](../post-acqui
 ### Synchronization Preferences
 The following preferences control [synchronization](../synchronization.html).
 
-|Property|Type|Default|Description|
-|:--|:--|:--|:--|
-|Enable Synchronization|bool|false|Enable synchronization for this profile.|
-|Wait Timeout|int|300|The timeout (in seconds) used by the [Target Scheduler Sync Wait](../synchronization.html#target-scheduler-sync-wait) instruction on both sync server and client instances.|
-|Action Timeout|int|300|The timeout (in seconds) used by the server when waiting for all clients to accept an _action_: either an exposure or (if applicable) a solve/rotate command.  See [Target Scheduler Sync Container](../synchronization.html#target-scheduler-sync-container).|
-|Solve/Rotate Timeout|int|300|The timeout (in seconds) used by the server when waiting for all clients to complete a solve/rotate command.  See [Slew/Center/Rotate](../synchronization.html#slewcenterrotate).|
+| Property                |Type|Default| Description                                                                                                                                                                                                                                                        |
+|:------------------------|:--|:--|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Enable Synchronization  |bool|false| Enable synchronization for this profile.                                                                                                                                                                                                                           |
+| Wait Timeout            |int|300| The timeout (in seconds) used by the [Target Scheduler Sync Wait](../synchronization.html#target-scheduler-sync-wait) instruction on both sync server and client instances.                                                                                        |
+| Action Timeout          |int|300| The timeout (in seconds) used by the server when waiting for all clients to accept an _action_: an exposure, a solve/rotate command, or a custom event container.  See [Target Scheduler Sync Container](../synchronization.html#target-scheduler-sync-container). |
+| Solve/Rotate Timeout    |int|300| The timeout (in seconds) used by the server when waiting for all clients to complete a solve/rotate command.  See [Slew/Center/Rotate](../synchronization.html#slewcenterrotate).                                                                                  |
+| Event Container Timeout |int|300| The timeout (in seconds) used by the server when waiting for all clients to complete a custom event container.  See [Target Scheduler Sync Container](../synchronization.html#target-scheduler-sync-container).                                                                                                                                              |
