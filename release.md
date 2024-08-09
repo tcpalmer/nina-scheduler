@@ -4,8 +4,8 @@ title: Release Notes
 nav_order: 13
 ---
 
-## Release Notes 4.7.1.0
-_Released August 7, 2024_
+## Release Notes 4.7.3.0
+_Released August 9, 2024_
 
 ## Changes in this Release
 * Added support for custom event containers in the Target Scheduler Sync Container instruction.
