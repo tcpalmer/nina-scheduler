@@ -117,6 +117,10 @@ If the same target is returned by the planner multiple times in a night, you cou
 
 However, if rotator repeatability is an issue for you, then you might want to set this to ON so that you'll regenerate flats for each plan (which means separately for each set of lights captured after each solve/rotate).  This will obviously take more time away from imaging lights.
 
+### Flats and Synchronized Execution
+
+When running [synchronized](synchronization.html), you can run either TS Flats or TS Immediate Flats in either the server or the client instances.  When running in a client, flats will be generated only for images taken on that client.  Note that you must have the appropriate trained flats in the client profile (Equipment > Flat Panel > Flat Wizard trained exposure times).
+
 ## Session Identifier for Lights and Flats
 
 The flats capability introduces the concept of a Target Scheduler _session identifier_ that can link flats to the associated lights.  The value is made available by a custom Image Pattern named \$\$TSSESSIONID\$\$.  The pattern can be used in your image file patterns (Options > Imaging) just like \$\$FILTER\$\$ or \$\$TARGETNAME\$\$.  The value is just a number in a fixed-width string like '0001' or '0023'.

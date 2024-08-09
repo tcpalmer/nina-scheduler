@@ -229,16 +229,17 @@ Target Scheduler writes log messages to a [different log file](technical-details
 
 The following constants are used in the code to determine the timing of various polling periods and timeouts.  These cannot be changed by the user.
 
-|Item|Type|Default|Description|
-|:--|:--|:--|:--|
-|SERVER_WAIT_POLL_PERIOD|millisecs|500|Poll period used by the server when checking for clients to report wait and then to report ready.|
-|SERVER_STALE_CLIENT_PURGE_CHECK_PERIOD|millisecs|3000|Poll period used by the server when checking for stale (dead) clients.|
-|SERVER_STALE_CLIENT_PURGE_TIMEOUT|seconds|10|Grace period for clients to report active before being purged.|
-|SERVER_AWAIT_EXPOSURE_POLL_PERIOD|millisecs|1000|Poll period used by the server when waiting for all clients to accept an exposure.|
-|SERVER_AWAIT_EXPOSURE_COMPLETE_POLL_PERIOD|millisecs|1000|Poll period used by the server when waiting for all clients to complete an exposure.|
-|SERVER_AWAIT_EXPOSURE_COMPLETE_TIMEOUT|seconds|30|Timeout when waiting for all clients to complete an exposure.  Since the server will have completed the same exposure, clients should finish the same exposure soon after.|
-|SERVER_AWAIT_SOLVEROTATE_POLL_PERIOD|millisecs|1000|Poll period used by the server when waiting for clients to accept a solve/rotate.|
-|SERVER_AWAIT_SOLVEROTATE_COMPLETE_POLL_PERIOD|millisecs|1000|Poll period used by the server when waiting for clients to complete a solve/rotate.|
-|CLIENT_KEEPALIVE_PERIOD|millisecs|3000|Poll period used by clients to report current state.|
-|CLIENT_WAIT_POLL_PERIOD|millisecs|1000|Poll period used by clients when waiting for completion of a sync wait.|
-|CLIENT_ACTION_READY_POLL_PERIOD|millisecs|3000|Poll period used by clients when waiting for an action (exposure or solve/rotate).|
+|Item|Type|Default| Description                                                                                                                                                                |
+|:--|:--|:--|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|SERVER_WAIT_POLL_PERIOD|millisecs|500| Poll period used by the server when checking for clients to report wait and then to report ready.                                                                          |
+|SERVER_STALE_CLIENT_PURGE_CHECK_PERIOD|millisecs|3000| Poll period used by the server when checking for stale (dead) clients.                                                                                                     |
+|SERVER_STALE_CLIENT_PURGE_TIMEOUT|seconds|10| Grace period for clients to report active before being purged.                                                                                                             |
+|SERVER_AWAIT_EXPOSURE_POLL_PERIOD|millisecs|1000| Poll period used by the server when waiting for all clients to accept an exposure.                                                                                         |
+|SERVER_AWAIT_EXPOSURE_COMPLETE_POLL_PERIOD|millisecs|1000| Poll period used by the server when waiting for all clients to complete an exposure.                                                                                       |
+|SERVER_AWAIT_EXPOSURE_COMPLETE_TIMEOUT|seconds|30| Timeout when waiting for all clients to complete an exposure.  Since the server will have completed the same exposure, clients should finish the same exposure soon after. |
+|SERVER_AWAIT_SOLVEROTATE_POLL_PERIOD|millisecs|1000| Poll period used by the server when waiting for clients to accept a solve/rotate.                                                                                          |
+|SERVER_AWAIT_SOLVEROTATE_COMPLETE_POLL_PERIOD|millisecs|1000| Poll period used by the server when waiting for clients to complete a solve/rotate.                                                                                        |
+|SERVER_AWAIT_EVENTCONTAINER_POLL_PERIOD|millisecs|1000| Poll period used by the server when waiting for clients to complete an event container.                                                                                    |
+|CLIENT_KEEPALIVE_PERIOD|millisecs|3000| Poll period used by clients to report current state.                                                                                                                       |
+|CLIENT_WAIT_POLL_PERIOD|millisecs|1000| Poll period used by clients when waiting for completion of a sync wait.                                                                                                    |
+|CLIENT_ACTION_READY_POLL_PERIOD|millisecs|3000| Poll period used by clients when waiting for an action (exposure or solve/rotate).                                                                                         |
