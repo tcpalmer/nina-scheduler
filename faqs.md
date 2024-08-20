@@ -57,6 +57,14 @@ _Will the plugin work with mount X, camera Y, or filter wheel Z?_
 
 > If the equipment works properly today in the NINA Advanced Sequencer, then it should work properly with the plugin since it uses the same underlying NINA instructions to move the mount, operate the camera, and rotate the filter wheel.
 
+_Can I update the TS database directly?_
+
+> Yes - see [Database Access and Updates](advanced-topics.htmldatabase-access-and-updates).
+
+_I have a mosaic project with multiple panels and want to balance exposures across the panels.  Is this possible?_
+
+> Yes - by adjusting [scoring engine rule weights](concepts/planning-engine.html#scoring-engine-1).  Set the weight for Mosaic Completion high and the Percent Complete and Target Switch Penalty weights to zero.
+
 _Why doesn't the plugin support manual filter trays or manual rotators?_
 
 > Having to pause the sequence to alert the user to make a manual change in the middle of a session is inconsistent with the primary purpose of the plugin: supporting higher levels of automation.
