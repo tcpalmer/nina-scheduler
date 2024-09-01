@@ -4,12 +4,13 @@ title: Release Notes
 nav_order: 14
 ---
 
-## Release Notes 4.7.3.0
-_Released August 9, 2024_
+## Release Notes 4.7.5.0
+_Released September 1, 2024_
 
 ## Changes in this Release
-* Added support for custom event containers in the Target Scheduler Sync Container instruction.
-* Added support for running TS Flats instruction in a sync client sequence.
+* Added button to change scheduler preview start time to now
+* Bug fix for immediate flats on sync client
+* Bug fix for event container race condition
 
 See below for details on [previous releases](#previous-releases).
 
@@ -24,6 +25,11 @@ Refer to the applicable documentation for details.  See the project [change log]
 * Although profiles/projects/targets are initially sorted properly, adding one or changing a name doesn't properly re-sort.  However, you can click the refresh icon on the tree to restore the sort order.
 
 ## Previous Releases
+
+### Target Scheduler 4.7.3.0
+_Released August 9, 2024_
+* Added support for custom event containers in the Target Scheduler Sync Container instruction.
+* Added support for running TS Flats instruction in a sync client sequence.
 
 ### Target Scheduler 4.6.0.0
 _Released July 30, 2024_

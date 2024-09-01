@@ -8,7 +8,7 @@ nav_order: 7
 
 You can preview schedules on the plugin home page (NINA Plugins > Target Scheduler) by expanding the Scheduler Preview section.
 
-Select a date/time and the desired profile to get started.  When you click the Run button, the planner will find all active projects for that profile and then determine the targets to image for that date.  The panel below will display the series of plans returned by the planner, showing each project/target with the associated instructions underneath (assuming at least one target meets the criteria).  There may also be 'wait' operations if nothing is visible now but will be later.
+Select a date/time and the desired profile to get started.  Click the clock icon to reset date/time to now.  When you click the Run button, the planner will find all active projects for that profile and then determine the targets to image for that date.  The panel below will display the series of plans returned by the planner, showing each project/target with the associated instructions underneath (assuming at least one target meets the criteria).  There may also be 'wait' operations if nothing is visible now but will be later.
 
 {: .warning }
 Previews are not meant to reflect the exact behavior of the sequence instruction.  Please read the following to understand how a preview differs from an actual run in the NINA Sequencer.
