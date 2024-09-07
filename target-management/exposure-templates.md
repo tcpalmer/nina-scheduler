@@ -60,7 +60,7 @@ The Classic Moon Avoidance formula ("_Moon-Avoidance Lorentzian_") was formulate
 The formula takes two fixed parameters: _separation_ (aka distance, in degrees) and _width_ (days).  From ACP:
 *At full Moon the avoidance will be distance, and width days before (or after) the avoidance will be one half distance.*
 
-If the angular distance from your target to the moon is less than the calculated avoidance separation, the exposure plan will be rejected.  The separation is calculated at the midpoint time between the start and end time imaging times determined in the planner.  As the separation increases or decreases throughout a night, the avoidance determination may change as the planner is called again.
+If the angular distance from your target to the moon is less than the calculated avoidance separation, the exposure plan will be rejected.  The separation is calculated at 'now' plus 1/2 of the project's Minimum Time setting.  As the separation increases or decreases throughout a night, the avoidance determination may change as the planner is called again.
 
 ### Relaxing Classic Moon Avoidance
 
@@ -73,6 +73,9 @@ Since the impact of the moon on sky quality diminishes as the moon gets near or 
 Otherwise, both the separation and width properties are scaled by the altitude to reduce the impact of avoidance:
 * Separation = Separation + RelaxScale * (_altitude_ - MaxAltitude)
 * Width = Width * ((_altitude_ - MinimumAltitude) / (MaximumAltitude - MinimumAltitude))
+
+{: .note }
+The moon altitude used for relaxation is determined at 'now' plus 1/2 of the project's Minimum Time setting.  If you have Smart Plan Window enabled in [Profile Preferences](profiles.html#general-preferences), then a target plan may extend for many hours - way beyond the minimum time setting.  The moon altitude will only be evaluated at the start of the plan but it may change dramatically by the end.  If this is a problem, set Smart Plan Window to off.
 
 #### Setting Classic Parameters
 When enabled, set Separation to the minimum acceptable separation at full moon.  Then use Width to control how quickly the curve drops from the distance value.  Some charts make this clear: X = moon age in days, Y = calculated distance.

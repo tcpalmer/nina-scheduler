@@ -4,13 +4,21 @@ title: Release Notes
 nav_order: 14
 ---
 
-## Release Notes 4.7.5.0
-_Released September 1, 2024_
+## Release Notes 4.7.6.2
+_Released September 7, 2024_
 
 ## Changes in this Release
-* Added button to change scheduler preview start time to now
-* Bug fix for immediate flats on sync client
-* Bug fix for event container race condition
+* Don't abort a flat exposure if setting flat panel brightness throws an error, just warn
+* Changed the time at which moon avoidance is evaluated, now halfway through target's minimum time
+* Removed rotation as one of the comparison criteria for flats
+
+Notes on this release:
+
+### Moon Avoidance Time
+The time used to evaluate moon avoidance has been reworked and you may see some change, especially for relaxed avoidance.  The previous approach had a tendency to use a time that was potentially too far in the future.  This didn't matter much for classic avoidance but it does for relaxed.  Going forward, the time used will be 'now' plus 1/2 of the project's minimum time.  Note that if you use Smart Plan Window (true by default), you may have plans that are much longer than the project minimum.  The moon altitude will only be evaluated at the start of the plan but it may change dramatically by the end.  If this is a problem, set Smart Plan Window to off.
+
+### Flats and Rotation
+Previously, the target mechanical rotation determined for a light was used to decide what flats were needed (in addition to filter, gain, offset, binning, etc).  However, the exact angle can vary from solve to solve based on the rotational tolerance you have in options - so an exact match on rotation will fail and 'fuzzy' comparisons using the tolerance are problematic to implement.  In practice, this should only cause problems if you change the rotation in the middle of a [flat cadence](flats.html#concepts).
 
 See below for details on [previous releases](#previous-releases).
 
@@ -25,6 +33,12 @@ Refer to the applicable documentation for details.  See the project [change log]
 * Although profiles/projects/targets are initially sorted properly, adding one or changing a name doesn't properly re-sort.  However, you can click the refresh icon on the tree to restore the sort order.
 
 ## Previous Releases
+
+## Target Scheduler 4.7.5.0
+_Released September 1, 2024_
+* Added button to change scheduler preview start time to now
+* Bug fix for immediate flats on sync client
+* Bug fix for event container race condition
 
 ### Target Scheduler 4.7.3.0
 _Released August 9, 2024_
