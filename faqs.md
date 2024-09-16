@@ -59,7 +59,7 @@ _Will the plugin work with mount X, camera Y, or filter wheel Z?_
 
 _Can I update the TS database directly?_
 
-> Yes - see [Database Access and Updates](advanced-topics.htmldatabase-access-and-updates).
+> Yes - see [Database Access and Updates](adv-topics/database.html).
 
 _I have a mosaic project with multiple panels and want to balance exposures across the panels.  Is this possible?_
 

@@ -1,12 +1,11 @@
 ---
 layout: default
-title: Advanced Topics
-nav_order: 11
+title: Database
+parent: Advanced Topics
+nav_order: 1
 ---
 
-# Advanced Topics
-
-## Database Access and Updates
+# Database Access and Updates
 
 The TS [database](technical-details.html#database) has a simple structure and if you're adept at databases and SQL, you can read it or update it yourself.
 
