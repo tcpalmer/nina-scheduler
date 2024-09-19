@@ -64,7 +64,7 @@ See below for details on when this message is sent.
 TS will send the two types of target start messages in the following order:
 - If the target is _new_, send the New Target Start message
 - Send the Target Start message (always sent, regardless of whether new or not)
-- Slew/center to the target
+- Slew/center to the target (only if needed, e.g. target is new or TS was interrupted)
 - Any instructions in the 'Before New Target' custom event container
 - The regular plan instructions
 
