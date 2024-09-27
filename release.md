@@ -4,16 +4,13 @@ title: Release Notes
 nav_order: 15
 ---
 
-## Release Notes 4.8.0.0 BETA
-_Released September 16, 2024_
+## Release Notes 4.8.0.0
+_Released September 27, 2024 (previously released as beta on September 16)_
 
 ## Changes in this Release
 * Fixed a bug where the planner could return a plan with no exposures, will now abort container and warn instead.
 * Fixed a bug where needed flats were being improperly culled.
 * Added test support for inter-plugin messaging: TS will now message when a wait starts and when a target plan starts.  See [Communicating with Other Plugins](adv-topics/pub-sub.html) for details.
-
-{: .note }
-This is a beta release, only available when you have the plugin beta channel configured in your NINA options.
 
 See below for details on [previous releases](#previous-releases).
 
