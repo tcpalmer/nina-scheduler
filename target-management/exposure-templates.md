@@ -46,7 +46,8 @@ When done, click the Save icon to save your changes or the Cancel icon to cancel
 | Classic Width            | integer 1-14 | The width in days for the moon avoidance calculation - see below.                                                                                                    |
 | Relaxation / Scale       | dropdown     | The scaling factor (or off) for avoidance relaxation - see below.                                                                                                    |
 | Minimum Altitude         | -90° to -1°  | The lower moon altitude limit of the relaxation range for avoidance relaxation - see below.                                                                          |
-| Maximum Altitude          | 0° to 30°    | The upper moon altitude limit of the relaxation range for avoidance relaxation - see below.                                                                          |
+| Maximum Altitude         | 0° to 30°    | The upper moon altitude limit of the relaxation range for avoidance relaxation - see below.                                                                          |
+| Moon Must Be Down        | boolean      | Reject exposure if the moon altitude is above the relax maximum altitude, regardless of phase or separation - see below.                                             |
 
 
 ## Moon Avoidance
@@ -76,6 +77,9 @@ Otherwise, both the separation and width properties are scaled by the altitude t
 
 {: .note }
 The moon altitude used for relaxation is determined at 'now' plus 1/2 of the project's Minimum Time setting.  If you have Smart Plan Window enabled in [Profile Preferences](profiles.html#general-preferences), then a target plan may extend for many hours - way beyond the minimum time setting.  The moon altitude will only be evaluated at the start of the plan but it may change dramatically by the end.  If this is a problem, set Smart Plan Window to off.
+
+### Strict Avoidance for Moon Altitude
+If relaxation is enabled and Moon Must Be Down is on, then exposures will be rejected if the moon is above the relax Maximum Altitude.  This occurs regardless of the phase (brightness) of the moon or the separation to the target.
 
 #### Setting Classic Parameters
 When enabled, set Separation to the minimum acceptable separation at full moon.  Then use Width to control how quickly the curve drops from the distance value.  Some charts make this clear: X = moon age in days, Y = calculated distance.

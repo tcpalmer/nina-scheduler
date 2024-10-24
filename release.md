@@ -4,13 +4,14 @@ title: Release Notes
 nav_order: 15
 ---
 
-## Release Notes 4.8.0.0
-_Released September 27, 2024 (previously released as beta on September 16)_
+## Release Notes 4.9.0.0
+_Released October 24, 2024_
 
 ## Changes in this Release
-* Fixed a bug where the planner could return a plan with no exposures, will now abort container and warn instead.
-* Fixed a bug where needed flats were being improperly culled.
-* Added test support for inter-plugin messaging: TS will now message when a wait starts and when a target plan starts.  See [Communicating with Other Plugins](adv-topics/pub-sub.html) for details.
+* Added flag to trigger avoidance if moon altitude is above the relax maximum altitude - regardless of actual separation or moon phase
+* Adjusted moon avoidance evaluation time for not yet visible targets
+* Hopefully fixed issue with taking superfluous flats
+* Raised the max for Exposure Plan Desired and Accepted counts to 99999
 
 See below for details on [previous releases](#previous-releases).
 
@@ -25,6 +26,12 @@ Refer to the applicable documentation for details.  See the project [change log]
 * Although profiles/projects/targets are initially sorted properly, adding one or changing a name doesn't properly re-sort.  However, you can click the refresh icon on the tree to restore the sort order.
 
 ## Previous Releases
+
+### Target Scheduler 4.8.0.0
+_Released September 27, 2024 (previously released as beta on September 16)_
+* Fixed a bug where the planner could return a plan with no exposures, will now abort container and warn instead.
+* Fixed a bug where needed flats were being improperly culled.
+* Added test support for inter-plugin messaging: TS will now message when a wait starts and when a target plan starts.  See [Communicating with Other Plugins](adv-topics/pub-sub.html) for details.
 
 ### Target Scheduler 4.7.6.2
 _Released September 7, 2024_
