@@ -225,5 +225,3 @@ _Released July 20, 2023_
 * You can now add custom instructions at various points in the lifecycle of the planner.  Four separate instruction containers are provided to add your instructions: before or after a wait period and before or after execution of a new/changed target.  For example, you could park your mount and/or close a flip-flat before a wait and then reverse after the wait.
 * The display of running instructions in the Target Scheduler Container instruction has been greatly improved.
 * Scheduler Preview now provides a 'View Details' button to display details about the planning and decision-making process.  The same information is also written to the Target Scheduler log for actual runs via the sequencer.
-
-g test
