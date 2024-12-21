@@ -4,14 +4,11 @@ title: Release Notes
 nav_order: 15
 ---
 
-## Release Notes 4.9.0.0
-_Released October 24, 2024_
+## Release Notes 4.9.0.1
+_Released December 21, 2024_
 
 ## Changes in this Release
-* Added flag to trigger avoidance if moon altitude is above the relax maximum altitude - regardless of actual separation or moon phase
-* Adjusted moon avoidance evaluation time for not yet visible targets
-* Hopefully fixed issue with taking superfluous flats
-* Raised the max for Exposure Plan Desired and Accepted counts to 99999
+* Patch to prevent TS active Target coordinates from getting cleared in certain scenarios (typically with CenterAfterDrift handling and Powerups usage)
 
 See below for details on [previous releases](#previous-releases).
 
@@ -26,6 +23,13 @@ Refer to the applicable documentation for details.  See the project [change log]
 * Although profiles/projects/targets are initially sorted properly, adding one or changing a name doesn't properly re-sort.  However, you can click the refresh icon on the tree to restore the sort order.
 
 ## Previous Releases
+
+## Target Scheduler 4.9.0.0
+_Released October 24, 2024_
+* Added flag to trigger avoidance if moon altitude is above the relax maximum altitude - regardless of actual separation or moon phase
+* Adjusted moon avoidance evaluation time for not yet visible targets
+* Hopefully fixed issue with taking superfluous flats
+* Raised the max for Exposure Plan Desired and Accepted counts to 99999
 
 ### Target Scheduler 4.8.0.0
 _Released September 27, 2024 (previously released as beta on September 16)_
