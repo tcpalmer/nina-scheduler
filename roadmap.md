@@ -6,6 +6,8 @@ nav_order: 12
 
 # Future Development
 
+See notes on [TS 5](adv-topics/ts5.html).
+
 ## Scoring Engine Rules
 The following new rules for the Scoring Engine are under consideration:
 * Minimum Imaging Time: assign a higher priority to those targets that have less imaging time available.  For example, if you have a target that only rises high enough for a short time each year, it would score higher since it would have less availability.  (Overlaps with existing Setting Soonest rule).
