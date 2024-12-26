@@ -11,6 +11,8 @@ Version 4 of Target Scheduler works well in many situations for many users.  How
 
 TS 5 will first be available as beta some time in Q1 2025.  The code is still under development and things could change or problems arise that impact the ability to implement these items ... but this is the current plan.
 
+As usual, the usual suspects in the very informal [TS advisory group](../index.html#acknowledgements) contributed to and advised on the new approaches.
+
 ## Planner
 
 One of the more serious issues with TS 4 is that the project Minimum Time is not only used to set a minimum imaging time for a target, it's also used to determine the length of each plan returned by the TS planner.  So if your project minimum time is 30m, each plan returned for those targets will be constructed to take about 30m to execute.  This causes a number of issues.
