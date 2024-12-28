@@ -58,9 +58,17 @@ The current [image grading](../post-acquisition/image-grader.html) approach is d
 
 In TS 5, there will be an option to delay grading until some percentage (e.g. 90%) of images have been acquired.  At that time, a more representative set of exposures will be available and all images taken to that point can then be graded based on overall population statistics.
 
-Note that delayed grading will have side-effects.  For example if today you move rejected images to another folder, that might not be attempted until some time - perhaps days - later.
+Note that delayed grading will have side effects.  For example if today you move rejected images to another folder, that might not be attempted until some time - perhaps days - later.
 
 Even with this improvement, grading in TS should never be the final decision on whether an image is acceptable or not.  You should always review your images and use more sophisticated (external) methods.
+
+### Asynchronous Image Grading
+
+In TS 4, at the end of a plan (which likely includes multiple exposures), we had to wait for all images to come through the image save pipeline before proceeding to the next plan.  This was necessary so that the exposure plan database records could be updated with the results of grading and exposure selections for the next plan could take that into account.  Depending on various conditions (speed of the hardware, whether CenterAfterDrift had to platesolve, etc) this delay could actually be quite lengthy - even 10s of seconds.
+
+In TS 5 with single-exposure planning, this would be even worse since we'd have to perform this wait after _every_ exposure.  To prevent that (and actually improve on TS 4), TS 5 will queue-up grading tasks to be run asynchronously and let the planner/sequencer continue.  This also makes sense in the context of delayed grading since the work might be substantial when the percentage threshold is finally reached.
+
+The downside is that the planner may sometimes execute before exposure plan records have been updated.  When an exposure plan is nearing completion, the planner may decide that it needs one more image when in fact, the grader may be about to accept another and mark that plan complete.  However, occasionally taking one more image than desired is a small price given the overall increase in planner throughput.
 
 ## Migration Plan
 
