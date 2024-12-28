@@ -29,7 +29,7 @@ The moon avoidance calculations use the mid-point time of the plan to determine 
 
 #### Wait Times and Moon Avoidance
 
-If the planner decides than no targets can be imaged now but could be later, it will calculate a wait time until the first potential target is available.  However, that doesn't take into account moon avoidance.  TS 4 might decide to wait on a target that would ultimately be rejected because the moon at that future time has a greater impact.
+If the planner decides that no targets can be imaged now but could be later, it will calculate a wait time until the first potential target is available.  However, that doesn't take into account moon avoidance.  TS 4 might decide to wait on a target that would ultimately be rejected because the moon at that future time has a greater impact.
 
 ### New Planner
 
@@ -60,7 +60,7 @@ In TS 5, there will be an option to delay grading until some percentage (e.g. 90
 
 Note that delayed grading will have side-effects.  For example if today you move rejected images to another folder, that might not be attempted until some time - perhaps days - later.
 
-Even with this improvement, grading in TS should never be the final decision on whether an image is acceptable or not.  You should always review your images and use more sophisticated (external) approaches.
+Even with this improvement, grading in TS should never be the final decision on whether an image is acceptable or not.  You should always review your images and use more sophisticated (external) methods.
 
 ## Migration Plan
 
@@ -68,7 +68,7 @@ The database for TS 5 has a number of changes that will not be backwards compati
 * When TS 5 runs for the first time and finds a TS 4 database, it will migrate it to a new TS 5 database file in a new plugin directory.  Nothing in the legacy TS 4 directory (including the database) will be touched.  This means you could easily revert back to TS 4 and only lose changes or exposure progress made in TS 5.
 * If you reverted to TS 4 but later wanted to move to TS 5 again, you could just remove any existing TS 5 plugin directory and the onetime migration will be redone.
 * Sequences created for TS 4 should work as-is with TS 5.
-* Synchronized execution should remain essentially unchanged.
+* Synchronized execution should remain unchanged.
 
 Other than a handful of changes to support new features, the user interface for managing TS projects, targets, exposures, etc will remain essentially the same.
 
