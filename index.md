@@ -6,6 +6,9 @@ nav_order: 2
 
 # Target Scheduler Plugin
 
+{: .note }
+If you arrived here looking for documentation on the TS 5 beta, please see [this](adv-topics/ts5-beta.html).
+
 Automation for astrophotography means different things to different people.  [NINA](https://nighttime-imaging.eu/) can certainly be scripted with the advanced sequencer to image multiple targets unattended over one or many nights.  But the burden remains to periodically rework - or completely redo - a sequence to handle different conditions and targets.
 
 The Target Scheduler Plugin is designed to provide a higher level of automation than is typically achievable with NINA. Specifically, it maintains a database of imaging projects describing DSO targets and associated exposure plans. Based on various criteria and preferences, it can decide at any given time what project/target should be actively imaging.
