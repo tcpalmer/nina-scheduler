@@ -144,6 +144,7 @@ TS 5 adds the ability to skip the slew/center scheduled at the start of each new
 
 ## Known Issues
 - Although the time to generate any given plan is about the same as in TS 4, the single-exposure approach means that the planner is run many more times over the course of a night.  If you have a large number of targets, then this might be noticeable - especially using Scheduler Preview.  There are some things that can be tuned if this is a significant problem.
+- Running the previewer on a target will update the filter cadence of targets that are selected.  This will impact the next run in the sequencer since the cadence cycle will have advanced from the previous run.  Researching solutions.
 - The Scheduler Preview View Details info is now ridiculously verbose and needs to be redone.  However, this is really only an issue for trace level log output.
 
 ## Rollback to TS 4
