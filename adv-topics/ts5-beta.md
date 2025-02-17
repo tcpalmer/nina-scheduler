@@ -56,6 +56,10 @@ One of the more serious issues with TS 4 is that the project Minimum Time is not
 The new planner will decouple plans from project minimum time by planning for a _single exposure only_.  The TS Container will execute the instructions for a single exposure (which could include a slew/center if a new target, switch filter, set readout, expose) and then go back to the planner when that exposure is complete.  Advantages:
 * Filter cadences for each target will be persisted.  This means that the fixed cadence will be obeyed when switching targets and even over the course of multiple imaging sessions.  This also applies when the cadence is manually overridden.
 * The planner can take the exact conditions into account when each exposure is planned.  This is most important today for moon avoidance but other sky quality metrics could be considered in the future.
+* The planner will still try to continue with the current target for the minimum time span as long as:
+  * The current time is still within the initial minimum time window, accounting for the duration of the next exposure
+  * Some incomplete exposure plans remain
+  * Moon avoidance doesn't reject all remaining exposure plans
 * When determining wait times, the planner will use an incremental sampling approach that will take future time moon avoidance into account.
 
 Although target _thrashing_ (wasting time on slew/centers when indiscriminately switching targets) is a potential concern with single-exposure planning, in practice this is avoided via target scoring rules like Target Switch Penalty and Percent Complete.
@@ -97,12 +101,9 @@ Note that delayed grading may have side effects.  For example if today you move 
 You can now set thresholds in Profile settings to automatically accept images if the actual image metric is 'better than' (less than) the configured value.  This is available for HFR, FWHM, and Eccentricity (the latter two with Hocus Focus only).  If any of these values are configured to be greater than zero (the default), then the grader will operate as follows:
 1. Grade based on guiding RMS.  If it fails, the image is rejected.
 2. Grade based on star count.  If it fails, the image is rejected.
-3. If the image HFR < HFR auto accept, then the image is accepted without further testing.
-4. Otherwise, the normal standard deviation determination for HFR is used. 
-5. If the image FWHM < FWHM auto accept, then the image is accepted without further testing. 
-6. Otherwise, the normal standard deviation determination for FWHM is used. 
-7. If the image Eccentricity < Eccentricity auto accept, then the image is accepted without further testing. 
-8. Otherwise, the normal standard deviation determination for Eccentricity is used.
+3. If the image HFR < HFR auto accept, then the HFR standard deviation test is skipped.  Otherwise, the normal standard deviation determination for HFR is used. 
+5. If the image FWHM < FWHM auto accept, then the FWHM standard deviation test is skipped.  Otherwise, the normal standard deviation determination for FWHM is used. 
+7. If the image Eccentricity < Eccentricity auto accept, then the Eccentricity standard deviation test is skipped.  Otherwise, the normal standard deviation determination for Eccentricity is used.
 
 Note that the threshold values you enter will be particular to the imaging characteristics of your equipment and your average seeing conditions.
 
@@ -118,6 +119,12 @@ For now, the new Reporting section should be considered a demonstration of what 
 ## Minor Changes
 In addition to small bug fixes, the following changes are also noteworthy.
 
+#### TS Logging Level
+TS 5 adds the ability to set the log level (trace, debug, info, warning, error) similar to the main NINA log.  This setting is in TS profile preferences, so the setting is independent of the NINA setting.  The level defaults to debug.
+
+{: .note }
+Debug level is probably sufficient for most usage.  However, if you have an issue it may take trace level output to troubleshoot the problem.  Just be aware that trace level is extremely verbose.
+
 #### Visibility Bug
 In TS 4, target visibility determination is susceptible to a visibility gap problem: if the target moves behind an obstacle (tree, chimney) in your custom horizon and then later reappears, TS will not find that second visible timespan in some circumstances. In TS 5, the visibility algorithm has been completely rewritten to use a sampling approach which is both more accurate (within the sampling limits) as well as quicker.
 
@@ -128,19 +135,16 @@ TS 5 adds the ability to reject a target if it's current altitude is greater tha
 TS 4 had support for a Smart Plan Window which would try to determine a better stop time for the current target.  With the TS 5 single exposure planning approach, that's no longer needed and has been removed.
 
 #### Simulated Execution
-TS5 adds the ability to run sequences using TS at any time of day and have any wait periods skipped while simulating advancing time.  This can be enabled on the Profile settings page.
+TS 5 adds the ability to run sequences using TS at any time of day and have any wait periods skipped while simulating advancing time.  This can be enabled on the Profile settings page.
 
 In general, this should only be used if you know what you're doing (e.g. a NINA developer).  In particular, the sequence should be minimal and not use any NINA or plugin instructions that depend on the current system time or wait for events (like twilight end).  Although Target Scheduler Condition can be used, Target Scheduler Background Condition cannot since it uses the current system time.
 
+#### Enable/Disable Slew/Center
+TS 5 adds the ability to skip the slew/center scheduled at the start of each new target: see the Enable slew/center flag in Profile preferences.  If disabled, Scheduler Preview will also show it skipped.  The assumption is that the user would handle it in the Before New Target event container.
+
 ## Known Issues
 - Although the time to generate any given plan is about the same as in TS 4, the single-exposure approach means that the planner is run many more times over the course of a night.  If you have a large number of targets, then this might be noticeable - especially using Scheduler Preview.  There are some things that can be tuned if this is a significant problem.
-- The Scheduler Preview View Details info is now ridiculously verbose and needs to be redone.
-- A lengthy project minimum time will likely waste imaging time towards the end of target visibility.  It's best to set this a bit longer than your longest exposure (~2x).  There might be a fix for this in the future.  Example:
-    - Project minimum time is 30m
-    - Exposure duration is 3m
-    - Planner runs 33m before the end of target visibility and schedules an exposure
-    - Next planner run sees < min time available so up to 30m is unused for this target
-    - A minimum time of 5m would only waste up to 5m
+- The Scheduler Preview View Details info is now ridiculously verbose and needs to be redone.  However, this is really only an issue for trace level log output.
 
 ## Rollback to TS 4
 
