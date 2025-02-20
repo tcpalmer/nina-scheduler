@@ -125,6 +125,9 @@ TS 5 adds the ability to set the log level (trace, debug, info, warning, error) 
 {: .note }
 Debug level is probably sufficient for most usage.  However, if you have an issue it may take trace level output to troubleshoot the problem.  Just be aware that trace level is extremely verbose.
 
+#### New 'After Each Exposure' Event Container
+You can now add custom instructions to the 'After Each Exposure'.  The instructions in the container will execute after each exposure has completed the NINA image processing pipeline.
+
 #### Visibility Bug
 In TS 4, target visibility determination is susceptible to a visibility gap problem: if the target moves behind an obstacle (tree, chimney) in your custom horizon and then later reappears, TS will not find that second visible timespan in some circumstances. In TS 5, the visibility algorithm has been completely rewritten to use a sampling approach which is both more accurate (within the sampling limits) as well as quicker.
 
