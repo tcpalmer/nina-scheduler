@@ -126,7 +126,13 @@ TS 5 adds the ability to set the log level (trace, debug, info, warning, error) 
 Debug level is probably sufficient for most usage.  However, if you have an issue it may take trace level output to troubleshoot the problem.  Just be aware that trace level is extremely verbose.
 
 #### New 'After Each Exposure' Event Container
-You can now add custom instructions to the 'After Each Exposure'.  The instructions in the container will execute after each exposure has completed the NINA image processing pipeline.
+You can now add custom instructions to the 'After Each Exposure' event container.  The instructions in the container will execute after each exposure has completed the NINA image processing pipeline.
+
+#### New 'After Target Complete' Event Container
+You can now add custom instructions to the 'After Target Complete' event container.  The instructions in the container will execute after a target reaches 100% complete on all exposure plans.
+
+#### Sync Client Take Multiple Exposures per Server Exposure
+If you have configured exposure templates with the same name on sync client and server, and the client exposure length is less than the server, then the client will try to take multiple exposures while the server takes one.  For example if the server length is 3 minutes and the client is 1 minute, the client will take 3 images while the server takes 1.
 
 #### Visibility Bug
 In TS 4, target visibility determination is susceptible to a visibility gap problem: if the target moves behind an obstacle (tree, chimney) in your custom horizon and then later reappears, TS will not find that second visible timespan in some circumstances. In TS 5, the visibility algorithm has been completely rewritten to use a sampling approach which is both more accurate (within the sampling limits) as well as quicker.
