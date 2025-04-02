@@ -2,16 +2,16 @@
 layout: default
 title: Acquisition Data
 parent: Post-acquisition
-nav_order: 2
+nav_order: 3
 ---
 
-# Acquisition Data
+# Acquired Images
 
 The plugin saves metadata to the database for each exposure taken when the plugin is running the acquisition session - essentially the same metadata that NINA gathers and calculates for the image.  This data can be viewed on the plugin home page (NINA Plugins > Target Scheduler) by expanding the Acquired Images section.
 
 In addition to providing the means to review acquisition data, the records are also used to provide samples for the [Image Grader](image-grader.html).
 
-![](../assets/images/acquired-images-2.png)
+![](../assets/images/acquired-images-3.png)
 
 ## Filtering
 
@@ -52,42 +52,44 @@ Click the delete (trashcan) icon to execute.  In both cases, you will be asked t
 
 ## Data Saved
 
-The following values are saved.  The description is missing for items that are self-explanatory and/or come directly from underlying NINA data.  Note that some values may be empty if not applicable for your equipment.
+The following values are saved (although not all may be displayed).  The description is missing for items that are self-explanatory and/or come directly from underlying NINA data.  Note that some values may be empty if not applicable for your equipment.
 
-|Property|Description|
-|:--|:--|
-|Project|The associated project|
-|Target|The associated target|
-|Date|Date/time the exposure finished|
-|Filter|Filter used for the exposure|
-|Accepted|Whether the exposure was accepted by the Image Grader or not.  Will be false if grading is disabled.|
-|Rejected Reason|Reason for rejection, if not accepted by the Image Grader.  Will be 'not graded' if grading is disabled.|
-|File Name|Full path to the image file on disk|
-|Duration|Exposure duration|
-|Gain||
-|Offset||
-|Binning||
-|Stars||
-|HFR||
-|HFR Std Dev||
-|FWHM|Requires Hocus Focus|
-|Eccentricity|Requires Hocus Focus|
-|ADU Std Dev||
-|ADU Mean||
-|ADU Median||
-|ADU Min||
-|ADU Max||
-|Guiding RMS||
-|Guiding RMS ArcSec||
-|Guiding RMS RA||
-|Guiding RMS RA ArcSec||
-|Guiding RMS Dec||
-|Guiding RMS Dec ArcSec||
-|Focuser Position||
-|Focuser Temp||
-|Rotator Position||
-|Pier Side||
-|Camera Temp||
-|Camera Target Temp||
-|Airmass||
+| Property               | Description                                                 |
+|:-----------------------|:------------------------------------------------------------|
+| Acquired Date          | Date/time the exposure finished                             |
+| Project                | The associated project                                      |
+| Target                 | The associated target                                       |
+| Filter                 | Filter used for the exposure                                |
+| Exposure (secs)        | Exposure duration                                           |
+| Exposure Template      | Name of the associated Exposure Template                    |
+| Image File             | Full path to the image file on disk                         |
+| Profile                | Name of the associated NINA profile                         |
+| Gain                   |                                                             |
+| Offset                 |                                                             |
+| Binning                |                                                             |
+| Stars                  |                                                             |
+| HFR                    |                                                             |
+| FWHM                   | Requires Hocus Focus                                        |
+| Eccentricity           | Requires Hocus Focus                                        |
+| Airmass                |                                                             |
+| ADU Std Dev            |                                                             |
+| ADU Mean               |                                                             |
+| ADU Median             |                                                             |
+| ADU Min                |                                                             |
+| ADU Max                |                                                             |
+| Guiding RMS            |                                                             |
+| Guiding RMS ArcSec     |                                                             |
+| Guiding RMS RA         |                                                             |
+| Guiding RMS RA ArcSec  |                                                             |
+| Guiding RMS Dec        |                                                             |
+| Guiding RMS Dec ArcSec |                                                             |
+| Focuser Position       |                                                             |
+| Focuser Temp           |                                                             |
+| Rotator Position       |                                                             |
+| Pier Side              |                                                             |
+| Camera Temp            |                                                             |
+| Camera Target Temp     |                                                             |
+| Airmass                |                                                             |
+| Accepted               | Exposure grading status: Pending, Accepted, or Rejected.    |
+| Rejected Reason        | Reason for rejection, if not accepted by the Image Grader.  |
 

@@ -102,13 +102,23 @@ If you're not using a filter wheel on either your server or client instances, yo
 * In your client profile, set up your filter wheel and exposure templates as discussed in [color cameras](target-management/exposure-templates.html#color-cameras).  You'll need dummy entries for all filters that might be scheduled on the server instance.  Be sure the names match exactly.
 * Don't connect a filter wheel in your client sequence and any switch filter instructions will simply be ignored.
 
-When the client receives an exposure, it will look up the Exposure Template of the same name (as discussed above) and use it.  As usual, it's best if the exposure times for the client are less than or equal to the server exposure times for each filter.
+When the client receives an exposure, it will look up the Exposure Template of the same name (as discussed above) and use it.  As usual, it's best if the exposure times for the client are less than or equal to the server exposure times for each filter (but see below about multiple client exposures per server exposure).
 
 ## Exposure Planning
 
-The system that determines what exposures to take during a given target plan window is unchanged for synchronized operation and might result in taking more exposures than desired.  For example, your plan has 20 Lum exposures remaining of 3 minutes each and a one hour plan window.  The exposure planner will fill that window with 20 exposures.  However, with a server and one client, you might take nearly 40 exposures in that one hour period.  Since the planner won't run until the next planning window, you will have overshot the number of desired images and potentially wasted time.
+The number of exposures Desired in the server's exposure plan should be set to the number you want to acquire across all synchronized instances.  This aligns with the primary goal of synchronization which is to 'gang up' on the exposures and complete them faster.
 
-This may be addressed in a future release.  For now, you can just reduce the number of desired exposures in your plans if you're running synchronized.
+### Multiple Client Exposures per Server Exposure
+
+In cases where your client is taking shorter exposures than the server, you may have an opportunity to take multiple client exposures per server Exposure:
+* You must define an Exposure Template named the same as the server (as discussed above), with a shorter exposure time on the client.
+* Do not override the exposure length in the server Exposure Plan.  If you do, the client will override to the same value.
+
+The exposure length in the client's Exposure Template must be less than or equal to half the server's length.  In general, the client will take _N_ exposures per server exposure where _N_ is
+``
+Truncate(server length / client length)
+``
+. For example, a server length of 600 seconds and a client length of 200 would result in 3 client exposures in the time it takes the server to do one.  If the client length was instead 250 seconds, only 2 would be taken since a third could not be fit in.
 
 ## Image Grading
 

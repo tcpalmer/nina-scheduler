@@ -6,8 +6,6 @@ nav_order: 12
 
 # Future Development
 
-See notes on [TS 5](adv-topics/ts5.html).
-
 ## Scoring Engine Rules
 The following new rules for the Scoring Engine are under consideration:
 * Minimum Imaging Time: assign a higher priority to those targets that have less imaging time available.  For example, if you have a target that only rises high enough for a short time each year, it would score higher since it would have less availability.  (Overlaps with existing Setting Soonest rule).
@@ -15,7 +13,6 @@ The following new rules for the Scoring Engine are under consideration:
 
 ## General/Other
 * Support for planning based on weather station data like humidity and sky quality.
-* Prioritize Filters by moon avoidance or percent complete.
 * Add a custom view panel for Target Scheduler activity that can be added to the main NINA Imaging tab.
-* Save a thumbnail image with the image metadata.
+* Support target types other than DSOs - comets for example.
 * Ability to load targets in real time from [NASA's GCN](https://gcn.nasa.gov/) or similar alert networks and then interrupt imaging to switch to a high priority target.

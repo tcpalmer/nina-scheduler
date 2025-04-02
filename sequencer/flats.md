@@ -21,4 +21,4 @@ It may _not_ be suitable if you're using a rotator and the operation isn't preci
 
 This instruction takes flats immediately after a target plan has run and will only take flats matching the corresponding lights from that target plan.  The instruction will not move the rotator and instead will assume it's in the location determined by the immediately preceding solve/rotate (which was used for the lights).
 
-If you don't use a rotator, then it doesn't make sense to use this instruction since you'll be wasting dark sky time.  Instead, use Target Scheduler Flats which can run after imaging concludes for the night.
+If you don't use a rotator or your rotator can reliably duplicate previous angles, then it doesn't make sense to use this instruction since you'll be wasting dark sky time.  Instead, use Target Scheduler Flats which can run after imaging concludes for the night.

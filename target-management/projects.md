@@ -37,23 +37,25 @@ You can reset completion for an entire project.  This will set the Accepted and 
 
 ### Project Properties
 
-|Property|Type|Description|
-|:--|:--|:--|
-|Name|string|The name of the project.|
-|Description|string|An optional description.|
-|State|dropdown|Current state of the project: Draft, Active, Inactive, Closed (see below).|
-|Priority|dropdown|Project priority for the Scoring Engine: Low, Normal, High.|
-|Minimum Time|minutes|The minimum imaging time that a project target must be visible to be considered.  See below for interaction with Meridian Window.|
-|Minimum Altitude|double|The minimum altitude for project targets to be considered.  See below for details on horizon determination.|
-|Use Custom Horizon|boolean|Use the custom horizon defined for the associated profile (NINA Options > General > Astrometry).  See below for details on horizon determination.|
-|Horizon Offset|double|A value to add to the custom horizon to set the minimum altitude at the target's current azimuth.  Disabled if Use Custom Horizon is disabled.  See below for details on horizon determination.|
-|Meridian Window|minutes|Limit imaging to a timespan in minutes around the meridian crossing.  A setting of 60 implies 1 hour on either side of the meridian or 2 hours total.  See below for interaction with Minimum Time.  Set to zero to disable.|
-|Filter Switch Frequency|integer 0-N|Value to determine how exposures for different filters are scheduled.  See below for details.|
-|Dither After Every|integer 0-N|Value to determine how dithering is handled.  See below for details.|
-|Enable Image Grader|boolean|Enable/disable the [Image Grader](../post-acquisition/image-grader.html).|
-|Mosaic Project|boolean|Mark the project as containing mosaic panels.  This defaults to false.  It can be changed manually but will automatically be set to true if you import panels from the Framing Assistant.  At present, the only logic this impacts is the Mosaic Completion scoring rule.|
-|Flats Handling|integer|Specify behavior for [automated flats](../sequencer/flats.html).|
-|Rule Weights|integer 0-100|Weight values for each Scoring Engine rule - see below.|
+| Property                 | Type          | Description                                                                                                                                                                                                                                                               |
+|:-------------------------|:--------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name                     | string        | The name of the project.                                                                                                                                                                                                                                                  |
+| Description              | string        | An optional description.                                                                                                                                                                                                                                                  |
+| State                    | dropdown      | Current state of the project: Draft, Active, Inactive, Closed (see below).                                                                                                                                                                                                |
+| Priority                 | dropdown      | Project priority for the Scoring Engine: Low, Normal, High.                                                                                                                                                                                                               |
+| Minimum Time             | minutes       | The minimum imaging time that a project target must be visible to be considered.  See below for interaction with Meridian Window.                                                                                                                                         |
+| Minimum Altitude         | double        | The minimum altitude for project targets to be considered.  See below for details on horizon determination.                                                                                                                                                               |
+| Maximum Altitude         | double        | The maximum altitude for project targets to be considered.  See below for details on horizon determination.                                                                                                                                                               |
+| Use Custom Horizon       | boolean       | Use the custom horizon defined for the associated profile (NINA Options > General > Astrometry).  See below for details on horizon determination.                                                                                                                         |
+| Horizon Offset           | double        | A value to add to the custom horizon to set the minimum altitude at the target's current azimuth.  Disabled if Use Custom Horizon is disabled.  See below for details on horizon determination.                                                                           |
+| Meridian Window          | minutes       | Limit imaging to a timespan in minutes around the meridian crossing.  A setting of 60 implies 1 hour on either side of the meridian or 2 hours total.  See below for interaction with Minimum Time.  Set to zero to disable.                                              |
+| Filter Switch Frequency  | integer 0-N   | Value to determine how exposures for different filters are scheduled.  See below for details.                                                                                                                                                                             |
+| Dither After Every       | integer 0-N   | Value to determine how dithering is handled.  See below for details.                                                                                                                                                                                                      |
+| Smart Exposure Selection | boolean       | Enable/disable exposure selection based on moon avoidance criteria.  See below for details.                                                                                                                                                                               |
+| Enable Image Grader      | boolean       | Enable/disable the [Image Grader](../post-acquisition/image-grader.html).                                                                                                                                                                                                 |
+| Mosaic Project           | boolean       | Mark the project as containing mosaic panels.  This defaults to false.  It can be changed manually but will automatically be set to true if you import panels from the Framing Assistant.  At present, the only logic this impacts is the Mosaic Completion scoring rule. |
+| Flats Handling           | integer       | Specify behavior for [automated flats](../sequencer/flats.html).                                                                                                                                                                                                          |
+| Rule Weights             | integer 0-100 | Weight values for each Scoring Engine rule - see below.                                                                                                                                                                                                                   |
 
 #### Project Name
 If Target Scheduler is actively taking images for a managed target (lights or flats), the name of the associated project is available in the custom image file pattern \$\$TSPROJECTNAME\$\$.  The pattern can be used in your image file patterns (Options > Imaging) just like \$\$FILTER\$\$ or \$\$TARGETNAME\$\$.
@@ -73,6 +75,8 @@ Your horizon (the altitude at any azimuth) used to determine target visibility i
 * When using your Custom Horizon, you can also extend it towards the zenith by entering a Horizon Offset.  This can be used to add a few degrees to ensure you're clearing all obstructions.
 
 The Minimum Altitude setting is therefore a 'floor' - you'll never try to image targets for the project while they are below this altitude, even if your Custom Horizon is lower.
+
+Some equipment (for example long refractors with a substantial imaging train) may have difficulty pointing near the zenith without hitting the tripod or pier.  In this case, you can use the Maximum Altitude setting to restrict imaging to times when the target is below this value.
 
 #### Filter Switch Frequency
 
@@ -100,14 +104,17 @@ Otherwise, you can set the value to 0.  In this case, you can either use a Dithe
 
 Note that the Dither setting is ignored if you're using an [override exposure order](exposure-plans.html#override-ordering) for any Target under this Project.
 
+#### Smart Exposure Selection
+If Smart Exposure Selection is enabled, the planner will select the next exposure based on a calculated _moon avoidance score_.  See [exposure selection](../concepts/planning-engine.html#exposure-selection-and-dithering) for additional details on how a selection method is determined.
+
 #### Scoring Engine Rule Weights
 
-Each rule for the [Scoring Engine](../concepts/planning-engine.html#scoring-engine-1) has an associated weight value that can be adjusted per project.  When the engine runs, the score for each rule is calculated for the target and then multiplied by the rule's weight value.  Weights can vary from 0 (disabling the rule entirely) to 100 (maximum effect).
+Each rule for the [Scoring Engine](../concepts/planning-engine.html#scoring-engine) has an associated weight value that can be adjusted per project.  When the engine runs, the score for each rule is calculated for the target and then multiplied by the rule's weight value.  Weights can vary from 0 (disabling the rule entirely) to 100 (maximum effect).
 
 You can copy and paste Rule Weights from one project to another.  You can also reset the weights back to the defaults.  Notes:
-* Copy, paste, and reset happen immediately **_outside_** of edit mode.
+* Copy/paste and reset happen immediately **_outside_** of edit mode.
 * The paste buffer is not cleared when you paste, making it easy to repeatedly copy the same set to multiple projects.
 * Copy, paste, and reset are disabled if the Project is in edit mode.
 
 {: .warning }
-Again, the scoring rule weight copy, paste, and reset operations are saved to the database **_immediately_** without any warning or chance to cancel.
+Again, the scoring rule weight copy/paste and reset operations are saved to the database **_immediately_** without any warning or chance to cancel.

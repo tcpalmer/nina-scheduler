@@ -17,7 +17,7 @@ See the [technical details](../technical-details.html#target-scheduler-container
 
 The following shows a Target Scheduler Container instruction after adding to a sequence but before the sequence is running.
 
-![](../assets/images/tsc-2.png)
+![](../assets/images/tsc-3.png)
 
 It consists of three main areas:
 1. **Target Details**.  When the planner returns a target to image, the details - including the nighttime/altitude chart - will be displayed here.
@@ -26,13 +26,16 @@ It consists of three main areas:
 
 ## Triggers
 
+{: .warning }
+Note that adding triggers to this section is **_rarely_** needed.  In general, triggers to handle auto-focus, meridian flips, center after drift, etc should be added to the triggers section of a container above the Target Scheduler Container.
+
 Sequence triggers are generally used to either invoke some operation or interrupt execution based on the state of the software and the attached equipment.  Unlike the DSO Instruction Set container which has a fixed target for the duration of an imaging session, the Target Scheduler Container may get a new target each time it calls the Planning Engine.  This poses challenges when using triggers that depend on knowing the coordinates of the current target:
 * During a Wait period, the target has default coordinates of RA 0 and Dec 0.
 * When the planner returns a new target the coordinates are updated to reflect that target.
 
 Any triggers placed _under_ Target Scheduler Container should be thoroughly tested before unattended operation.  In general, it's not necessary (and perhaps incorrect) to put any of the core NINA triggers inside this triggers container.  Triggers added by other plugins may need to be placed here but you're on your own.
 
-In releases prior to 4.0.5.0, it was necessary to place the Center After Drift trigger into the Triggers list inside Target Scheduler Container so that it could follow the current target.  However, the code will now recognize a Center After Drift trigger placed into the same container that holds Target Scheduler Container and automatically update it when the target changes.  This provides a much better user experience since the trigger display updates properly.
+The NINA Center after Drift trigger requires special handling.  First, **_never_** put it in the Triggers section under Target Scheduler Container where it will be explicitly ignored.  Instead, place it in the triggers section of a container above Target Scheduler Container.  Second, the CaD trigger needs to know the current target coordinates to determine drift.  When the Target Scheduler Container gets a Target Plan, it locates the trigger in the sequence hierarchy and injects the target coordinates.  If it is working properly, the CaD instruction UI will correctly show drift and status.
 
 ## Custom Event Instructions
 
@@ -40,18 +43,18 @@ Five areas are provided to drag/drop sequence instructions for execution at spec
 * **Before Wait**: run before each wait operation.  For example, park the mount.
 * **After Wait**: run after each wait operation.  For example, unpark the mount.
 * **Before New Target**: run before each new or changed target begins imaging.  Instructions here will be run _after_ a slew/center so that items like autofocus can be performed pointing at the target.
+* **After Each Exposure**: run after every exposure.
 * **After New Target**: run after each new or changed target completes imaging or is interrupted.
 * **After Each Target**: run after every target plan, regardless of whether it's new or not.  An important use case of this is with the [Target Scheduler Immediate Flats](../flats.html#target-scheduler-immediate-flats) instruction.
+* **After Target Complete**: run when a target reaches 100% complete for all exposure plans.
 
 Expand the individual containers to add items and then drag/drop instructions to the drop area as usual.  In general, any NINA instruction can be added but you should always test before unattended operation.
 
 Note that the Before/After New Target instructions will _only_ be executed when the target is new or changed from the previous plan.  Returning to the same target is a common occurrence since the planner will often select the same target if nothing else is available.
 
-If you're running [synchronized](../synchronization.html), these containers will run only on the server, not clients.
+If you're running [synchronized](../synchronization.html), the instructions in these containers will run only on the server, not clients.  However, you can also add custom event instructions to [Target Scheduler Sync Container](../synchronization.html#target-scheduler-sync-container).
 
-A timeline shows precisely when the event containers will be executed:
-
-![](../assets/images/planning-timeline-4.png)
+See the [plan timeline diagrams](../concepts/planning-engine.html#plan-types-and-timelines) which show precisely when the event containers will be executed.
 
 ### Coordinates Injection
 

@@ -24,7 +24,7 @@ Before you ask for help, please be sure you have met the following prerequisites
 These steps assume you have already installed the plugin via the NINA Plugins page.
 
 There are two main points of interaction with the plugin's capabilities.
-* The plugin home page (in the NINA Plugins tab) provides the UI to manage the [Project / Target Database](target-management/index.html), [preview schedules](scheduler-preview.html), and view metadata on [acquired images](post-acquisition/index.html).
+* The plugin home page (in the NINA Plugins tab) provides the UI to manage the [Project / Target Database](target-management/index.html), [preview schedules](scheduler-preview.html), see target [acquisition reports](post-acquisition/reporting.html), and view detailed metadata on [acquired images](post-acquisition/index.html).
 * The plugin adds a single new instruction named **_Target Scheduler Container_** that you will add to your sequence.  See the [Advanced Sequencer](sequencer/index.html) for details.
 
 The sections below will walk you through creation of your first project, target, and exposure plan.

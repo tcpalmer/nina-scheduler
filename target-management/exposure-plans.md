@@ -26,6 +26,11 @@ If you copy Exposure Plans from a target under one profile and then paste to a t
 
 If the copied Exposure Plans had an [override exposure ordering](#override-ordering), that order will also be copied - but only if the destination target is in the same NINA Profile as the source target and has no Exposure Plans of its own when the paste is started.
 
+### Manual Grading
+When delayed grading is enabled it may take some time before grading is triggered automatically.  In this case, you can manually trigger grading on all pending exposures for all exposure plans.  Grading happens in the background; you can refresh to see the latest status.
+
+Note that if you do manually grade, you will be limiting the population of images used and risk grading on an unrepresentative sample of a larger population.
+
 ### Delete All Exposure Plans
 
 When the target is _not_ in Edit mode, and you have at least one Exposure Plan, you can delete all exposure plans with a single click.
@@ -41,14 +46,15 @@ When the target is _not_ in Edit mode, you can delete exposure plans by clicking
 
 ### Exposure Plan Properties
 
-|Property|Type|Description|
-|:--|:--|:--|
-|Template|dropdown|[Exposure Template](exposure-templates.html) to use for this plan.|
-|Exposure|double|Exposure time in seconds.  Leave blank to use the default defined for the template.|
-|Desired|integer|Number of desired images for this plan - see below.|
-|Accepted|integer|Number of accepted images for this plan - see below.|
-|Acquired|integer|Total number of images acquired for this plan.  Read only - see below.|
-|Percent Complete|percentage|How close the plan is to complete.  Read only - see below.|
+| Property                     | Type       | Description                                                                         |
+|:-----------------------------|:-----------|:------------------------------------------------------------------------------------|
+| Template                     | dropdown   | [Exposure Template](exposure-templates.html) to use for this plan.                  |
+| Exposure                     | double     | Exposure time in seconds.  Leave blank to use the default defined for the template. |
+| Desired                      | integer    | Number of desired images for this plan - see below.                                 |
+| Accepted                     | integer    | Number of accepted images for this plan - see below.                                |
+| Acquired                     | integer    | Total number of images acquired for this plan.  Read only - see below.              |
+| Percent Complete             | percentage | How close the plan is to complete.  Read only - see below.                          |
+| Percent Complete<sup>*</sup> | percentage | Provisional percent complete.  Read only - see below.                               |
  
 ### Number of Images / Percent Complete
 
@@ -66,6 +72,13 @@ When image grading is disabled, then Accepted is _not_ incremented automatically
 
 The **_Acquired_** count is always incremented for each exposure and cannot be edited.
 
+#### Provisional Percent Complete
+The state of acquisition and grading for an exposure plan determines whether the regular percent complete (Accepted/Desired) or a provisional percent complete (Acquired/Desired) is used:
+* If grading is off, delayed grading is off, or delayed grading is on and has triggered, then regular percent complete is used.
+* Otherwise, provisional percent complete is used.
+
+Provisional percent complete provides a clearer picture of plan progress when delayed grading has not yet triggered.
+
 ## Exposure Order
 
 The Exposure Order display shows the ordering of exposures and dither operations by the planner.  The ordering can be the default (automatic) or manually overridden.  Click the gear icon to create an override.  Once you have an override, you can remove it by clicking the cancel icon when it is shown.
@@ -74,7 +87,7 @@ The Exposure Order display shows the ordering of exposures and dither operations
 
 ![](../assets/images/exposure-order-default.png)
 
-By default, exposure order is automatically determined based on the set of exposure plans plus the [Filter Switch Frequency](projects.html#filter-switch-frequency) and [Dither After Every](projects.html#dithering) settings on the associated Project.  The displayed order shown is merely representative and has some limitations:
+By default, exposure order is automatically determined based on the set of exposure plans plus the [Filter Switch Frequency](projects.html#filter-switch-frequency), [Dither After Every](projects.html#dithering), and [Smart Exposure Selection](../concepts/planning-engine.html#smart-exposure-selector) settings on the associated Project.  The displayed order shown is merely representative and has some limitations:
 * If Filter Switch Frequency is zero (repeat each plan until complete), it just shows '...' after each and dithers will not be shown.
 * Each plan will be shown regardless of whether it is complete or not.
 * Other factors could impact how exposures are planned - for example the twilight level of the associated Exposure Templates.

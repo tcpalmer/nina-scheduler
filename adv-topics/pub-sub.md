@@ -75,3 +75,15 @@ A target plan is _new_ when:
 
 ### Target End Time
 The target end time (in the message expiration field) should be used with caution.  The value used is the time at which the target loses visibility.  However, plans are designed to run within the project minimum time constraint and will contain only enough exposures to fill that time.  Most plans will continue running past the project minimum since plans may contain time consuming operations like slew/center, or be interrupted by auto focus triggers.  However, a plan is guaranteed to be stopped at the target end time since the target would no longer be visible after that time.
+
+## Completing a Target
+When the TS planner completes a target plan (all exposure plans 100% complete), it will publish a **_target complete_** message.
+
+- Topic: TargetScheduler-TargetComplete
+- Version: 1
+- Content: (string) target name
+- Expiration: none
+- Headers:
+  - ProjectName: (string) TS project name for the target
+  - Coordinates: (NINA.Astrometry.Coordinates) coordinates of the target
+  - Rotation: (double) target rotation angle (as entered into the TS UI)

@@ -75,7 +75,7 @@ The instruction works as follows:
   * Set the rotator mechanical position (only if a rotator is connected)
   * Switch filter
   * Set the panel brightness to the trained value
-  * Take _N_ flat exposures with specified gain, offset, binning, ROI and exposure time (from the trained value), where _N_ is the Flat Wizard 'Flats to take' count.
+  * Take _N_ flat exposures with specified gain, offset, binning, ROI, readout mode, and exposure time (from the trained value), where _N_ is the Flat Count value in the instruction (defaults to the Flat Wizard 'Flats to take' count).
 * Toggle the panel to off.
 
 Note that a flip-flat will be left in the closed position - add an instruction to reopen it if needed.

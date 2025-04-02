@@ -16,14 +16,10 @@ The Target Scheduler Container instruction takes a similar approach.  When a new
   * A custom trigger to stop execution of the internal container at the end time of the applicable target plan (specifically, if the expected duration of the next instruction would exceed the end time).
 * Executes the internal target container.  When it completes, it calls the Planning Engine again to get the next target.
 
-In NINA, containers can override the default execution strategy and that capability is used by the internal target container.  This strategy monitors the progress of executing instructions and updates the status display in the parent Target Scheduler Container.
-
-Any triggers added to the Target Scheduler Container instruction will be checked and executed normally by this strategy since all ancestor triggers (those on parent containers up to the root sequence container) are always given a chance to run.
-
 ## Logging
 Since the plugin is rather complex, it logs to a separate file rather than the main NINA log.  These logs are saved in %localappdata%\NINA\SchedulerPlugin\Logs\ and follow the NINA log naming convention with 'TS-' prepended.  Like the main NINA logs, these will also be purged after 90 days.
 
-This log defaults to Debug level and (currently) does not follow the logging level set for the main log in NINA Options.
+This log defaults to Debug level but you can change the level in [profile preferences](target-management/profiles.html#profile-preferences).
 
 Also, the TS log does not use rollover (switching to a different file during execution) like the main NINA log.  Although you may have more than one main NINA log file for a given execution, you will only have one TS log file for the same execution.  The NINA version and the process ID are present in all log file names and can be used to match files.
 

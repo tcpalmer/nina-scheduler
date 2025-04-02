@@ -41,17 +41,21 @@ Once you have entered a set of projects, targets, and exposure plans, you can pr
 
 ## Runtime Execution in the Advanced Sequencer
 
-The plugin provides a single primary instruction for the NINA Advanced Sequencer: _Target Scheduler Container_.  The instruction is placed into a Sequential Instruction set.  Triggers can be added to it as needed and should interact with the plugin as expected - for example various autofocus triggers, meridian flip, etc.
+The plugin provides a single primary instruction for the NINA Advanced Sequencer: _Target Scheduler Container_.  The instruction is placed into a Sequential Instruction set.  You can also add other NINA instructions to [custom event containers](../sequencer/container.html#custom-event-instructions) and have them run when specific events occur, like starting a new target.
 
 A perfectly valid sequence could consist of nothing more than start up instructions (connect equipment, cool camera), the sequential instruction set containing Target Scheduler Container and required triggers, and end instructions (park, warm camera, disconnect).
 
 When the instruction executes, it does the following in a loop:
 * Query the _Planning Engine_ for the best target to image at the present time.  If no target is available now but will be later, it will automatically wait for that time before calling the Planning Engine again.
-* If the planner returns a target and it is either the first target or different from the previous, it will issue the instructions to slew to the target (and rotate if needed) and then center (plate solve).
-* It will then begin executing exposures, switching filters and (optionally) dithering as needed.
-* The instruction will also transparently add a trigger to stop acquisition on this target at a specified time.
-* When the exposures have completed or the trigger stops execution, the instruction will loop back and call the Planning Engine again.
+* If the planner selected a target, it will return the instructions to take a single exposure.  If the target is different from the previous target, the instructions will include a slew to the target (and rotate if needed) and then center (plate solve).
+* The container will then begin executing instructions: slew/center (if needed), switch filter, (optionally) dither if needed, and exposing.
+* When the instructions complete, the container loops back and calls the planner again.  To avoid excessive slew/centers, the planner has provisions to 'stick' with a target for at least a minimum period of time.
 * If the Planning Engine returns null, the instruction completes.
+
+The plugin provides additional instructions for the advanced sequencer:
+* Custom loop conditions can be added to your sequence to control continuation based on the planner status.
+* Since Target Scheduler is controlling acquisition, you can also configure it to [take flats automatically](../flats.html).
+* If you have multiple OTAs/cameras on the same mount, you can use [synchronization](../synchronization.html) to have them image at the same time.
 
 See the [Advanced Sequencer](../sequencer/index.html) for details.
 
@@ -63,43 +67,32 @@ The Planning Engine executes a series of steps to pick the best target to image 
 
 ### Image Grading
 
-In order to increase the level of automation, the plugin includes rudimentary [image grading](../post-acquisition/image-grader.html).  The grader will compare metrics (e.g. HFR and star count) for the current image to a set of immediately preceding images to detect significant deviations.  If the image fails the test, the accepted count on the associated Exposure Plan is not incremented and the scheduler will continue to schedule exposures.  The grader can also grade based on the total RMS guiding error over the exposure duration.
+In order to increase the level of automation, the plugin includes rudimentary image grading.  The grader will compare metrics (e.g. HFR and star count) for the current image to a set of immediately preceding images to detect significant deviations.  If the image fails the test, the accepted count on the associated Exposure Plan is not incremented and the scheduler will continue to schedule exposures.  The grader can also grade based on the total RMS guiding error over the exposure duration, as well as FWHM and eccentricity (if Hocus Focus is used).
+
+Grading can also be delayed so that some percentage of the total desired for an exposure plan must be acquired before grading is triggered.  The calculations can then be based on a larger sample of exposures, mitigating problems caused by early images being unrepresentative of a larger population.
 
 Automatic image grading is inherently problematic and this plugin is not the place to make the final determination on whether an image is acceptable or not.  Towards that end, the plugin will **_never_** delete any of your images.  You are also free to disable Image Grading and manage the accepted count on your Exposure Plans manually - for example after reviewing the images yourself or using more sophisticated (external) analysis methods.
 
-### Image Metadata
+See [Image Grading](../post-acquisition/image-grader.html) for details.
 
-The plugin will save [metadata to the database](../post-acquisition/acquisition-data.html) for all images acquired via the plugin.  The records can be viewed in the _View Acquired Image Information_ section of the plugin home page in NINA Plugins.
+### Flats
 
-See [Post-acquisition](../post-acquisition/index.html) for details.
+Since the plugin is controlling your target acquisition, it knows all the details required to take flats for those targets and exposures.  Assuming you have run the NINA Flat Wizard to calculate the flat exposure times for each filter, you can add the _Target Scheduler Flats_ instruction to the end of your sequence to take any flats that are needed.  
 
+If you use a rotator, the flats instruction will move it to the same mechanical angle that was used for the corresponding target.  If your rotator has problems trying to duplicate a previous position, you can use the _Target Scheduler Immediate Flats_ instruction to take flats immediately after target exposures were taken, before the rotator moves to a new position.
 
+Note that this will only work with a flat panel - sky flats are not supported.
 
+See [Flat Frames](../flats.html) for details.
 
+### Reporting
 
+In the Reporting section, you can view an acquisition summary of your targets, including total exposure times by filter and grading status.  You can also see details on each exposure, including a thumbnail image.  Target reports can be viewed in the _Reporting_ section of the plugin home page in NINA Plugins.
 
+See [Reporting](../post-acquisition/reporting.html) for details.
 
+### Acquired Images
 
+The plugin will save [metadata to the database](../post-acquisition/acquisition-data.html) for all images acquired via the plugin.  The records can be viewed in the _Acquired Images_ section of the plugin home page in NINA Plugins.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+See [Acquired Images](../post-acquisition/acquisition-data.html) for details.

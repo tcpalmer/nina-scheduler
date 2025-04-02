@@ -4,25 +4,119 @@ title: Release Notes
 nav_order: 15
 ---
 
-## Release Notes 4.9.0.1
-_Released December 21, 2024_
+# Release Notes 5.2.0.0
+_Released April 2, 2025_
 
 ## Changes in this Release
-* Patch to prevent TS active Target coordinates from getting cleared in certain scenarios (typically with CenterAfterDrift handling and Powerups usage)
+Target Schedule 5 is a re-write of several major components of the plugin, including visibility determination, planning, and image grading.  See the [release notes for TS 5](ts-5-notes/index.html) for details - including instructions on how to [migrate](ts-5-notes/migration.html) from older versions.
+
+If you have questions or find issues, please report on the [Target Scheduler channel](https://discord.com/channels/436650817295089664/1162423099115962518) in NINA Discord.
 
 See below for details on [previous releases](#previous-releases).
 
 ## General
 
-Refer to the applicable documentation for details.  See the project [change log](https://github.com/tcpalmer/nina.plugin.assistant/blob/main/CHANGELOG.md) for the complete history.
+Refer to the applicable documentation for details.  See the project [change log](https://github.com/tcpalmer/nina.plugin.targetscheduler/blob/main/CHANGELOG.md) for the complete history.
 
 ## Known Issues
 
 * Icons disappear when using Light or Seance color schemes.
 * Currently, a slew will always do a center which will also rotate a dome if connected.  However, if we provide a way to disable plate solving, then it would use the SlewScopeToRaDec instruction which does not rotate a dome.  Could possibly add a SynchronizeDome instruction with the slew.  Would need someone with a dome to disable platesolving and test such a fix.
 * Although profiles/projects/targets are initially sorted properly, adding one or changing a name doesn't properly re-sort.  However, you can click the refresh icon on the tree to restore the sort order.
+* Although the time to generate any given plan is about the same as in TS 4, the single-exposure approach in TS 5 means that the planner is run many more times over the course of a night.  If you have a large number of targets, then this might be noticeable - especially using Scheduler Preview.  There are some things that can be tuned if this is a significant problem.
+* Running the previewer on a target will update the filter cadence of targets that are selected.  This will impact the next run in the sequencer since the cadence cycle will have advanced from the previous run.
+* The Scheduler Preview View Details info is now ridiculously verbose and needs to be redone.  However, this is really only an issue for TS trace level log output.
 
-## Previous Releases
+
+# Previous Releases
+
+## Target Scheduler 5.1.9.0 (unreleased beta)
+* Reduced tolerance for 'equal' moon avoidance scores (0.05 -> 0.01).
+* Targets in Acquired Images dropdown are now sorted by name.
+
+## Target Scheduler 5.1.8.0 (beta)
+_Released March 22, 2025_
+* Added ability to manually grade all pending exposure plans for a target.
+* Targets in Reporting dropdown are now sorted by name.
+* Added Exposure Template name to Acquired Images row detail view.
+* Added database busy timeout to avoid locked errors.
+* Other misc fixes.
+
+## Target Scheduler 5.1.7.0 (beta)
+_Released March 18, 2025_
+* Smart exposure selector will now select the exposure with lowest percent complete when multiple plans have equal highest avoidance scores.
+* Fixed issue with custom event containers finding the current target.
+* Added additional cancellation check in TS Container.
+
+## Target Scheduler 5.1.6.0 (beta)
+_Released March 11, 2025_
+* Added target acquisition summary report to Reporting display.
+* Allow the current target to continue if it can use remaining visibility time if less than project minimum.
+* Above should also help with TS Condition checks stopping the container if that same timing applies.
+* Fixed issue where targets could forget dither state.
+* Fixed issues with last flat image missing TS image file pattern variable substitutions.
+* Fixed issue where TS Background Condition was postponing rechecks too far in the future.
+
+## Target Scheduler 5.1.5.0 (beta)
+_Released March 7, 2025_
+* Added explicit display of regular or provisional percent complete on exposure plans.
+* Fixed bug with grading (was impacting all previous delayed grading runs).
+
+## Target Scheduler 5.1.4.0 (beta)
+_Released March 3, 2025_
+* Revised target/exposure plan percent complete calculation to handle delayed grading.
+
+## Target Scheduler 5.1.3.0 (beta)
+_Released February 26, 2025_
+* Added 'After Target Complete' custom event container.
+* Fixed bug where sync client was ignoring exposure length on exp template of same name.
+* Sync client can now take multiple exposures per server exposure.
+* Location in sequence of a Center After Drift trigger is relaxed, can now be in any container above TS container.
+* Preview now shows end times for targets.
+* Added new published message for target complete (developers only).
+* Added details to the message published when starting a planned wait: the next target and the number of seconds until the wait ends (developers only).
+
+## Target Scheduler 5.1.2.0 (beta)
+_Released February 20, 2025_
+* Added 'After Each Exposure' custom event container.
+* Added ability to set the number of flats to take in the TS flats instructions.
+
+## Target Scheduler 5.1.1.0 (beta)
+_Released February 18, 2025_
+* Reformulated the moon avoidance score.
+* Scheduler Preview now includes an end time.
+
+## Target Scheduler 5.1.0.0 (beta)
+_Released February 17, 2025_
+* Planner will now attempt to continue with a selected target for the minimum time.
+* Fixed display and threading problems with Scheduler Preview.
+* Added profile preference to set the TS log level (independent of NINA log level).
+* Fixed issue with moon avoidance scoring.
+* Improved performance of scheduler preview by decreasing visibility sampling rate.
+
+## Target Scheduler 5.0.2.0 (beta)
+_Released February 12, 2025_
+* Fixed Telescopius CSV format change.
+* Recheck project minimum time after a meridian window clip.
+* Fixed bug with new slew disable capability.
+
+## Target Scheduler 5.0.1.0 (beta)
+_Released February 11, 2025_
+* Added profile preference to enable/disable slew/center for new targets.
+* Fixed problem where (now slower) plan preview locks the main UI thread.
+* Fixed serious problem with planner time handling.
+
+## Target Scheduler 5.0.0.0 (beta)
+_Released February 9, 2025_
+* Major (beta) release of new features
+
+## Target Scheduler 4.9.1.0
+_Released January 2, 2025_
+* Fix for entering fractional seconds in target coordinates.  It will behave like core NINA: the fractional seconds will be stored and used but will be rounded for display.
+
+## Target Scheduler 4.9.0.1
+_Released December 21, 2024_
+* Patch to prevent TS active Target coordinates from getting cleared in certain scenarios (typically with CenterAfterDrift handling and Powerups usage)
 
 ## Target Scheduler 4.9.0.0
 _Released October 24, 2024_
