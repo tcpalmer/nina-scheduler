@@ -4,10 +4,12 @@ title: Release Notes
 nav_order: 15
 ---
 
-# Release Notes 5.2.0.0
-_Released April 2, 2025_
+# Release Notes 5.2.0.1
+_Released April 4, 2025_
 
 ## Changes in this Release
+* Fixed a problem where filter cadence is not cleared during some target edits.
+
 Target Schedule 5 is a re-write of several major components of the plugin, including visibility determination, planning, and image grading.  See the [release notes for TS 5](ts-5-notes/index.html) for details - including instructions on how to [migrate](ts-5-notes/migration.html) from older versions.
 
 If you have questions or find issues, please report on the [Target Scheduler channel](https://discord.com/channels/436650817295089664/1162423099115962518) in NINA Discord.
@@ -29,6 +31,10 @@ Refer to the applicable documentation for details.  See the project [change log]
 
 
 # Previous Releases
+
+## Target Scheduler 5.2.0.0
+_Released April 2, 2025_
+* Official release of version 5.
 
 ## Target Scheduler 5.1.9.0 (unreleased beta)
 * Reduced tolerance for 'equal' moon avoidance scores (0.05 -> 0.01).
