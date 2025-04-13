@@ -10,6 +10,41 @@ Each NINA profile is represented with a (possibly empty) folder in the navigatio
 
 If you delete a profile that had Target Scheduler entities assigned to it, they are not lost, but they are [orphaned](index.html#orphaned-items).
 
+## Import/Export
+You can export an entire profile - profile preferences, projects, targets, exposure templates and (optionally) the associated acquired image data.  The dataset is saved to a Zip file and can be imported to another profile on the current NINA instance or to an instance on a completely different PC.
+
+Note that the Target Scheduler database versions must match on the exporting and importing systems.  If you don't have a match, the import will be canceled with an error message.  Although the database version changes much less frequently than plugin versions, it does change on occasion.  Keep this in mind if you plan on using this feature to archive Target Scheduler data.  (In the future, this might be relaxed when importing an older database to a newer version - if you accept that there could be problems with the imported data.)
+
+An export is simply a zip file containing the following files in JSON format:
+* A metadata file describing the export: export date, profile name, plugin version, and database version
+* projects.json with all projects, related targets and exposure plans
+* exposureTemplates.json with all exposure templates
+* acquiredImages.json with all acquired image rows (optional output)
+* imageData.json with all image data rows including thumbnail images (optional output)
+
+
+### Export Profile
+To export, select the desired profile in the Projects tree and then click the export icon.  The Export Profile section will expand and you can select the Zip file and indicate whether any acquired image data should also be exported.  Click the export icon at the bottom of the section to run the export.
+
+If the export succeeded, a pop-up will appear detailing the number of projects, targets, etc.
+
+#### Export Notes
+* Not all database tables are exported: the table that records flats status/history is not, as well as the table that stores the next exposure in a target's filter cadence.
+* The operation assumes there is sufficient space in your local Windows Temp directory to serialize all the data before the zip compression.  In general, this is not an issue but if you are exporting a large amount of acquired image data, it could be significant.
+
+### Import Profile
+To import, select the desired profile in the Projects tree and then click the import icon.  The Import Profile section will expand and you can select the Zip file and indicate whether any acquired image data should also be imported.  Click the import icon at the bottom of the section to run the import.
+
+After import, you will need to refresh the projects and exposure templates trees in the left nav to see the changes.
+
+#### Import Notes
+* The profile used for import does not have to be empty.  But if it is not and contains projects or exposure templates with the same name as any in the export, they will _not_ be renamed when imported, and you will get multiple projects or exposure templates with the same name.
+* Any exposure templates in the import will reference filters by name that are in use on the exporting system (defined in Options > Equipment > Filter Wheel).  When you import these exposure templates to a different profile or instance of NINA, those filters may not be defined.  Although the import will succeed, it will list the filters referenced in the export.  Before trying to use the imported projects - in a preview or otherwise - you should ensure that those filters are defined in the filter wheel for this profile.  Alternatively, you could edit the exposure templates and change the filter to one referenced in that profile.
+* If the profile used for import has changed any of the default profile preferences, they will not be overridden by an import.
+
+### Import Targets
+You can also load multiple targets from a CSV file.  See [Bulk Target Import](targets.html#bulk-target-import) for details.
+
 ## Profile Preferences
 A set of preferences can be managed for each profile and will impact execution of all projects and targets associated with that profile.
 
