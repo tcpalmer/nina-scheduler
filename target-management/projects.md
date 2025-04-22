@@ -48,7 +48,7 @@ You can reset completion for an entire project.  This will set the Accepted and 
 | Maximum Altitude         | double        | The maximum altitude for project targets to be considered.  See below for details on horizon determination.                                                                                                                                                               |
 | Use Custom Horizon       | boolean       | Use the custom horizon defined for the associated profile (NINA Options > General > Astrometry).  See below for details on horizon determination.                                                                                                                         |
 | Horizon Offset           | double        | A value to add to the custom horizon to set the minimum altitude at the target's current azimuth.  Disabled if Use Custom Horizon is disabled.  See below for details on horizon determination.                                                                           |
-| Meridian Window          | minutes       | Limit imaging to a timespan in minutes around the meridian crossing.  A setting of 60 implies 1 hour on either side of the meridian or 2 hours total.  See below for interaction with Minimum Time.  Set to zero to disable.                                              |
+| Meridian Window          | minutes       | Limit imaging to a timespan in minutes around the meridian crossing.  A setting of 60 implies 1 hour on either side of the meridian or 2 hours total.  See below for potential interactions and conflicts.  Set to zero to disable.                                       |
 | Filter Switch Frequency  | integer 0-N   | Value to determine how exposures for different filters are scheduled.  See below for details.                                                                                                                                                                             |
 | Dither After Every       | integer 0-N   | Value to determine how dithering is handled.  See below for details.                                                                                                                                                                                                      |
 | Smart Exposure Selection | boolean       | Enable/disable exposure selection based on moon avoidance criteria.  See below for details.                                                                                                                                                                               |
@@ -64,8 +64,10 @@ If Target Scheduler is actively taking images for a managed target (lights or fl
 
 The project state provides control over whether a project is considered for scheduling or not - and only Active projects are considered.  When a project is first created, the state is Draft; complete project/target setup and then set the state to Active.  Use the Inactive and Closed states as needed.
 
-#### Meridian Window and Minimum Time
+#### Meridian Window Interactions/Conflicts
 If a project specifies a meridian window, then the minimum time cannot be greater than twice the meridian window value.  If it was, then targets for that project would never be selected since the total meridian window would always be less than the minimum time.
+
+If you use a non-zero Pause before meridian value (Options > Imaging > Meridian flip settings), then it might be challenging to use a Meridian Window, depending on your window size, minimum time settings, and meridian flip settings.  In most cases, using a Pause before meridian precludes using a Meridian Window.  See [Meridian Flip Safety](../concepts/planning-engine.html#meridian-flip-safety).
 
 #### Horizon Determination
 
@@ -87,6 +89,8 @@ The Filter Switch Frequency determines how exposures for different filters are s
 
 The setting depends primarily on whether you have focus offsets for your filters configured.  You would typically use 0 if you do not have offsets configured to minimize the need for autofocus runs.
 
+Filter Switch Frequency is also used to set the frequency for Smart Exposure Selection - see below.
+
 Note that Filter Switch Frequency is ignored if you're using an [override exposure order](exposure-plans.html#override-ordering) for any Target under this Project.
 
 #### Dithering
@@ -105,7 +109,9 @@ Otherwise, you can set the value to 0.  In this case, you can either use a Dithe
 Note that the Dither setting is ignored if you're using an [override exposure order](exposure-plans.html#override-ordering) for any Target under this Project.
 
 #### Smart Exposure Selection
-If Smart Exposure Selection is enabled, the planner will select the next exposure based on a calculated _moon avoidance score_.  See [exposure selection](../concepts/planning-engine.html#exposure-selection-and-dithering) for additional details on how a selection method is determined.
+If Smart Exposure Selection is enabled, the planner will select the next exposure based on a calculated _moon avoidance score_.  If multiple exposure plans have the same (or nearly the same) high avoidance score, then the Filter Switch Frequency is used to decide when to which filters.
+
+See [exposure selection](../concepts/planning-engine.html#exposure-selection-and-dithering) for additional details on how a selection method is determined.
 
 #### Scoring Engine Rule Weights
 

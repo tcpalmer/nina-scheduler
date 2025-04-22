@@ -98,6 +98,7 @@ The planner needs to determine if the target is above the _horizon_ for (at leas
 
 Basic visibility is then a simple matter of checking for target altitude > horizon at each azimuth over the sampled time span.  However, we also need to determine if:
 * The target is currently inside it's optional meridian window and the window lasts long enough to image for the minimum time
+* The target interval might be interrupted by a meridian flip and your profile uses a pause before meridian (see [below](#meridian-flip-safety) for details).
 * The target is below the maximum altitude for the entire minimum time span
 
 Any target that does not meet the visibility criteria is removed from the candidate target list.
@@ -144,9 +145,7 @@ If the target defines an override exposure order, then the Override Order Exposu
 ### Smart Exposure Selector
 If the project has enabled Smart Exposure selection, then the Smart Exposure Selector is used.  This selector will use the moon avoidance scores (calculated earlier) to select an exposure:
 * The exposure plan with the highest avoidance score is determined.
-* If there are other exposure plans with a score within some small tolerance of the highest score they are also considered.
-
-Of the remaining exposure plans, the one with the lowest percent complete is selected.
+* If there are other exposure plans with a score within some small tolerance of the highest score they are also considered.  If Filter Switch Frequency is greater than zero, then the selector will repeat filters from that set before switching to the next.
 
 The moon avoidance score for an exposure plan is calculated as follows.  The properties are defined on the exposure template used by the exposure plan.
 * If moon avoidance is off, the score is 0.
@@ -170,7 +169,31 @@ The final step of a Target plan is generating the actual instructions that will 
 * Perform a dither (if needed)
 * Take the selected exposure
 
-## Scoring Engine
+# Meridian Flip Safety
+
+If a profile specifies a non-zero Pause before meridian value (Options > Imaging > Meridian flip settings), you are asserting that the mount/OTA cannot track past the meridian safely.  In this case, we want to clip a target's visibility such that the time interval from the pause (target transit - pause minutes), past the meridian, to the time at which it would be safe to flip (target transit + minutes after) is disallowed: the _no-flip_ or _unsafe_ zone.  
+
+NINA would stop tracking anyway at the pause time so even without this extra clipping, your equipment should be safe.  However, by preemptively clipping out this interval, we let the planner take advantage of this extra implicit visibility information.
+
+Note that this feature is independent of the Meridian Flip Penalty scoring rule discussed below.  Handling a pause before meridian is a safety concern.  The scoring rule is an optimization concern.
+
+The no-flip zone is the time interval between:
+* target transit - (Pause before meridian + 30s)
+* target transit + (Minutes after meridian + 30s)
+
+Note that the interval is expanded by 30s on either side for an extra margin of safety.
+
+The planned visibility interval could be clipped:
+* At the end, if the start time is before and the end time occurs in or after the no-flip interval
+* At the start, if the start time occurs in the no-flip interval and the end occurs after
+* Or rejected altogether if both start and end are in the no-flip zone
+
+In general, you should not attempt to use a project Meridian Window if you have flip safety concerns.  See the notes on [meridian window interactions and conflicts](../target-management/projects.html#meridian-window-interactionsconflicts).
+
+{: .warning }
+Please heed the warning in the NINA documentation and only use Pause before meridian if your equipment cannot safely track past the meridian.
+
+# Scoring Engine
 
 The Planner uses a Scoring Engine to select a target when multiple candidates are under consideration.  The engine executes a set of rules on each target to produce a score, with the highest score winning.  The applicable Project has a set of configurable weights that are used to modulate the application of each rule.
 
@@ -180,6 +203,7 @@ The following rules are currently implemented:
 
 |Rule Name|Default Weight|Description|
 |:--|:--|:--|:--|
+|Meridian Flip Penalty|0%|A target scores higher if it does not need a meridian flip during the current minimum time imaging span.  The rationale is to avoid the time required for a flip: wait for flip, flip, center, etc.|
 |Meridian Window Priority|75%|A target scores higher if the project it is associated with is using a Meridian Window to limit imaging time.  The rationale is to prefer targets using meridian windows since those windows are limited over the course of any imaging session.|
 |Mosaic Completion|0%|If the project for the target is marked as a Mosaic project, then the target will score higher the lower its completion rate is to the average completion rate of the other targets in that project.  See [Exposure Plans](../target-management/exposure-plans.html#number-of-images--percent-complete) for details on how percent complete is determined.  The rationale is to balance exposures across the panels.|
 |Percent Complete|50%|A target scores higher based on its [completion percentage](../target-management/exposure-plans.html#number-of-images--percent-complete).  The rationale is to prefer completion of a project over starting acquisition of something new.|
@@ -196,8 +220,10 @@ If you use Scheduler Preview, you can click the [View Details](../scheduler-prev
 
 ### Rule Interactions and Conflicts
 
-The scoring engine is designed to be easily extended by adding additional rules.  However, there is a limit with approaches like this.  As the number of rules increases, the predictability of engine outcomes goes down - and predictability can be desirable.  As the number grows it might be appropriate for users to select a subset that work well and disable the others.  Several additional rules are under consideration - see the [roadmap](../roadmap.html#scoring-engine-rules).
+The scoring engine is designed to be easily extended by adding additional rules.  However, there is a limit with approaches like this.  As the number of rules increases, the predictability of engine outcomes goes down - and predictability can be desirable.  As the number grows it might be appropriate for users to select a subset that work well and disable the others.  Additional rules are under consideration - see the [roadmap](../roadmap.html#scoring-engine-rules).
 
 In particular, the Percent Complete and Mosaic Completion rules may not interact well.  If your goal is to use Mosaic Completion to balance exposures across mosaic panels, then you probably want to set the weight for Mosaic Completion high and the Percent Complete and Target Switch Penalty weights to zero.
+
+Also, unless you artificially set the rule weights to maximize the impact of the Meridian Flip Penalty rule, you're not likely to completely avoid the need for flips.  With typical settings for example, the Target Switch Penalty may cancel it out and plan for imaging through a flip.
 
 [^1]: "Dispatch" is a general term in scheduling contexts but was also originally used by Bob Denny for the [ACP Observatory Control Program](https://acpx.dc3.com/) (which is also a dispatch scheduler).

@@ -13,7 +13,7 @@ If you delete a profile that had Target Scheduler entities assigned to it, they 
 ## Import/Export
 You can export an entire profile - profile preferences, projects, targets, exposure templates and (optionally) the associated acquired image data.  The dataset is saved to a Zip file and can be imported to another profile on the current NINA instance or to an instance on a completely different PC.
 
-Note that the Target Scheduler database versions must match on the exporting and importing systems.  If you don't have a match, the import will be canceled with an error message.  Although the database version changes much less frequently than plugin versions, it does change on occasion.  Keep this in mind if you plan on using this feature to archive Target Scheduler data.  (In the future, this might be relaxed when importing an older database to a newer version - if you accept that there could be problems with the imported data.)
+During an import, the current (importing) Target Scheduler database version is compared to the export.  If the export version is newer, the import will be canceled and you must update the import version.  If the import version is newer, you will be given the option to continue or cancel.  In most cases, it is safe to continue but problems may occur.  The TS [release notes](../release.html) should mention whether a database version change will break import of older profile exports.  Although the database version changes much less frequently than plugin versions, it does change on occasion.
 
 An export is simply a zip file containing the following files in JSON format:
 * A metadata file describing the export: export date, profile name, plugin version, and database version

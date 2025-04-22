@@ -4,14 +4,18 @@ title: Release Notes
 nav_order: 15
 ---
 
-# Release Notes 5.3.0.0
-_Released April 13, 2025_
+# Release Notes 5.4.0.0
+_Released April 22, 2025_
 
 ## Changes in this Release
-* Added ability to export all profile data (projects, targets, etc) to a zip file for later import.
-* Fixed issue in Reporting where any NaN FWHM or Eccentricity values caused the corresponding range display to show 'n/a'.
-* Preview view details output was horked at TS Info log level.
+* Added new scoring rule: Meridian Flip Penalty.
+* Added special handling for users that need a pause before a meridian flip.
+* Added support for exposure repeating for smart exposure when multiple have the same avoidance score.
+* Relaxed profile import: user has option to continue if importing database is newer than the export.
+* Fixed issue where flats could miss file name pattern substitutions.
 
+{: .note }
+**_If this release is your first use of TS 5_** ...
 Target Schedule 5 is a re-write of several major components of the plugin, including visibility determination, planning, and image grading.  See the [release notes for TS 5](ts-5-notes/index.html) for details - including instructions on how to [migrate](ts-5-notes/migration.html) from older versions.
 
 If you have questions or find issues, please report on the [Target Scheduler channel](https://discord.com/channels/436650817295089664/1162423099115962518) in NINA Discord.
@@ -33,6 +37,12 @@ Refer to the applicable documentation for details.  See the project [change log]
 
 
 # Previous Releases
+
+## Target Scheduler 5.3.0.0
+_Released April 13, 2025_
+* Added ability to export all profile data (projects, targets, etc) to a zip file for later import.
+* Fixed issue in Reporting where any NaN FWHM or Eccentricity values caused the corresponding range display to show 'n/a'.
+* Preview view details output was horked at TS Info log level.
 
 ## Target Scheduler 5.2.0.1
 _Released April 4, 2025_
