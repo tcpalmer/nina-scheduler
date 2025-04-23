@@ -4,15 +4,11 @@ title: Release Notes
 nav_order: 15
 ---
 
-# Release Notes 5.4.0.0
-_Released April 22, 2025_
+# Release Notes 5.4.0.1
+_Released April 23, 2025_
 
 ## Changes in this Release
-* Added new scoring rule: Meridian Flip Penalty.
-* Added special handling for users that need a pause before a meridian flip.
-* Added support for exposure repeating for smart exposure when multiple have the same avoidance score.
-* Relaxed profile import: user has option to continue if importing database is newer than the export.
-* Fixed issue where flats could miss file name pattern substitutions.
+* Bug fix for new meridian pause handling for bad target transit times.
 
 {: .note }
 **_If this release is your first use of TS 5_** ...
@@ -37,6 +33,14 @@ Refer to the applicable documentation for details.  See the project [change log]
 
 
 # Previous Releases
+
+## Target Scheduler 5.4.0.0
+_Released April 22, 2025_
+* Added new scoring rule: Meridian Flip Penalty.
+* Added special handling for users that need a pause before a meridian flip.
+* Added support for exposure repeating for smart exposure when multiple have the same avoidance score.
+* Relaxed profile import: user has option to continue if importing database is newer than the export.
+* Fixed issue where flats could miss file name pattern substitutions.
 
 ## Target Scheduler 5.3.0.0
 _Released April 13, 2025_
