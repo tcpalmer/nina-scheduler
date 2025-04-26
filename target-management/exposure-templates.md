@@ -40,6 +40,7 @@ When done, click the Save icon to save your changes or the Cancel icon to cancel
 | Binning                  | dropdown     | The binning mode for the exposure.                                                                                                                                   |
 | Readout Mode             | integer      | The desired readout mode setting for the exposure.  Leave blank to use the default defined for the camera.                                                           |
 | Acceptable Twilight      | dropdown     | The brightest level of twilight that is suitable for using this filter.                                                                                              |
+| Dither After Every       | integer      | Value to determine how dithering is handled - see below for details.  Leave blank to use the default defined for the applicable project.                             |
 | Maximum Humidity         | double       | Not currently implemented.                                                                                                                                           |
 | Enable Classic Avoidance | boolean      | Enable/disable the classic moon avoidance calculation - see below.                                                                                                   |
 | Classic Separation       | 0 to 180°    | The separation angle for the moon avoidance calculation - see below.                                                                                                 |
@@ -49,6 +50,18 @@ When done, click the Save icon to save your changes or the Cancel icon to cancel
 | Maximum Altitude         | 0° to 30°    | The upper moon altitude limit of the relaxation range for avoidance relaxation - see below.                                                                          |
 | Moon Must Be Down        | boolean      | Reject exposure if the moon altitude is above the relax maximum altitude, regardless of phase or separation - see below.                                             |
 
+## Dithering
+You can enable a dither frequency at the exposure level, overriding the value set on projects.  For exposure plans using this exposure template:
+* Leave blank to use the project value
+* Set to zero to completely disable dithering
+* Otherwise, if the dither setting is _N_, a dither will be added before the _N+1<sup>th</sup>_ occurrence of this filter.
+
+Notes:
+* Dithering is determined based on the _filter name_ - not the exposure template name.  Since you could have different exposure plans using the same filter, we want to ensure that when that filter is selected again, we dither appropriately.
+* Any dither operation resets the count for all filters.
+* The Dither setting is ignored if you're using an [override exposure order](exposure-plans.html#override-ordering) for any Target using this template.
+
+See [Dithering](projects.html#dithering) for more information.
 
 ## Moon Avoidance
 

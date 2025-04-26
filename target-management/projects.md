@@ -102,11 +102,15 @@ The Scheduler instruction can optionally schedule dithering for you.  If the dit
 * Dither=1, LLRRGGBBLLL: LdLRdRGdGBdBLdLdL
 * Dither=2, LLRRGGBBLLL: LLRRGGBBdLLdL
 
-Dithering behavior is completely independent of the Filter Switch Frequency.
-
 Otherwise, you can set the value to 0.  In this case, you can either use a Dither After Exposures trigger instruction in the Triggers section of the sequencer container, or skip dithering altogether.
 
-Note that the Dither setting is ignored if you're using an [override exposure order](exposure-plans.html#override-ordering) for any Target under this Project.
+Notes:
+* Dithering behavior is completely independent of the Filter Switch Frequency.
+* Dithering is determined based on the _filter name_ as configured in NINA Options > Equipment > Filter Wheel.  Since you could have different exposure plans using the same filter, we want to ensure that when that filter is selected again, we dither appropriately.
+* Any dither operation resets the count for all filters.
+* The Dither setting is ignored if you're using an [override exposure order](exposure-plans.html#override-ordering) for any Target using this template.
+
+You can also specify a per-filter dither value by [overriding it on exposure templates](exposure-templates.html#dithering).
 
 #### Smart Exposure Selection
 If Smart Exposure Selection is enabled, the planner will select the next exposure based on a calculated _moon avoidance score_.  If multiple exposure plans have the same (or nearly the same) high avoidance score, then the Filter Switch Frequency is used to decide when to which filters.
