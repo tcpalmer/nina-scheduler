@@ -25,22 +25,33 @@ All messages sent from TS will be logged in the TS log at compose/send time.
 When the TS planner returns a 'wait' period (wait some amount of time for the next target to become available), it will publish a **_wait start_** message.
 
 - Topic: TargetScheduler-WaitStart
-- Version: 1
+- Version: 2
 - Content: (DateTime) wait end time
 - Expiration: wait end time
-- Headers: none
+- Headers:
+    - SecondsUntilNextTarget: (int) number of seconds to wait until the next target starts
+    - ProjectName: (string) TS project name for the next target
+    - TargetName: (string) TS name for the next target
+    - Coordinates: (NINA.Astrometry.Coordinates) coordinates of the next target
+    - Rotation: (double) next target rotation angle (as entered into the TS UI)
+
 
 ## Starting a New Target
 When the TS planner returns a target plan _and_ the target is 'new' (see below), it will publish a **_new target start_** message.
 
 - Topic: TargetScheduler-NewTargetStart
-- Version: 1
+- Version: 2
 - Content: (string) target name
 - Expiration: target end time (see below)
 - Headers:
     - ProjectName: (string) TS project name for the target
     - Coordinates: (NINA.Astrometry.Coordinates) coordinates of the target
     - Rotation: (double) target rotation angle (as entered into the TS UI)
+    - ExposureFilterName: (string) name of the filter for the selected exposure 
+    - ExposureLength: (double) length of the selected exposure in seconds
+    - ExposureGain: (string) gain setting of the selected exposure or '(camera)' if defaults to camera setting
+    - ExposureOffset: (string) offset setting of the selected exposure or '(camera)' if defaults to camera setting
+    - ExposureBinning: (string) binning mode of the selected exposure, e.g. '1x1'
 
 See below for details on when this message is sent.
 
@@ -48,15 +59,31 @@ See below for details on when this message is sent.
 When the TS planner returns a target plan, it will publish a **_target start_** message.  This is sent regardless of whether the target is new or not.
 
 - Topic: TargetScheduler-TargetStart
-- Version: 1
+- Version: 2
 - Content: (string) target name
 - Expiration: target end time (see below)
 - Headers:
-  - ProjectName: (string) TS project name for the target
-  - Coordinates: (NINA.Astrometry.Coordinates) coordinates of the target
-  - Rotation: (double) target rotation angle (as entered into the TS UI)
+    - ProjectName: (string) TS project name for the target
+    - Coordinates: (NINA.Astrometry.Coordinates) coordinates of the target
+    - Rotation: (double) target rotation angle (as entered into the TS UI)
+    - ExposureFilterName: (string) name of the filter for the selected exposure
+    - ExposureLength: (double) length of the selected exposure in seconds
+    - ExposureGain: (string) gain setting of the selected exposure or '(camera)' if defaults to camera setting
+    - ExposureOffset: (string) offset setting of the selected exposure or '(camera)' if defaults to camera setting
+    - ExposureBinning: (string) binning mode of the selected exposure, e.g. '1x1'
 
 See below for details on when this message is sent.
+
+## Container Stopped
+When the TS Container instruction ends, it will publish a **_container stopped_** message.
+
+- Topic: TargetScheduler-ContainerStopped
+- Version: 1
+- Content: (string) "Container Stopped"
+- Expiration: n/a
+- Headers:
+  - StoppedAt: (DateTime) time that the container stopped
+
 
 ## Notes on Target Start Messages
 

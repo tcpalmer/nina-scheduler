@@ -59,6 +59,8 @@ The plugin provides additional instructions for the advanced sequencer:
 
 See the [Advanced Sequencer](../sequencer/index.html) for details.
 
+Target Scheduler provides a dockable panel for the NINA Imaging tab that will display details of an active session.  See [Imaging Tab Panel](../sequencer/imaging-panel.html) for details.
+
 ## Planning Engine
 
 The Planning Engine executes a series of steps to pick the best target to image at the moment and then schedule the applicable exposures for that target.  See [Planning Engine](planning-engine.html) for details.

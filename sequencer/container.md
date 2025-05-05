@@ -17,12 +17,27 @@ See the [technical details](../technical-details.html#target-scheduler-container
 
 The following shows a Target Scheduler Container instruction after adding to a sequence but before the sequence is running.
 
-![](../assets/images/tsc-3.png)
+![](../assets/images/tsc-4.png)
 
-It consists of three main areas:
-1. **Target Details**.  When the planner returns a target to image, the details - including the nighttime/altitude chart - will be displayed here.
-2. **Plan Progress**.  Each plan returned by the planner will generate an expandable section here containing details on what is happening and what has been completed.
-3. **Custom Triggers/Instructions**.  Expand _Custom Event Containers_ to get access to the Triggers and other event-based instruction containers. Drag/drop other NINA sequence items to those areas as needed.
+It consists of four main areas:
+1. **Pause/Resume**.  When the container is running, you can pause and resume - see below.
+2. **Target Details**.  When the planner returns a target to image, the details - including the nighttime/altitude chart - will be displayed here.
+3. **Plan Progress**.  Each plan returned by the planner will generate an expandable section here containing details on what is happening and what has been completed.
+4. **Custom Triggers/Instructions**.  Expand _Custom Event Containers_ to get access to the Triggers and other event-based instruction containers. Drag/drop other NINA sequence items to those areas as needed.
+
+## Pausing the Container
+
+The pause/resume buttons on the instruction header can be used to stop the container for a period of time.  These buttons are only active when the container is actually imaging.
+
+These controls are also available in the scheduler's [Imaging tab panel](imaging-panel.html).
+
+### Pause
+If the container is running, you can click the pause button.  This will trigger a _request to pause_ when the next planned exposure finishes (it will not be interrupted).  If a new target just started and it's still in the process of slewing/centering, it will still proceed to the first planned exposure before pausing.  Other triggers (e.g. autofocus) may also run before the container is actually paused.
+
+The NINA sequence progress/status display (at the bottom of the screen) will show how long the pause has been active.
+
+### Resume
+When the container is paused, you can resume operation by clicking the resume button.  The container will call the planner immediately to get the next target/exposure appropriate to the current time.
 
 ## Triggers
 
