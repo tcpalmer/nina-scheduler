@@ -4,12 +4,11 @@ title: Release Notes
 nav_order: 15
 ---
 
-# Release Notes 5.6.2.0
-_Released May 19, 2025_
+# Release Notes 5.6.3.0
+_Released May 24, 2025_
 
 ## Changes in this Release
-* Fixed project/target name truncation in new panel for Imaging tab.
-* Fixed issue where previous target was allowed to continue even though next exposure was not suitable for current twilight level.
+* Fixed issue with MF pause handling and project minimum time check.
 
 {: .note }
 **_If this release is your first use of TS 5_** ...
@@ -34,6 +33,11 @@ Refer to the applicable documentation for details.  See the project [change log]
 
 
 # Previous Releases
+
+## Target Scheduler 5.6.2.0
+_Released May 19, 2025_
+* Fixed project/target name truncation in new panel for Imaging tab.
+* Fixed issue where previous target was allowed to continue even though next exposure was not suitable for current twilight level.
 
 ## Target Scheduler 5.6.0.0
 _Released May 5, 2025_
