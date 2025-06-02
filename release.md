@@ -4,11 +4,11 @@ title: Release Notes
 nav_order: 15
 ---
 
-# Release Notes 5.6.3.0
-_Released May 24, 2025_
+# Release Notes 5.6.4.0
+_Released June 2, 2025_
 
 ## Changes in this Release
-* Fixed issue with MF pause handling and project minimum time check.
+* Fixed issue with missing active/inactive icons on project and target panels.
 
 {: .note }
 **_If this release is your first use of TS 5_** ...
@@ -33,6 +33,10 @@ Refer to the applicable documentation for details.  See the project [change log]
 
 
 # Previous Releases
+
+## Target Scheduler 5.6.3.0
+_Released May 24, 2025_
+* Fixed issue with MF pause handling and project minimum time check.
 
 ## Target Scheduler 5.6.2.0
 _Released May 19, 2025_
