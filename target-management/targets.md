@@ -38,6 +38,16 @@ For importing targets in bulk, see [below](#bulk-target-import).
 {: .warning }
 If your target is in edit mode and you leave the plugin page and then use the Framing Assistant to look up a target, that target's name and coordinates will overwrite your existing target.  This is a consequence of internal NINA property change notifications.  Of course, you would still have to save the target before the change is finalized.
 
+### Target Copy/Paste
+
+To copy/paste a target to another project, first click the Copy/Move icon.  Then select the destination project in the navigation tree and click the Paste icon.  A copy/paste will copy all exposure plans but will clear the Accepted and Acquired counts to zero.
+
+### Target Move
+
+To move a target to another project, first click the Copy/Move icon.  Then select the destination project in the navigation tree and click the Move icon.  Note that a move operation will retain the Accepted and Acquired counts (unlike a paste).  It will also ensure that other associated data (such as Acquired Image rows) are moved as well.
+
+Note that move only applies to targets.  You cannot 'move' any other entity - only copy/paste.
+
 ### Target Delete
 
 To delete a target, click the Delete icon.  If the _Delete Acquired Images_ [preference](profiles.html#profile-preferences) (enabled by default) is on, then any [acquired image](../post-acquisition/acquisition-data.html) records (not image files) associated with that target will also be deleted.

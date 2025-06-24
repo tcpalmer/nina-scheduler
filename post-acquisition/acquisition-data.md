@@ -9,9 +9,9 @@ nav_order: 3
 
 The plugin saves metadata to the database for each exposure taken when the plugin is running the acquisition session - essentially the same metadata that NINA gathers and calculates for the image.  This data can be viewed on the plugin home page (NINA Plugins > Target Scheduler) by expanding the Acquired Images section.
 
-In addition to providing the means to review acquisition data, the records are also used to provide samples for the [Image Grader](image-grader.html).
+In addition to providing the means to review acquisition data, the records are also used to provide samples for the [Image Grader](image-grader.html).  You can also manually change/override the grading status.
 
-![](../assets/images/acquired-images-3.png)
+![](../assets/images/acquired-images-4.png)
 
 ## Filtering
 
@@ -29,7 +29,34 @@ You can further restrict the records by Project, Target, and Filter used:
 ## Viewing
 
 * You can click a table header to sort the table, click the same header again to sort in the opposite direction.
-* Select a row in the table to view details.
+* Select a row in the table to view details, including a thumbnail image of the exposure.
+
+## Manual Grading
+
+If the project associated with a record has enabled grading, then you can manually update the grading status.  This will also update the Accepted count of the associated exposure plan.  The following table shows the behavior and side-effects.
+
+| Current Status | New Status | Note                                                                          |
+|:---------------|:-----------|-------------------------------------------------------------------------------|
+| Pending        | Accepted   | Exposure plan accepted count incremented by 1                                 |
+| Pending        | Rejected   | Exposure plan unchanged.  Reject reason set to 'Manual'                       |
+| Accepted       | Pending    | Exposure plan accepted count decremented by 1.                                |
+| Accepted       | Rejected   | Exposure plan accepted count decremented by 1.  Reject reason set to 'Manual' |
+| Rejected       | Pending    | Exposure plan unchanged. Reject reason cleared.                               |
+| Rejected       | Accepted   | Exposure plan accepted count incremented by 1. Reject reason cleared.         |
+
+To manually grade an acquired image record:
+- Select (click) the desired row in the table to display the details.
+- Update the status - Pending, Accepted, Rejected - as desired (to the right of the thumbnail).  The effect is immediate.
+
+Note that if you change the status back to Pended, you have the option to let the [Image Grader](image-grader.html) automatically grade the image based on the current population of like records.  This can happen in one of two ways:
+- If the target is still actively imaging the impacted exposure plan, then it should get graded when regular grading occurs for that plan.
+- Alternatively, you can [manually trigger the grader](../target-management/exposure-plans.html#manual-grading).
+
+### Problems
+
+Some conditions might prevent a grading change:
+- The project has disabled grading - perhaps even after the record was saved.
+- The exposure plan associated with the record cannot be found.  In most cases, this is because it was removed from the target or the target was deleted.  However, versions of the plugin prior to 5 did not save the exposure plan reference at all.  If this is the case, you likely won't see the thumbnail image either.
 
 ## CSV Output
 
