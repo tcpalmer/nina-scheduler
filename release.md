@@ -4,13 +4,11 @@ title: Release Notes
 nav_order: 15
 ---
 
-# Release Notes 5.7.0.0
-_Released June 24, 2025_
+# Release Notes 5.7.1.0
+_Released June 28, 2025_
 
 ## Changes in this Release
-* Added ability to move a target from one project to another.
-* Added display of the thumbnail image to the acquired image detail view.
-* Added ability to manually change the grading status on acquired images.
+* Fixed issue with target move and how associated acquired image rows are updated.
 
 {: .note }
 **_If this release is your first use of TS 5_** ...
@@ -35,6 +33,12 @@ Refer to the applicable documentation for details.  See the project [change log]
 
 
 # Previous Releases
+
+## Target Scheduler 5.7.0.0
+_Released June 24, 2025_
+* Added ability to move a target from one project to another.
+* Added display of the thumbnail image to the acquired image detail view.
+* Added ability to manually change the grading status on acquired images.
 
 ## Target Scheduler 5.6.4.0
 _Released June 2, 2025_
