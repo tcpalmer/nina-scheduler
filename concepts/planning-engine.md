@@ -16,7 +16,7 @@ Target Scheduler is a _dispatch scheduler_ [^1], meaning it generates a plan on 
 * A dispatch scheduler can take new information into account.  For example, images may or may not be deemed acceptable by the [image grader](../post-acquisition/image-grader.html), which changes the number of images remaining for a target, which impacts the next plan.
 * You can make changes to the project/target database that will be used during the very next planning cycle.
 * Dispatch scheduling is a better match for the NINA Advanced Sequencer and its approach to automation and triggers/interrupts.
-* In the future, the plugin may support constraints based on weather metrics such as sky quality or humidity which can obviously change over the course of a night.
+* In the future, the plugin may support constraints based on weather metrics such as sky quality which can obviously change over the course of a night.
 
 ## Plan Types and Timelines
 

@@ -41,6 +41,12 @@ Exposure plan fields are edited in line in the same table used for viewing them.
 
 When done, click the Save icon for the Target to save your changes or the Cancel icon to cancel.
 
+### Exposure Plan Enable/Disable
+When the target is _not_ in Edit mode, you can enable/disable exposure plans by clicking the on/off button.  The action is immediate.
+
+You can continue to edit a disabled exposure plan.  However, it will not be considered by the planner - either for previews or live operation.  If all exposures plans are disabled, or the only enabled plans are completed, then the target will be treated as inactive.
+
+
 ### Exposure Plan Deletion
 When the target is _not_ in Edit mode, you can delete exposure plans by clicking the Delete icon.
 

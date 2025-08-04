@@ -39,9 +39,10 @@ When done, click the Save icon to save your changes or the Cancel icon to cancel
 | Offset                   | integer      | The desired offset setting for the exposure.  Leave blank to use the default defined for the camera.                                                                 |
 | Binning                  | dropdown     | The binning mode for the exposure.                                                                                                                                   |
 | Readout Mode             | integer      | The desired readout mode setting for the exposure.  Leave blank to use the default defined for the camera.                                                           |
-| Acceptable Twilight      | dropdown     | The brightest level of twilight that is suitable for using this filter.                                                                                              |
+| Acceptable Twilight      | dropdown     | The brightest level of twilight that is suitable for using this filter - see below for details.                                                                      |
+| Twilight Offset          | integer      | An offset in minutes (plus or minus) from the acceptable twilight time - see below for details.                                                                      |
 | Dither After Every       | integer      | Value to determine how dithering is handled - see below for details.  Leave blank to use the default defined for the applicable project.                             |
-| Maximum Humidity         | double       | Not currently implemented.                                                                                                                                           |
+| Maximum Humidity         | double       | The maximum acceptable value of humidity for exposures using this template - see below.                                                                              |
 | Enable Classic Avoidance | boolean      | Enable/disable the classic moon avoidance calculation - see below.                                                                                                   |
 | Classic Separation       | 0 to 180°    | The separation angle for the moon avoidance calculation - see below.                                                                                                 |
 | Classic Width            | integer 1-14 | The width in days for the moon avoidance calculation - see below.                                                                                                    |
@@ -49,6 +50,15 @@ When done, click the Save icon to save your changes or the Cancel icon to cancel
 | Minimum Altitude         | -90° to -1°  | The lower moon altitude limit of the relaxation range for avoidance relaxation - see below.                                                                          |
 | Maximum Altitude         | 0° to 30°    | The upper moon altitude limit of the relaxation range for avoidance relaxation - see below.                                                                          |
 | Moon Must Be Down        | boolean      | Reject exposure if the moon altitude is above the relax maximum altitude, regardless of phase or separation - see below.                                             |
+
+## Acceptable Twilight and Offsets
+Without an offset the acceptable twilight time limits exposures using this template to the time extending from the start of this twilight level at dusk to the end of the level at dawn.
+
+You can add an offset that shifts the acceptable time.  The value is positive or negative minutes and is used as follows:
+* At dusk, the value is _added_ to the _start_ of the twilight level.  For example, if astronomical twilight starts at 8:00pm, then an offset of -10 shifts the acceptable period earlier by 10 minutes to 7:50pm.
+* At dawn, the value is _subtracted_ from the _end_ of the twilight level.  For example, if astronomical twilight ends at 5:00am, then an offset of -10 shifts the acceptable period later by 10 minutes to 5:10am.
+
+Note that there is no check for offset values that don't make sense.  For example a value of -5000 is likely before local sunset.
 
 ## Dithering
 You can enable a dither frequency at the exposure level, overriding the value set on projects.  For exposure plans using this exposure template:
@@ -62,6 +72,13 @@ Notes:
 * The Dither setting is ignored if you're using an [override exposure order](exposure-plans.html#override-ordering) for any Target using this template.
 
 See [Dithering](projects.html#dithering) for more information.
+
+## Humidity
+You can reject exposures using this template based on a maximum humidity value.  The value entered is the maximum acceptable relative humidity as reported by a connected weather device.  If no weather device is connected, this value is ignored.  A value of zero (the default) disables this behavior altogether.
+
+On most typical nights, the temperature is dropping and the absolute humidity is approximately constant.  Once all remaining targets are rejected for humidity, the relative humidity isn't likely to decrease so by default, Target Scheduler will end for the night.  You can change this behavior by setting the Enable stop on humidity property to false in the applicable TS profile preferences.  In this case, TS will wait 15 minutes and then try again.
+
+Note that humidity is ignored during [Scheduler Previews](../scheduler-preview.html).
 
 ## Moon Avoidance
 
