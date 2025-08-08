@@ -4,13 +4,12 @@ title: Release Notes
 nav_order: 15
 ---
 
-# Release Notes 5.8.0.0 (beta)
-_Released August 4, 2025_
+# Release Notes 5.8.1.0 (beta)
+_Released August 7, 2025_
 
 ## Changes in this Release
-* Added support for exposure rejection for humidity.
-* Added support for an offset in minutes from twilight acceptable times.
-* Added ability to disable an exposure plan.
+* Fixed issue with layout during exposure template editing.
+* Added twilight offset and dither settings to the exposure template profile table.
 
 {: .note }
 **_If this release is your first use of TS 5_** ...
@@ -35,6 +34,12 @@ Refer to the applicable documentation for details.  See the project [change log]
 
 
 # Previous Releases
+
+## Target Scheduler 5.8.0.0 (beta)
+_Released August 4, 2025_
+* Added support for exposure rejection for humidity.
+* Added support for an offset in minutes from twilight acceptable times.
+* Added ability to disable an exposure plan.
 
 ## Target Scheduler 5.7.3.0
 _Released July 28, 2025_
