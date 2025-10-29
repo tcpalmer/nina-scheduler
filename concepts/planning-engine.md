@@ -81,6 +81,9 @@ In order to implement the Project Minimum Time setting, we need to determine if 
 
 If we can continue with this target, then an exposure is selected (see below), the instructions are generated, and the plan is returned.  Otherwise, the planner continues.
 
+{: .warning }
+If you edit the active target during the project minimum time, you may cause the planner to abort the phase and proceed with a full planning run.  The following types of changes will trigger this behavior: adding, removing or disabling an exposure plan, adding, changing or deleting an override exposure order, or changing the Filter Switch Frequency on the associated project.
+
 ## Select Candidate Projects/Targets
 * Retrieve the list of active projects for the current NINA profile from the database
 * Reject those that can never rise at this latitude
