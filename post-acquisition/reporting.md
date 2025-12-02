@@ -12,7 +12,7 @@ The reporting capability should be considered experimental at this point and is 
 
 Target Acquisition reports can be generated from the persisted exposure metadata for [acquired images](acquisition-data.html).  Reports can be viewed on the plugin home page (NINA Plugins > Target Scheduler) by expanding the Reporting section.
 
-Once you select a project and a target, the acquisition report will be displayed:
+Once you select a profile, project, and a target, the acquisition report will be displayed:
 
 ![](../assets/images/reporting-1.png)
 

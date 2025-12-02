@@ -21,8 +21,9 @@ Several options exist to restrict the records displayed.  To select by date:
 
 So that the date range is inclusive, the From date will always have a time of midnight and the To date will use 23:59:59.
 
-You can further restrict the records by Project, Target, and Filter used:
-* Project: Select a project from the dropdown.  Note that projects across all NINA Profiles will be shown.
+You can further restrict the records by Profile, Project, Target, and Filter used:
+* Profile: Select a profile from the dropdown.
+* Project: Select a project from the dropdown.
 * Target: If you select a project, you can select one of the targets for that project.
 * Filter: If you select a target, you can further select one of the filters used for that target.
 

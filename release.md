@@ -4,31 +4,13 @@ title: Release Notes
 nav_order: 15
 ---
 
-# Release Notes 5.8.2.0
-_Released October 29, 2025_
+# Release Notes 5.8.3.0
+_Released December 2, 2025_
 
 ## Changes in this Release
-* New profile preference to disable target completion reset at the profile level.
-* Fixes for TS failure when it can't find a suitable exposure.
-* Fix for override exposure orders and disabled exposure plans.
-* Fixed SQLite dll load error on startup.
-* Added a warning to the custom trigger sequence drop area.
-* Added guids to most tables to support future api.
-* Fix for threading problem in scheduler progress vm add.
-
-Previously released only as beta:
-* Added support for exposure rejection for humidity.
-* Added support for an offset in minutes from twilight acceptable times.
-* Added ability to disable an exposure plan.
-* Added twilight offset and dither settings to the exposure template profile table.
-
-If you have used TS for a long time and have a large number of acquired images, the database migration for this version may take a while.
-
-The biggest change is a set of fixes to hopefully solve the problem where TS completely fails when it can't determine a suitable exposure.  This occurs during the time when TS is actively imaging a target for the minimum time and has several potential causes:
-* One is that the active target was edited in a way that altered the set of exposure plans or the ordering.  Now, if that is detected, the minimum time will be cut short just before the next exposure and a full planning run will follow.
-* It can also happen when you simply run out of acceptable exposures to take during the minimum period.  This error will be caught and a full planning run will follow.
-
-In most cases, you probably won't even notice that this has happened (although it will be in the log).  However, the current (now aborted) target may no longer be acceptable when the planner runs again which means another target is scheduled or you're done for the night.
+* The first 'Switch filter' is now shown in the TS sequence progress display even if the same filter was used by the last exposure of the previous target.
+* Added selection of profile to constrain queries for Acquired Image and Reporting results.
+* Fixed issue where targets could have no selectable exposure plan (related to exposure plan disable).
 
 {: .note }
 **_If this release is your first use of TS 5_** ...
@@ -53,6 +35,16 @@ Refer to the applicable documentation for details.  See the project [change log]
 
 
 # Previous Releases
+
+## Target Scheduler 5.8.2.0
+_Released October 29, 2025_
+* New profile preference to disable target completion reset at the profile level.
+* Fixes for TS failure when it can't find a suitable exposure.
+* Fix for override exposure orders and disabled exposure plans.
+* Fixed SQLite dll load error on startup.
+* Added a warning to the custom trigger sequence drop area.
+* Added guids to most tables to support future api.
+* Fix for threading problem in scheduler progress vm add.
 
 ## Target Scheduler 5.8.1.0 (beta)
 _Released August 7, 2025_
