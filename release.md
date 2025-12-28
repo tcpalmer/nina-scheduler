@@ -4,13 +4,11 @@ title: Release Notes
 nav_order: 15
 ---
 
-# Release Notes 5.8.3.0
-_Released December 2, 2025_
+# Release Notes 5.8.3.1
+_Released December 28, 2025_
 
 ## Changes in this Release
-* The first 'Switch filter' is now shown in the TS sequence progress display even if the same filter was used by the last exposure of the previous target.
-* Added selection of profile to constrain queries for Acquired Image and Reporting results.
-* Fixed issue where targets could have no selectable exposure plan (related to exposure plan disable).
+* Fixed issue with flats mishandling ROI.
 
 {: .note }
 **_If this release is your first use of TS 5_** ...
@@ -35,6 +33,12 @@ Refer to the applicable documentation for details.  See the project [change log]
 
 
 # Previous Releases
+
+## Target Scheduler 5.8.3.0
+_Released December 2, 2025_
+* The first 'Switch filter' is now shown in the TS sequence progress display even if the same filter was used by the last exposure of the previous target.
+* Added selection of profile to constrain queries for Acquired Image and Reporting results.
+* Fixed issue where targets could have no selectable exposure plan (related to exposure plan disable).
 
 ## Target Scheduler 5.8.2.0
 _Released October 29, 2025_
