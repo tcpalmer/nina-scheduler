@@ -4,11 +4,11 @@ title: Release Notes
 nav_order: 15
 ---
 
-# Release Notes 5.8.3.1
-_Released December 28, 2025_
+# Release Notes 5.8.3.2
+_Released January 6, 2026_
 
 ## Changes in this Release
-* Fixed issue with flats mishandling ROI.
+* Rebuild with debugging info (no functional changes)
 
 {: .note }
 **_If this release is your first use of TS 5_** ...
@@ -33,6 +33,10 @@ Refer to the applicable documentation for details.  See the project [change log]
 
 
 # Previous Releases
+
+## Target Scheduler 5.8.3.1
+_Released December 28, 2025_
+* Fixed issue with flats mishandling ROI.
 
 ## Target Scheduler 5.8.3.0
 _Released December 2, 2025_
