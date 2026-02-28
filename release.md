@@ -4,11 +4,12 @@ title: Release Notes
 nav_order: 15
 ---
 
-# Release Notes 5.8.3.2
-_Released January 6, 2026_
+# Release Notes 5.9.0.0
+_Released February 28, 2026_
 
 ## Changes in this Release
-* Rebuild with debugging info (no functional changes)
+* Exposed read-only API.
+* Fixed issue with detecting future targets allowed by moon avoidance.
 
 {: .note }
 **_If this release is your first use of TS 5_** ...
@@ -33,6 +34,10 @@ Refer to the applicable documentation for details.  See the project [change log]
 
 
 # Previous Releases
+
+## Target Scheduler 5.8.3.2
+_Released January 6, 2026_
+* Rebuild with debugging info (no functional changes)
 
 ## Target Scheduler 5.8.3.1
 _Released December 28, 2025_

@@ -2,7 +2,7 @@
 layout: default
 title: Plugin Communication
 parent: Advanced Topics
-nav_order: 2
+nav_order: 3
 ---
 
 # Communicating with Other Plugins

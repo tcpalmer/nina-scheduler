@@ -2,7 +2,7 @@
 layout: default
 title: Database
 parent: Advanced Topics
-nav_order: 1
+nav_order: 2
 ---
 
 # Database Access and Updates
