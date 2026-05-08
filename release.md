@@ -4,12 +4,12 @@ title: Release Notes
 nav_order: 15
 ---
 
-# Release Notes 5.9.0.0
-_Released February 28, 2026_
+# Release Notes 5.10.0.0 NINA 3.3 (Nightly) Only
+_Released May XX, 2026_
 
 ## Changes in this Release
-* Exposed read-only API.
-* Fixed issue with detecting future targets allowed by moon avoidance.
+* Ported to NINA 3.3 (currently the nightly release)
+* Tree toggles colorize and display all or active only are now persisted for each NINA profile
 
 {: .note }
 **_If this release is your first use of TS 5_** ...
@@ -34,6 +34,11 @@ Refer to the applicable documentation for details.  See the project [change log]
 
 
 # Previous Releases
+
+## Target Scheduler 5.9.0.0
+_Released February 28, 2026_
+* Exposed read-only API.
+* Fixed issue with detecting future targets allowed by moon avoidance.
 
 ## Target Scheduler 5.8.3.2
 _Released January 6, 2026_

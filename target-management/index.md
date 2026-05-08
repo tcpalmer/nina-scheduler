@@ -70,6 +70,14 @@ A Project is active/enabled if:
 
 A project with no targets is considered inactive since it wouldn't be considered by the planner.  Also, note that projects may show as active/enabled but not be scheduled if the project belongs to a NINA profile that isn't currently active.
 
+#### Display Toggles
+The two display toggles will change the display of the navigation tree:
+* Color Projects/Targets: if enabled, color projects and targets by active (green) and inactive (red)
+* Display Projects/Targets Active Only: if enabled, show all projects and targets in the tree, otherwise only those that are active
+
+{: .note }
+These toggles are persisted across NINA sessions on a per-profile basis.
+
 ### Orphaned Items
 
 If you delete a NINA profile that had Projects or Exposure Templates attached to it or copy the Target Scheduler database to a new PC, then Projects and Exposure Templates become _orphaned_.  If so, you will see an item in the Profiles list named 'ORPHANED'.  If you select it, you'll be presented with a list of impacted items and can choose to either move or delete each one.
