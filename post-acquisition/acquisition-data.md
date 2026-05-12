@@ -31,6 +31,7 @@ You can further restrict the records by Profile, Project, Target, and Filter use
 
 * You can click a table header to sort the table, click the same header again to sort in the opposite direction.
 * Select a row in the table to view details, including a thumbnail image of the exposure.
+* With the row details displayed, you can click 'View original image' at the bottom of the detail section to pop-up an image viewer. This viewer uses the same display code and auto-stretch as NINA. If the original file is not found in the expected location, the 'rejected' folder is also checked. If you have moved the original image, the button will be disabled.
 
 ## Manual Grading
 
@@ -67,9 +68,10 @@ The column order was chosen to mimic the CSV output of the Session Metadata plug
 
 ## Purging Records
 
-To remove acquired image records, expand the Purge Records header.  There are two ways to select the records:
-* By date: set the Older Than date to the date desired (it defaults to nine months before present) and leave Target as 'All'.  All records - regardless of target - will be removed.
-* By date and target: set the Older Than date to the date desired and then select your target from the dropdown.  Only those records for that target older than the date will be removed.
+To remove acquired image records, expand the Purge Records header.  There are multiple ways to select the records:
+* By date: set the Older Than date to the date desired (it defaults to nine months before present) and leave Profile, Project, and Target as 'Any'.  All records - regardless of target - will be removed.
+* You can further refine the record selection by selecting a Profile, a Project, and/or a Target.
+Only those records that are older than the date will be removed.
 
 Click the delete (trashcan) icon to execute.  In both cases, you will be asked to confirm the deletion.
 
@@ -77,6 +79,7 @@ Click the delete (trashcan) icon to execute.  In both cases, you will be asked t
 * Keep in mind that these records are used for image grading so if you think you might want to continue imaging a relevant target in the future, you might not want to remove associated records.
 * There is only a weak reference to the applicable project, target, and filter for each record.  You could delete or move projects, targets, or exposure plans which may impact what can be shown, selected, or deleted.
 * You can however, choose to automatically delete the records associated with targets when deleting projects and targets.  See the _Delete Acquired Images_ [preference](../target-management/profiles.html#profile-preferences) (enabled by default).
+* Thumbnail images associated with purged records are also removed.
 
 ## Data Saved
 

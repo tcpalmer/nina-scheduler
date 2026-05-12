@@ -2,7 +2,7 @@
 layout: default
 title: Target Scheduler 5 Beta
 parent: Advanced Topics
-nav_order: 4
+nav_order: 5
 ---
 
 # Target Scheduler 5: Beta Release

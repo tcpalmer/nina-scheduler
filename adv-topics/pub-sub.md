@@ -2,15 +2,15 @@
 layout: default
 title: Plugin Communication
 parent: Advanced Topics
-nav_order: 3
+nav_order: 4
 ---
+
+{: .warning}
+At some point in the future, this function may replaced by the NINA expression system plus [TS variables](symbols.html). If that implementation covers all needs, TS pub/sub will be deprecated and later removed altogether.
 
 # Communicating with Other Plugins
 
 NINA provides the ability for one plugin to publish messages that can then be received and acted on by other plugins.  This section provides details for other plugin authors wishing to integrate with TS.
-
-{: .warning }
-This is an experimental feature available with the 4.8.0.0 release and later.  The timing and format of messages is likely to change.  Any changes will be made in coordination with collaborating plugin authors.
 
 ## TS Sender Details
 TS messages will be identified by the following:
