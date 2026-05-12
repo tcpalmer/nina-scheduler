@@ -56,6 +56,10 @@ To delete a target, click the Delete icon.  If the _Delete Acquired Images_ [pre
 
 You can reset completion for a target.  This will set the Accepted and Acquired fields to zero on all Exposure Plans for the target.  Associated [acquired images](../post-acquisition/acquisition-data.html) are not removed.
 
+### Jump to Reporting
+
+To see the current acquisition report for the target, click the Reporting icon. See the [Reporting](../post-acquisition/reporting.html) section for details.
+
 ### Target Properties
 
 | Property    | Type          | Description                                                                                                                                                                                                    |

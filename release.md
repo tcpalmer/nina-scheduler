@@ -4,20 +4,14 @@ title: Release Notes
 nav_order: 15
 ---
 
-# Release Notes 5.10.0.0 NINA 3.3 (Nightly) Only
-_Released May 12, 2026_
+# Release Notes 5.10.1.0 NINA 3.3 (Nightly) Only
+_Released May XX, 2026_
 
 {: .warning}
 Until further notice, this published documentation refers to the 5.10.x.x and later releases which are for NINA 3.3 _only_. As of May 2026, NINA 3.3 is in the nightly release flow (pre-beta). If you are using NINA 3.2 or earlier, some elements of this documentation will not apply.
 
 ## Changes in this Release
-* Ported to NINA 3.3 (currently the nightly release)
-* Implemented several TS-specific variables for NINA 3.3 expressions
-* Tree toggles colorize and display all or active only are now persisted for each NINA profile
-* Added ability to display the original saved image file from acquired images (not the thumbnail)
-* Added a planning priority field to targets, if not default then it overrides the project priority
-* Added Profile and Project criteria to acquired image record purging
-* Fixed issue with deleting acquired images but not associated thumbnails
+* Added a button to jump from a target view to the reporting section and display the report for that target
 
 If you have questions or find issues, please report on the [Target Scheduler channel](https://discord.com/channels/436650817295089664/1162423099115962518) in NINA Discord.
 
@@ -38,6 +32,16 @@ Refer to the applicable documentation for details.  See the project [change log]
 
 
 # Previous Releases
+
+## Target Scheduler 5.10.0.0 NINA 3.3 (Nightly) Only
+_Released May 12, 2026_
+* Ported to NINA 3.3 (currently the nightly release)
+* Implemented several TS-specific variables for NINA 3.3 expressions
+* Tree toggles colorize and display all or active only are now persisted for each NINA profile
+* Added ability to display the original saved image file from acquired images (not the thumbnail)
+* Added a planning priority field to targets, if not default then it overrides the project priority
+* Added Profile and Project criteria to acquired image record purging
+* Fixed issue with deleting acquired images but not associated thumbnails
 
 ## Target Scheduler 5.9.0.0
 _Released February 28, 2026_
