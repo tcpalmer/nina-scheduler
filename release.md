@@ -5,13 +5,18 @@ nav_order: 15
 ---
 
 # Release Notes 5.10.1.0 NINA 3.3 (Nightly) Only
-_Released May XX, 2026_
+_Released May 19, 2026_
 
 {: .warning}
 Until further notice, this published documentation refers to the 5.10.x.x and later releases which are for NINA 3.3 _only_. As of May 2026, NINA 3.3 is in the nightly release flow (pre-beta). If you are using NINA 3.2 or earlier, some elements of this documentation will not apply.
 
 ## Changes in this Release
-* Added a button to jump from a target view to the reporting section and display the report for that target
+* Added a new 'profile summary' report to the Reporting section.
+* Added a button to jump from the profiles view to the reporting section and display the summary report for that profile.
+* Added a button to jump from a target view to the reporting section and display the report for that target.
+* Added ability for sync clients to run an autofocus when the sync server is running one.
+* Updated TS variables (still in a state of flux).
+* Fixed problem with the project max altitude check (merged from 3.2 release).
 
 If you have questions or find issues, please report on the [Target Scheduler channel](https://discord.com/channels/436650817295089664/1162423099115962518) in NINA Discord.
 

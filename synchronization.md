@@ -32,6 +32,7 @@ Proper operation of synchronization for Target Scheduler will assume the followi
 * Camera exposure settings such as gain, offset, binning, and readout mode can vary across the cameras used by leveraging the way Exposure Templates work for different profiles (see [below](#selection-of-exposure-templates)).
 * The server instance should manage all safety related activities (e.g. park on unsafe, close roof, etc).
 * The sequences used on all NINA instances will be customized to support synchronization.
+* If you're having the sync clients autofocus when the server is focusing, the filter names defined in the respective filter wheels must match (at least those filters that will be focused).
 * The TS projects/targets should handle dithering themselves and not rely on a Dither After Exposures trigger in the sequence.
 * Be sure your PC can handle running two instances of NINA.  The [minimum system requirements](https://nighttime-imaging.eu/docs/master/site/requirements/) are for one instance, not two.  Some NUCs or other mini-PCs may have trouble running in synchronized mode.
 
@@ -82,6 +83,10 @@ If the scheduler returns an empty plan then imaging is done for the night and th
 The server instance will execute the slew/center at the start of a new target as usual.  Assuming server and client are in sync, the client will be doing nothing during this operation - simply waiting on the next action from the server.
 
 However, if the server has a rotator connected, it will perform the slew/center/rotate and then inform the client that it needs to perform a solve/rotate.  If the client also has a rotator connected, it will execute the operation.  The server will wait for this to complete (or time out) before continuing with exposures.
+
+## Synced Autofocus
+
+You can optionally have synced clients perform an autofocus when the server is focusing. To enable this behavior, open TS [profile preferences](target-management/profiles.html#synchronization-preferences) and enable Synced Autofocus (on both server and client profiles).
 
 ## Custom Event Containers
 You can add [custom event containers](sequencer/container.html#custom-event-instructions) to the Target Scheduler Sync Container instruction just like Target Scheduler Container.  When the server detects that it's time to run a specific event container, it will alert the client which will pick it up as the next action to run.  When done, the client will inform the server which will then continue.  Note that the client will be alerted regardless of whether the server has instructions in its corresponding container or not.

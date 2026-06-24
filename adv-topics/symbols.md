@@ -18,24 +18,27 @@ Target Scheduler now implements several variables (aka symbols) that reflect the
 {: .warning}
 These variables will be in a state of flux while NINA 3.3 is still in the nightly release state. Expect changes.
 
-| Name                        | Type        | Default    | When Set                             |
-| --------------------------- |-------------| ---------- | ------------------------------------ |
-| TS_Version                  | string      | TS version | plugin start                         |
-| TS_ContainerRunning         | bool        | false      | container start/stop                 |
-| TS_ContainerWaiting         | bool        | false      | waiting/done waiting for next target |
-| TS_ContainerPaused          | bool        | false      | container paused/unpaused            |
-| TS_ContainerLastStarted     | DateTime*   | -          | last container start time            |
-| TS_ContainerLastStopped     | DateTime*   | -          | last container stop time             |
-| TS_CurrentTargetName        | string      | -          | a target starts imaging              |
-| TS_CurrentProjectName       | string      | -          | a target starts imaging              |
-| TS_CurrentTargetCoordinates | Coordinates | -          | a target starts imaging              |
-| TS_CurrentTargetRotation    | double      | -          | a target starts imaging              |
-| TS_CurrentTargetStarted     | DateTime*   | -          | a target starts imaging              |
-| TS_CurrentFilterName        | string      | -          | an exposure starts                   |
-| TS_CurrentExposureLength    | double      | -          | an exposure starts                   |
-| TS_NextTargetStart          | DateTime*   | -          | a wait starts                        |
-| TS_NextTargetName           | string      | -          | a wait starts                        |
-| TS_NextProjectName          | string      | -          | a wait starts                        |
+| Name                     | Type      | Default    | When Set                                 |
+|--------------------------|-----------| ---------- |------------------------------------------|
+| TS_Version               | string    | TS version | plugin start                             |
+| TS_APIRunning            | bool      | - | API up/down                              |
+| TS_APIURL                | string    | - | API URL                                  |
+| TS_ContainerRunning      | bool      | false      | container start/stop                     |
+| TS_ContainerWaiting      | bool      | false      | waiting/done waiting for next target     |
+| TS_ContainerPaused       | bool      | false      | container paused/unpaused                |
+| TS_ContainerLastStarted  | DateTime* | -          | last container start time                |
+| TS_ContainerLastStopped  | DateTime* | -          | last container stop time                 |
+| TS_CurrentTargetName     | string    | -          | a target starts imaging                  |
+| TS_CurrentProjectName    | string    | -          | a target starts imaging                  |
+| TS_CurrentTargetRA       | double    | -          | RA of current target in degrees          |
+| TS_CurrentTargetDec      | double    | -          | declination of current target in degrees |
+| TS_CurrentTargetRotation | double    | -          | a target starts imaging                  |
+| TS_CurrentTargetStarted  | DateTime* | -          | a target starts imaging                  |
+| TS_CurrentFilterName     | string    | -          | an exposure starts                       |
+| TS_CurrentExposureLength | double    | -          | an exposure starts                       |
+| TS_NextTargetStart       | DateTime* | -          | a wait starts                            |
+| TS_NextTargetName        | string    | -          | a wait starts                            |
+| TS_NextProjectName       | string    | -          | a wait starts                            |
 
 <sup>*</sup>The DateTime variables are stored as real DateTime objects. At present, the core expression system does not handle these natively. In fact, it wants to treat time values as double seconds for use in expressions (since this code has its roots in the Sequencer Powerups plugin). I'm hoping the core system can evolve to handle DataTime as a native and convert to seconds as the usage context requires.
 
