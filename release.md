@@ -5,7 +5,7 @@ nav_order: 15
 ---
 
 # Release Notes 5.10.3.0 NINA 3.3 (Nightly) Only
-_Released June XX, 2026_
+_Released June 30, 2026_
 * Added a Moon Avoidance Helper to assist with understanding avoidance behavior and selecting parameters
 * Added new image grader preferences: auto reject levels for HFR, FWHM, and Eccentricity.
 * Fix for new preview report timing issues
