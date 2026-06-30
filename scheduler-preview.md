@@ -22,19 +22,26 @@ However, the real Target Scheduler Container works quite differently:
 
 Since nearly every sequence will have triggers to autofocus or handle meridian flips (both lengthy operations), target plans will rarely finish at the planned time.  This typically isn't an issue and if the target sets or loses visibility during that time, the plan will be aborted and the engine will be called again.
 
-The following image shows the results of a preview run.  Each line in the output shows one run of the planning engine - either a 'wait' or a specific target.  For runs that return targets, you can expand the line to see the instructions that will be executed to image the target.
+The following image shows the results of a preview run.  Each line in the output shows one run of the planning engine - either a 'wait' or a specific target.
 
-![](assets/images/preview-run.png)
+![](assets/images/preview-run-2.png)
 
-## View Details
+For runs that return targets, you can expand the line to see an altitude chart of the planned exposures and the instructions that will be executed to image the target. You can mouse over the exposure time spans to see the applicable exposure template.
 
-{: .warning}
-Since the introduction of version 5.x.x.x, the details displayed can be incredibly verbose since the planner is now called for each exposure.
+![](assets/images/preview-run-3.png)
 
-If you need additional insight into what the planner is doing, click the View Details button.  This will display a detailed log of the candidate targets that were considered and why they were or weren't chosen.  For targets that were scored by the Scoring Engine, additional details are shown for all the scoring rules.
 
-The following image shows the 'View Details' log from the same image as shown above.
+## View Report
 
-![](assets/images/preview-view-details.png)
+If you need additional insight into what the planner is doing, click the View Report button:
 
-The same information is also written to the [Target Scheduler log](technical-details.html#logging) for actual (non-preview) runs via the sequencer.
+![](assets/images/preview-report-1.png)
+
+This will display a detailed log of the candidate targets that were considered and why they were or weren't chosen. Click to expand the various sections. It's recommended that you click the HTML icon to open the report in a browser since it's much more readable (as shown here).
+
+![](assets/images/preview-report-2.png)
+
+For targets that were scored by the Scoring Engine, additional details are shown for all the scoring rules:
+
+![](assets/images/preview-report-3.png)
+

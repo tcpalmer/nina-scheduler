@@ -4,19 +4,19 @@ title: Release Notes
 nav_order: 15
 ---
 
-# Release Notes 5.10.1.0 NINA 3.3 (Nightly) Only
-_Released May 19, 2026_
+# Release Notes 5.10.3.0 NINA 3.3 (Nightly) Only
+_Released June XX, 2026_
+* Added a Moon Avoidance Helper to assist with understanding avoidance behavior and selecting parameters
+* Added new image grader preferences: auto reject levels for HFR, FWHM, and Eccentricity.
+* Fix for new preview report timing issues
+* Added chart to preview report as well as HTML output
+* Fixed side-effect problem with target max altitude clipping (merged from 3.2 release)
+* Fixed problem with targets that have a max altitude and hit end-of-night not long after rejected for max (merged from 3.2 release)
 
 {: .warning}
 Until further notice, this published documentation refers to the 5.10.x.x and later releases which are for NINA 3.3 _only_. As of May 2026, NINA 3.3 is in the nightly release flow (pre-beta). If you are using NINA 3.2 or earlier, some elements of this documentation will not apply.
 
 ## Changes in this Release
-* Added a new 'profile summary' report to the Reporting section.
-* Added a button to jump from the profiles view to the reporting section and display the summary report for that profile.
-* Added a button to jump from a target view to the reporting section and display the report for that target.
-* Added ability for sync clients to run an autofocus when the sync server is running one.
-* Updated TS variables (still in a state of flux).
-* Fixed problem with the project max altitude check (merged from 3.2 release).
 
 If you have questions or find issues, please report on the [Target Scheduler channel](https://discord.com/channels/436650817295089664/1162423099115962518) in NINA Discord.
 
@@ -30,13 +30,28 @@ Refer to the applicable documentation for details.  See the project [change log]
 
 * Icons disappear when using Light or Seance color schemes.
 * Currently, a slew will always do a center which will also rotate a dome if connected.  However, if we provide a way to disable plate solving, then it would use the SlewScopeToRaDec instruction which does not rotate a dome.  Could possibly add a SynchronizeDome instruction with the slew.  Would need someone with a dome to disable platesolving and test such a fix.
-* Although profiles/projects/targets are initially sorted properly, adding one or changing a name doesn't properly re-sort.  However, you can click the refresh icon on the tree to restore the sort order.
-* Although the time to generate any given plan is about the same as in TS 4, the single-exposure approach in TS 5 means that the planner is run many more times over the course of a night.  If you have a large number of targets, then this might be noticeable - especially using Scheduler Preview.  There are some things that can be tuned if this is a significant problem.
 * Running the previewer on a target will update the filter cadence of targets that are selected.  This will impact the next run in the sequencer since the cadence cycle will have advanced from the previous run.
-* The Scheduler Preview View Details info is now ridiculously verbose and needs to be redone.  However, this is really only an issue for TS trace level log output.
-
 
 # Previous Releases
+
+## Target Scheduler 5.10.2.0 NINA 3.3 (Nightly) Only
+_Released June 26, 2026_
+* Added an altitude chart to each selected target in the plan preview.
+* Added a plan preview report, replacing the old View Details.
+* Fixed problem with target max altitude handling (manifesting as oops twilight exception).
+* Active NINA profile in navigation trees is now marked.
+* Projects and Exposure Templates in the UI are now maintained in sorted order after additions and renames.
+* Added ability to block sync clients from updating the exposure counts.
+* Fixed long-standing exception in SchedulerProgress
+
+## Target Scheduler 5.10.1.0 NINA 3.3 (Nightly) Only
+_Released May 19, 2026_
+* Added a new 'profile summary' report to the Reporting section.
+* Added a button to jump from the profiles view to the reporting section and display the summary report for that profile.
+* Added a button to jump from a target view to the reporting section and display the report for that target.
+* Added ability for sync clients to run an autofocus when the sync server is running one.
+* Updated TS variables (still in a state of flux).
+* Fixed problem with the project max altitude check (merged from 3.2 release).
 
 ## Target Scheduler 5.10.0.0 NINA 3.3 (Nightly) Only
 _Released May 12, 2026_

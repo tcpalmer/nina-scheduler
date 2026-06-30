@@ -3,6 +3,7 @@ layout: default
 title: Exposure Templates
 parent: Project / Target Management
 nav_order: 5
+has_children: true
 ---
 
 # Exposure Templates
@@ -83,6 +84,8 @@ Note that humidity is ignored during [Scheduler Previews](../scheduler-preview.h
 ## Moon Avoidance
 
 Exposure Templates provide multiple options for controlling when exposures are permitted given the moon age (phase), separation from the target, and altitude.
+
+The [Moon Avoidance Helper](moon-avoidance-helper.html) is an interactive tool, available while editing an Exposure Template, that lets you experiment with these parameters and visualize their impact before saving.
 
 ### Classic Moon Avoidance
 
