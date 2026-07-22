@@ -37,11 +37,11 @@ A basic sequence construction approach is the following:
     * Cool Camera
     * Unpark mount
 * A Sequential Instruction Set:
-    * Triggers: as needed (those that do not need to know the current target)
+    * Triggers: as typically needed
     * Loop Conditions: as needed but typically only for multi-day execution since the Target Scheduler Container will handle 'looping' until visibility ends for the night for all targets.
     * Instructions:
         * **Target Scheduler Container**:
-            * Triggers: as needed (any that need to know the current target, typically only Center After Drift)
+            * Triggers: rarely needed - see warnings and details in [Triggers](container.html#triggers).
             * Custom Before/After Wait instructions
             * Custom Before/After New Target instructions
 

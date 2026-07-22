@@ -50,7 +50,7 @@ Sequence triggers are generally used to either invoke some operation or interrup
 
 Any triggers placed _under_ Target Scheduler Container should be thoroughly tested before unattended operation.  In general, it's not necessary (and perhaps incorrect) to put any of the core NINA triggers inside this triggers container.  Triggers added by other plugins may need to be placed here but you're on your own.
 
-The NINA Center after Drift trigger requires special handling.  First, **_never_** put it in the Triggers section under Target Scheduler Container where it will be explicitly ignored.  Instead, place it in the triggers section of a container above Target Scheduler Container.  Second, the CaD trigger needs to know the current target coordinates to determine drift.  When the Target Scheduler Container gets a Target Plan, it locates the trigger in the sequence hierarchy and injects the target coordinates.  If it is working properly, the CaD instruction UI will correctly show drift and status.
+The NINA Center after Drift trigger requires special handling.  First, **_never_** put it in the Triggers section under Target Scheduler Container _**where it will be explicitly ignored**_.  Instead, place it in the triggers section of a container above Target Scheduler Container.  Second, the CaD trigger needs to know the current target coordinates to determine drift.  When the Target Scheduler Container gets a Target Plan, it locates the trigger in the sequence hierarchy and injects the target coordinates.  If it is working properly, the CaD instruction UI will correctly show drift and status.
 
 ## Custom Event Instructions
 
