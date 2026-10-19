@@ -4,14 +4,13 @@ title: Release Notes
 nav_order: 15
 ---
 
-# Release Notes 5.10.3.0 NINA 3.3 (Nightly) Only
-_Released June 30, 2026_
-* Added a Moon Avoidance Helper to assist with understanding avoidance behavior and selecting parameters
-* Added new image grader preferences: auto reject levels for HFR, FWHM, and Eccentricity.
-* Fix for new preview report timing issues
-* Added chart to preview report as well as HTML output
-* Fixed side-effect problem with target max altitude clipping (merged from 3.2 release)
-* Fixed problem with targets that have a max altitude and hit end-of-night not long after rejected for max (merged from 3.2 release)
+# Release Notes 5.10.4.0 NINA 3.3 (Nightly) Only
+_Released October 20, 2026_
+* Updating the grading status manually will now handle the 'rejected' folder correctly.
+* Added retry when moving rejected images fails due to a transient file lock (e.g. network shares).
+* Fixed Acquired Images and Reporting table sorting of Stars, HFR, FWHM, Eccentricity, and Guiding RMS as text instead of numbers.
+* Fixed 'startTime must be before endTime' problem (merged from 3.2 release)
+* Fixed problem with filter cadence table corruption (merged from 3.2 release)
 
 {: .warning}
 Until further notice, this published documentation refers to the 5.10.x.x and later releases which are for NINA 3.3 _only_. As of May 2026, NINA 3.3 is in the nightly release flow (pre-beta). If you are using NINA 3.2 or earlier, some elements of this documentation will not apply.
@@ -33,6 +32,15 @@ Refer to the applicable documentation for details.  See the project [change log]
 * Running the previewer on a target will update the filter cadence of targets that are selected.  This will impact the next run in the sequencer since the cadence cycle will have advanced from the previous run.
 
 # Previous Releases
+
+## Target Scheduler 5.10.3.0 NINA 3.3 (Nightly) Only
+_Released June 30, 2026_
+* Added a Moon Avoidance Helper to assist with understanding avoidance behavior and selecting parameters
+* Added new image grader preferences: auto reject levels for HFR, FWHM, and Eccentricity.
+* Fix for new preview report timing issues
+* Added chart to preview report as well as HTML output
+* Fixed side-effect problem with target max altitude clipping (merged from 3.2 release)
+* Fixed problem with targets that have a max altitude and hit end-of-night not long after rejected for max (merged from 3.2 release)
 
 ## Target Scheduler 5.10.2.0 NINA 3.3 (Nightly) Only
 _Released June 26, 2026_
