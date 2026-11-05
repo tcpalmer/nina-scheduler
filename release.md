@@ -4,13 +4,10 @@ title: Release Notes
 nav_order: 15
 ---
 
-# Release Notes 5.10.4.0 NINA 3.3 (Nightly) Only
-_Released October 20, 2026_
-* Updating the grading status manually will now handle the 'rejected' folder correctly.
-* Added retry when moving rejected images fails due to a transient file lock (e.g. network shares).
-* Fixed Acquired Images and Reporting table sorting of Stars, HFR, FWHM, Eccentricity, and Guiding RMS as text instead of numbers.
-* Fixed 'startTime must be before endTime' problem (merged from 3.2 release)
-* Fixed problem with filter cadence table corruption (merged from 3.2 release)
+# Release Notes 5.11.0.0 NINA 3.3 (Nightly) Only
+_Released November 5, 2026_
+* Migrated the Target Planning plugin capability to TS
+* Fixed sequencing issue with setting symbol values
 
 {: .warning}
 Until further notice, this published documentation refers to the 5.10.x.x and later releases which are for NINA 3.3 _only_. As of May 2026, NINA 3.3 is in the nightly release flow (pre-beta). If you are using NINA 3.2 or earlier, some elements of this documentation will not apply.
@@ -32,6 +29,18 @@ Refer to the applicable documentation for details.  See the project [change log]
 * Running the previewer on a target will update the filter cadence of targets that are selected.  This will impact the next run in the sequencer since the cadence cycle will have advanced from the previous run.
 
 # Previous Releases
+
+## Target Scheduler 5.10.4.1 NINA 3.3 (Nightly) Only
+_Released October 25, 2026_
+* Fixed an issue with profile loading deadlocks (merged from 3.2 release)
+
+## Target Scheduler 5.10.4.0 NINA 3.3 (Nightly) Only
+_Released October 20, 2026_
+* Updating the grading status manually will now handle the 'rejected' folder correctly.
+* Added retry when moving rejected images fails due to a transient file lock (e.g. network shares).
+* Fixed Acquired Images and Reporting table sorting of Stars, HFR, FWHM, Eccentricity, and Guiding RMS as text instead of numbers.
+* Fixed 'startTime must be before endTime' problem (merged from 3.2 release)
+* Fixed problem with filter cadence table corruption (merged from 3.2 release)
 
 ## Target Scheduler 5.10.3.0 NINA 3.3 (Nightly) Only
 _Released June 30, 2026_

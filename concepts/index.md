@@ -32,8 +32,10 @@ Exposure Templates let you decouple most of the properties for an exposure from 
 
 _Note that you must set up an Exposure Template before you can define any Exposure Plans that use it._
 
-
 See [Project/Target Management](../target-management/index.html) for details.
+
+## Target Planning
+You can use the [Target Planning](../target-planner.html) capability to determine when a target can be imaged over the course of days or a whole year.
 
 ## Previewing Schedules
 
